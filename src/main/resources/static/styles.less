@@ -11,55 +11,78 @@ header {
   width: 100vw;
   height: 11vh;
   background-color: white;
-  background-image: url(graphics/academyhelperlogga.png);
+  background-image: url(graphics/loggacentrerad.png);
   background-size: cover;
+  background-position-y: bottom;
+}
+
+header#start {
+  display: none;
 }
 
 main {
   margin: 11vh 0 3vh 0;
   padding-top: 1vh;
   top: 11vh;
-  bottom: 3vh;
+  bottom: 0;
   left: 0;
   right: 0;
   background-color: white;
   font-size: 14px;
 }
 
-footer {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  height: 5vh;
-  width: 100vw;
-  background: white;
-  background-image: linear-gradient(white -20%, @academyGreen 78%);
-}
-
 //--------------------------------------- IDS ----------------------------------------------
+#startlogga {
+  width: 100%;
+  padding-top: 7%;
+}
 
 div#login {
   width: fit-content;
   height: fit-content;
-  background-color: @academyGreen;
-
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-
   margin: auto;
+
+  form {
+    background-color: @academyGreen;
+    padding: 0.7em;
+    border-radius: 10px;
+  }
 }
 
 #email, #password, #loginbutton {
   margin: 1vh 1vw;
   text-align: center;
 
+  input {
+    width: 17em;
+    height: 2.5em;
+    text-align: center;
+    font-size: 1em;
+    border-radius: 5px;
+    border-style: none;
+  }
+
   button {
     margin: 0 auto;
-    background-image: radial-gradient(white 69%, #00aa3c);
+    position: static;
+    display: inline-block;
+    padding: 10px 20px;
+    float: none;
+    font-family: Montserrat, sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    background-color: white;
+    color: #00aa3c;
+    width: 100%;
+    border-radius: 5px;
+    height: 2.5em;
   }
 }
 
@@ -68,7 +91,7 @@ div#login {
   background-color: white;
 
   a {
-    color: black;
     font-size: 0.5em;
+    color: #9ad2ac;
   }
 }
