@@ -3,12 +3,15 @@ package academy.academyhelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.sql.DataSource;
+import javax.validation.Valid;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,7 +26,7 @@ public class AppController {
     
     @GetMapping("/register")
     public ModelAndView register() {
-        return new ModelAndView("register");
+        return new ModelAndView("register").addObject("user",new User());
     }
     
     @PostMapping("/login")
@@ -48,17 +51,26 @@ public class AppController {
     }
     
     @PostMapping("/register")
-    public String register(@RequestParam String email, @RequestParam String firstname, @RequestParam String lastname, @RequestParam String password1, @RequestParam String activationcode, @RequestParam String address) {
-    
+    public String register(@Valid User user, BindingResult bindingResult) {
+
+        if (!user.getPassWord().equals(user.getPassWord2())){
+            bindingResult.rejectValue("passWord","Fel lösenord");
+        }
+
+        if (bindingResult.hasErrors()) {
+            return "register";
+        }
+
         try (Connection conn = dataSource.getConnection()) {
             PreparedStatement ps = conn.prepareStatement("INSERT INTO [dbo].[user] (email, firstname, lastname, password, homeaddress, usertype)" +
                     "VALUES (?,?,?,?,?,?);");
-            
-            ps.setString(1, email);
-            ps.setString(2, firstname);
-            ps.setString(3, lastname);
-            ps.setString(4, password1);
-            ps.setString(5, address);
+
+
+            ps.setString(1, user.getEmail());
+            ps.setString(2, user.getFirstName());
+            ps.setString(3, user.getLastName());
+            ps.setString(4, user.getPassWord());
+            ps.setString(5, user.getHomeAddress());
             ps.setString(6, "student");
             
             int rs = ps.executeUpdate();

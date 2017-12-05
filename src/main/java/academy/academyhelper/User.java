@@ -1,12 +1,19 @@
 package academy.academyhelper;
 
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 public class User {
 
     private int userID;
+
+    @Size(min=2, max=30)
     private String firstName;
     private String lastName;
+    @Pattern(regexp = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$")
     private String email;
     private String passWord;
+    private String passWord2;
     private String homeAddress;
     private enum userType {STUDENT,ADMIN,TEACHER};
     private enum klass {JAVA,CSHARP};
@@ -18,6 +25,14 @@ public class User {
         this.email = email;
         this.passWord = passWord;
         this.homeAddress = homeAdress;
+    }
+
+    public String getPassWord2() {
+        return passWord2;
+    }
+
+    public void setPassWord2(String passWord2) {
+        this.passWord2 = passWord2;
     }
 
     public User() {

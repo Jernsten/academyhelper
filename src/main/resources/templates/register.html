@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -12,19 +12,22 @@
 </header>
 <main>
     <div class="registerformcontainer">
-        <form action="/register" method="POST">
+        <form action="/register" th:object="${user}" method="POST">
             <!-- Kolla Select -->
             <p><select>
                 <option>Student</option>
                 <option>Teacher</option>
                 <option>Admin</option>
             </select></p>
-            <p><input type="text" name="email" placeholder="Email"/></p>
-            <p><input type="text" name="firstname" placeholder="Förnamn"/></p>
+            <p><input type="text" name="email" th:field="*{email}" placeholder="Email"/></p>
+            <p th:if="${#fields.hasErrors('email')}">Incorrect email!</p>
+            <p><input type="text" th:field="*{firstName}" placeholder="Förnamn"/></p>
+            <p th:if="${#fields.hasErrors('firstName')}">Incorrect value in username, must be at least 2 characters and at most 30 characters!</p>
             <p><input type="text" name="lastname" placeholder="Efternamn"/></p>
             <p><input type="text" name="address" placeholder="Adress"/></p>
-            <p><input type="password" name="password1" placeholder="Lösenord"/></p>
-            <p><input type="password" name="password2" placeholder="Lösenord"/></p>
+            <p><input type="password" name="password" th:field="*{passWord}" placeholder="Lösenord"/></p>
+            <p><input type="password" name="password2" th:field="*{passWord2}" placeholder="Lösenord"/></p>
+            <p th:if="${#fields.hasErrors('passWord')}">Lösenord matchar inte!</p>
             <p><input type="text" name="activationcode" placeholder="Aktiveringskod"/></p>
             <p><input type="submit" value="Submit"/></p>
         </form>
