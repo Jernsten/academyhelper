@@ -7,40 +7,44 @@
     <link rel="stylesheet" type="text/css" href="styles.css"/>
 </head>
 <body>
-<header>
+<a th:href="@{'/home/' + ${user}}">
+    <header>
 
-</header>
+    </header>
+</a>
 <main>
+
+    <h1 id="welcome">Inloggad som <span id="name" th:text="${user.firstName}"/></h1>
+
     <div class="container">
-        <h1>Välkommen <span th:text="${name}" />!</h1>
-    </div>
-    <div id="news">
-        <h2>Nyheter</h2>
-        <p>Detta är en nyhet</p>
-        <p>Detta är också en nyhet som sträcker sig ut över flera rader hahahaha ahaha ah aha ah a ahahhahahah ahahahah hahaha ha ahhaha a</p>
-    </div>
-    <div id="travel">
-        <div id="gohome">Åk hem</div>
-        <div id="gethere">Åk hit</div>
-    </div>
-    <div id="faq">
-        FAQ
-    </div>
-    <div id="food">
-        MAT
-    </div>
-    <div id="sick">
-        SJUK!
-    </div>
-    <div id="Boka grupprum">
-        Grupprum
-    </div>
-    <div id="confession">
-        BIKT
+        <div id="news">
+            <h2>Nyheter</h2>
+            <p class="hidden">På fredag är det fika i kaffe-loungen.</p>
+            <p class="hidden">Någon har lämnat en grön halsduk i en av toaletterna. Prata med någon i receptionen,
+                återfås mot beskrivning.</p>
+        </div>
+        <div id="travel">
+            <div id="gohome">Åk hem</div>
+            <div id="gethere">Åk hit</div>
+        </div>
+        <div id="faq">
+            FAQ
+        </div>
+        <div id="food">
+            MAT
+        </div>
+        <div id="sick">
+            SJUK!
+        </div>
+        <div id="Boka grupprum">
+            Grupprum
+        </div>
+        <div id="confession">
+            BIKT
+        </div>
     </div>
 </main>
-<footer>
-    © Pontus, Tomas och Kemal
-</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="script.js" type="text/javascript"></script>
 </body>
 </html>

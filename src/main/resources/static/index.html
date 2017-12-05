@@ -7,29 +7,28 @@
     <link rel="stylesheet" type="text/css" href="styles.css"/>
 </head>
 <body>
-<header>
-
+<header id="start">
 </header>
 <main>
-    <div id="login">
-        <form action="/login" method="POST" autocomplete="off">
-            <div id="email">
-                <input type="email" name="email" placeholder="Mailadress"/>
+    <div>
+        <img src="/graphics/loggacentrerad.png" id="startlogga">
+        <div id="login">
+            <form action="/login" method="POST" autocomplete="off">
+                <div id="email">
+                    <input type="email" name="email" placeholder="Mailadress"/>
+                </div>
+                <div id="password">
+                    <input type="password" name="password" placeholder="Lösenord"/>
+                </div>
+                <div id="loginbutton">
+                    <button type="submit">GO!</button>
+                </div>
+            </form>
+            <div id="register">
+                <a href="/register">Inte medlem än?</a>
             </div>
-            <div id="password">
-                <input type="password" name="password" placeholder="Lösenord"/>
-            </div>
-            <div id="loginbutton">
-                <button type="submit">Logga in</button>
-            </div>
-        </form>
-        <div id="register">
-            <a href="/register">Inte medlem än?</a>
         </div>
     </div>
 </main>
-<footer>
-    © Pontus, Tomas och Kemal
-</footer>
 </body>
 </html>

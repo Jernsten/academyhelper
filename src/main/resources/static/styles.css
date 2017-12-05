@@ -8,34 +8,34 @@ header {
   right: 0;
   width: 100vw;
   height: 11vh;
-  background-color: white;
-  background-image: url(graphics/academyhelperlogga.png);
+  background: white url(graphics/loggacentrerad.png);
   background-size: cover;
+  background-position-y: bottom;
+}
+header#start {
+  display: none;
 }
 main {
+  font-family: Montserrat, sans-serif;
   margin: 11vh 0 3vh 0;
   padding-top: 1vh;
   top: 11vh;
-  bottom: 3vh;
+  bottom: 0;
   left: 0;
   right: 0;
   background-color: white;
   font-size: 14px;
 }
-footer {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  height: 5vh;
-  width: 100vw;
-  background: white;
-  background-image: linear-gradient(white -20%, #00aa3c 78%);
+.hidden {
+  display: none;
+}
+#startlogga {
+  width: 100%;
+  padding-top: 7%;
 }
 div#login {
   width: fit-content;
   height: fit-content;
-  background-color: #00aa3c;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -43,23 +43,64 @@ div#login {
   right: 0;
   margin: auto;
 }
+div#login form {
+  background-color: #00aa3c95;
+  padding: 0.7em;
+  border-radius: 10px;
+}
 #email,
 #password,
 #loginbutton {
   margin: 1vh 1vw;
   text-align: center;
 }
+#email input,
+#password input,
+#loginbutton input {
+  width: 17em;
+  height: 2.5em;
+  text-align: center;
+  font-size: 1em;
+  border-radius: 5px;
+  border-style: none;
+}
 #email button,
 #password button,
 #loginbutton button {
-  margin: 0 auto;
-  background-image: radial-gradient(white 69%, #00aa3c);
+  margin: 1.5vh auto 0 auto;
+  position: static;
+  display: inline-block;
+  padding: 10px 20px;
+  float: none;
+  font-family: Montserrat, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  background-color: #00aa3c95;
+  color: white;
+  width: 100%;
+  border-radius: 5px;
+  height: 2.5em;
+  border-style: none;
 }
 #register {
   text-align: center;
   background-color: white;
 }
 #register a {
-  color: black;
   font-size: 0.5em;
+  color: #9ad2ac;
+}
+#welcome {
+  font-size: 1em;
+  text-align: center;
+  font-style: italic;
+  margin-bottom: 6vh;
+}
+.container > div {
+  margin: 2vh 3vw;
+  padding: 2vh 2vw;
+  border: solid #00aa3c;
+  background-color: rgba(90, 110, 120, 0.1);
 }
