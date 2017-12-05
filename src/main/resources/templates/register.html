@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Academy Helper Registrering</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css"/>
+</head>
+<body>
+<header>
+
+</header>
+<main>
+    <div class="registerformcontainer">
+        <form action="/register" method="POST">
+            <!-- Kolla Select -->
+            <p><select>
+                <option>Student</option>
+                <option>Teacher</option>
+                <option>Admin</option>
+            </select></p>
+            <p><input type="text" name="email" placeholder="Email"/></p>
+            <p><input type="text" name="firstname" placeholder="Förnamn"/></p>
+            <p><input type="text" name="lastname" placeholder="Efternamn"/></p>
+            <p><input type="text" name="address" placeholder="Adress"/></p>
+            <p><input type="password" name="password1" placeholder="Lösenord"/></p>
+            <p><input type="password" name="password2" placeholder="Lösenord"/></p>
+            <p><input type="text" name="activationcode" placeholder="Aktiveringskod"/></p>
+            <p><input type="submit" value="Submit"/></p>
+        </form>
+    </div>
+</main>
+<footer>
+    © Pontus, Tomas och Kemal
+</footer>
+</body>
+</html>
