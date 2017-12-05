@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import javax.validation.Valid;
 import java.sql.Connection;
@@ -29,13 +30,18 @@ public class AppController {
     
     @GetMapping("/register")
     public ModelAndView register() {
-        return new ModelAndView("register").addObject("user",new User());
+        return new ModelAndView("register").addObject("user", new User());
     }
-
+    
     @PostMapping("/login")
-    public ModelAndView login(@RequestParam String email, @RequestParam String password) {
+    public ModelAndView login(HttpSession session, @RequestParam String email, @RequestParam String password) {
         
         User user = repository.signIn(email, password);
+        
+        if (user != null) {
+            session.setAttribute("user", user);
+            session.setMaxInactiveInterval(300);
+        }
         
         return new ModelAndView("home")
                 .addObject("user", user);
@@ -43,11 +49,11 @@ public class AppController {
     
     @PostMapping("/register")
     public String register(@Valid User user, BindingResult bindingResult) {
-
-        if (!user.getPassWord().equals(user.getPassWord2())){
-            bindingResult.rejectValue("passWord","Fel lösenord");
+        
+        if (!user.getPassWord().equals(user.getPassWord2())) {
+            bindingResult.rejectValue("passWord", "Fel lösenord");
         }
-
+        
         if (bindingResult.hasErrors()) {
             return "register";
         }
@@ -55,8 +61,8 @@ public class AppController {
         try (Connection conn = dataSource.getConnection()) {
             PreparedStatement ps = conn.prepareStatement("INSERT INTO [dbo].[user] (email, firstname, lastname, password, homeaddress, usertype)" +
                     "VALUES (?,?,?,?,?,?);");
-
-
+            
+            
             ps.setString(1, user.getEmail());
             ps.setString(2, user.getFirstName());
             ps.setString(3, user.getLastName());
@@ -74,10 +80,12 @@ public class AppController {
         return "sida";
     }
     
-    @GetMapping("/home/{user}")
-    public ModelAndView home(@PathVariable User user) {
+    @GetMapping("/home")
+    public ModelAndView home(HttpSession session) {
         
-        return new ModelAndView("home")
-                .addObject("user", user);
+        if (session.getAttribute("user") != null) {
+            return new ModelAndView("home");
+        }
+        return new ModelAndView("redirect:/");
     }
 }

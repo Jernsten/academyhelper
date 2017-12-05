@@ -7,14 +7,14 @@
     <link rel="stylesheet" type="text/css" href="styles.css"/>
 </head>
 <body>
-<a th:href="@{'/home/' + ${user}}">
+<a href="/home">
     <header>
 
     </header>
 </a>
 <main>
 
-    <h1 id="welcome">Inloggad som <span id="name" th:text="${user.firstName}"/></h1>
+    <h1 id="welcome">Inloggad som <span id="name" th:text="${session.user.firstName}"/></h1>
 
     <div class="container">
         <div id="news">
