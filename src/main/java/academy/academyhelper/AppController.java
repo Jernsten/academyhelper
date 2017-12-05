@@ -25,7 +25,7 @@ public class AppController {
     public ModelAndView register() {
         return new ModelAndView("register");
     }
-    
+
     @PostMapping("/login")
     public ModelAndView login(@RequestParam String email, @RequestParam String password) {
         
