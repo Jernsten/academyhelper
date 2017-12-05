@@ -20,14 +20,16 @@
                 <option>Admin</option>
             </select></p>
             <p><input type="text" name="email" th:field="*{email}" placeholder="Email"/></p>
-            <p th:if="${#fields.hasErrors('email')}">Incorrect email!</p>
+            <p th:if="${#fields.hasErrors('email')}">Felaktig mailadress!</p>
             <p><input type="text" th:field="*{firstName}" placeholder="Förnamn"/></p>
-            <p th:if="${#fields.hasErrors('firstName')}">Incorrect value in username, must be at least 2 characters and at most 30 characters!</p>
-            <p><input type="text" name="lastname" placeholder="Efternamn"/></p>
-            <p><input type="text" name="address" placeholder="Adress"/></p>
+            <p th:if="${#fields.hasErrors('firstName')}">Ditt förnamn måste vara mellan 2 och 50 tecken långt!</p>
+            <p><input type="text" th:field="*{lastName}" placeholder="Efternamn"/></p>
+            <p th:if="${#fields.hasErrors('lastName')}">Ditt efternamn måste vara mellan 2 och 50 tecken långt!</p>
+            <p><input type="text" th:field="*{homeAddress}" placeholder="Adress"/></p>
+            <p th:if="${#fields.hasErrors('homeAddress')}">Din adress måste vara mellan 5 och 50 tecken lång!</p>
             <p><input type="password" name="password" th:field="*{passWord}" placeholder="Lösenord"/></p>
             <p><input type="password" name="password2" th:field="*{passWord2}" placeholder="Lösenord"/></p>
-            <p th:if="${#fields.hasErrors('passWord')}">Lösenord matchar inte!</p>
+            <p th:if="${#fields.hasErrors('passWord')}">Lösenordet matchar inte eller är för kort!</p>
             <p><input type="text" name="activationcode" placeholder="Aktiveringskod"/></p>
             <p><input type="submit" value="Submit"/></p>
         </form>

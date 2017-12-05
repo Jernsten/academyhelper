@@ -9,11 +9,14 @@ public class User {
 
     @Size(min=2, max=30)
     private String firstName;
+    @Size(min=2, max=30)
     private String lastName;
     @Pattern(regexp = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$")
     private String email;
+    @Size(min=6, max=50)
     private String passWord;
     private String passWord2;
+    @Size(min=6, max=50)
     private String homeAddress;
     private enum userType {STUDENT,ADMIN,TEACHER};
     private enum klass {JAVA,CSHARP};
