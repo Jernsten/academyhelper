@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -11,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @Controller
@@ -21,6 +21,9 @@ public class AppController {
     @Autowired
     DataSource dataSource;
     
+    @Autowired
+    Repository repository;
+    
     @GetMapping("/register")
     public ModelAndView register() {
         return new ModelAndView("register");
@@ -29,27 +32,15 @@ public class AppController {
     @PostMapping("/login")
     public ModelAndView login(@RequestParam String email, @RequestParam String password) {
         
-        // Se till att lösen är krypterat
-        try (Connection conn = dataSource.getConnection()) {
-            PreparedStatement ps = conn.prepareStatement("SELECT firstname, password FROM [dbo].[user] WHERE email = ?");
-            ps.setString(1, email);
-            ResultSet rs = ps.executeQuery();
-            
-            rs.next();
-            String name = rs.getString("firstname");
-            if (rs.getString("password").equals(password)) {
-                return new ModelAndView("home").addObject("name", name);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        User user = repository.signIn(email, password);
         
-        return new ModelAndView("register");
+        return new ModelAndView("home")
+                .addObject("user", user);
     }
     
     @PostMapping("/register")
     public String register(@RequestParam String email, @RequestParam String firstname, @RequestParam String lastname, @RequestParam String password1, @RequestParam String activationcode, @RequestParam String address) {
-    
+        
         try (Connection conn = dataSource.getConnection()) {
             PreparedStatement ps = conn.prepareStatement("INSERT INTO [dbo].[user] (email, firstname, lastname, password, homeaddress, usertype)" +
                     "VALUES (?,?,?,?,?,?);");
@@ -67,7 +58,14 @@ public class AppController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    
+        
         return "sida";
+    }
+    
+    @GetMapping("/home/{user}")
+    public ModelAndView home(@PathVariable User user) {
+        
+        return new ModelAndView("home")
+                .addObject("user", user);
     }
 }
