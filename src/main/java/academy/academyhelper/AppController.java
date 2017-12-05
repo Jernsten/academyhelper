@@ -77,7 +77,7 @@ public class AppController {
             e.printStackTrace();
         }
         
-        return "sida";
+        return "home";
     }
     
     @GetMapping("/home")

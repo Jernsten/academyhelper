@@ -104,3 +104,10 @@ div#login form {
   border: solid #00aa3c;
   background-color: rgba(90, 110, 120, 0.1);
 }
+.container > div h2 {
+  text-align: center;
+  margin: 1vh auto;
+}
+.container > div p {
+  margin-left: 3vw;
+}

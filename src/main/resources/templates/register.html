@@ -19,8 +19,7 @@
                 <option>Teacher</option>
                 <option>Admin</option>
             </select></p>
-            <p><input type="text" name="email" th:field="*{email}" placeholder="Email"/></p>
-            <p th:if="${#fields.hasErrors('email')}">Felaktig mailadress!</p>
+            <p><input type="email" name="email" th:field="*{email}" placeholder="Email"/></p>
             <p><input type="text" th:field="*{firstName}" placeholder="Förnamn"/></p>
             <p th:if="${#fields.hasErrors('firstName')}">Ditt förnamn måste vara mellan 2 och 50 tecken långt!</p>
             <p><input type="text" th:field="*{lastName}" placeholder="Efternamn"/></p>
