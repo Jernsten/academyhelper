@@ -42,7 +42,7 @@ public class Repository {
                 String lastname = rs.getString("lastname");
                 String homeaddress = rs.getString("homeaddress");
                 String usertype = rs.getString("usertype");
-                String klass = rs.getString("klass");
+                String klass = rs.getString("program");
                 
                 user = new User(id, firstname, lastname, email, password, homeaddress);
                 return user;
