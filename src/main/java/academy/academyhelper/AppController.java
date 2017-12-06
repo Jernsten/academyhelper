@@ -29,7 +29,8 @@ public class AppController {
     @GetMapping("/register")
     public ModelAndView register() {
         return new ModelAndView("register")
-                .addObject("user", new User());
+                .addObject("user", new User())
+                .addObject("programList", repository.getProgramList());
     }
 
     @GetMapping("/faq")

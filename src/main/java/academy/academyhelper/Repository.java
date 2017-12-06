@@ -29,7 +29,6 @@ public class Repository {
             
             rs.next();
             
-            
             // Blir password null om användare inte finns?
             String pw = rs.getString("password");
             
@@ -40,17 +39,15 @@ public class Repository {
                 String lastname = rs.getString("lastname");
                 String homeaddress = rs.getString("homeaddress");
                 String usertype = rs.getString("usertype");
-                String klass = rs.getString("program");
+                int program = rs.getInt("program");
                 
-                user = new User(id, firstname, lastname, email, password, homeaddress);
-                return user;
+                user = new User(id, firstname, lastname, email, password, homeaddress, usertype, program);
             }
             
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
-        return null;
+        return user;
     }
     
     public List<Confession> getConfessions() {
@@ -68,7 +65,7 @@ public class Repository {
                 
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm - dd/yy");
                 String tid = timestamp.toLocalDateTime().format(dtf);
-   
+                
                 // Bättre variabelnamn!
                 
                 confessions.add(new Confession(content, tid));
@@ -97,10 +94,12 @@ public class Repository {
     }
     
     public void registerUser(@Valid User user, String accountType) {
+        
+        String sql = "INSERT INTO [dbo].[user] (email, firstname, lastname, password, homeaddress, usertype, program) " +
+                "VALUES (?,?,?,?,?,?,?);";
+        
         try (Connection conn = dataSource.getConnection()) {
-            PreparedStatement ps = conn.prepareStatement("INSERT INTO [dbo].[user] (email, firstname, lastname, password, homeaddress, usertype)" +
-                    "VALUES (?,?,?,?,?,?);");
-            
+            PreparedStatement ps = conn.prepareStatement(sql);
             
             ps.setString(1, user.getEmail());
             ps.setString(2, user.getFirstName());
@@ -108,6 +107,7 @@ public class Repository {
             ps.setString(4, user.getPassWord());
             ps.setString(5, user.getHomeAddress());
             ps.setString(6, accountType);
+            ps.setInt(7, user.getProgram());
             
             int rs = ps.executeUpdate();
             // läs av inten för att se om det funkade?
@@ -115,5 +115,29 @@ public class Repository {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    
+    public List<Program> getProgramList() {
+        List<Program> programList = new ArrayList<>();
+        
+        String sql = "Select * From dbo.program";
+        
+        try (Connection conn = dataSource.getConnection()) {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String program = rs.getString("name");
+                
+                programList.add(new Program(id,program));
+            }
+            
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return programList;
     }
 }
