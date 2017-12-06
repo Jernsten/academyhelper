@@ -5,10 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
@@ -17,6 +14,7 @@ import javax.validation.Valid;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 
 @Controller
 public class AppController {
@@ -93,5 +91,21 @@ public class AppController {
             return new ModelAndView("home");
         }
         return new ModelAndView("redirect:/");
+    }
+    
+    @GetMapping("/confessions")
+    public ModelAndView confessions() {
+        List<Confession> confessions = repository.getConfessions();
+        
+        return new ModelAndView("confessions")
+                .addObject("newConfession", new Confession())
+                .addObject("confessions", confessions);
+    }
+    
+    @PostMapping("/newConfession")
+    public ModelAndView newConfession(@ModelAttribute Confession newConfession) {
+        repository.insertConfession(newConfession);
+        
+        return confessions();
     }
 }
