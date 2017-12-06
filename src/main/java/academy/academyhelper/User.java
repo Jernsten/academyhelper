@@ -21,8 +21,7 @@ public class User {
     
     @Size(min=6, max=50)
     private String homeAddress;
-    private enum userType {STUDENT,ADMIN,TEACHER};
-    private enum klass {JAVA,CSHARP};
+   
 
     public User(int userID, String firstName, String lastName, String email, String passWord, String homeAdress) {
         this.userID = userID;

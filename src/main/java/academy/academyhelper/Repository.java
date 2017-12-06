@@ -96,7 +96,7 @@ public class Repository {
         }
     }
     
-    public void registerUser(@Valid User user) {
+    public void registerUser(@Valid User user, String accountType) {
         try (Connection conn = dataSource.getConnection()) {
             PreparedStatement ps = conn.prepareStatement("INSERT INTO [dbo].[user] (email, firstname, lastname, password, homeaddress, usertype)" +
                     "VALUES (?,?,?,?,?,?);");
@@ -107,7 +107,7 @@ public class Repository {
             ps.setString(3, user.getLastName());
             ps.setString(4, user.getPassWord());
             ps.setString(5, user.getHomeAddress());
-            ps.setString(6, "student");
+            ps.setString(6, accountType);
             
             int rs = ps.executeUpdate();
             // läs av inten för att se om det funkade?

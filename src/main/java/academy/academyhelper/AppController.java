@@ -59,7 +59,20 @@ public class AppController {
     }
     
     @PostMapping("/register")
-    public String register(@Valid User user, BindingResult bindingResult) {
+    public String register(@Valid User user, BindingResult bindingResult, @RequestParam String activationcode) {
+        
+        String accountType = null;
+        
+        switch (activationcode) {
+            case "AcademyStudent":
+                accountType = "Student";
+                break;
+            case "AcademyTe@cher":
+                accountType = "Teacher";
+                break;
+            case "Academy@dmin":
+                accountType = "Admin";
+        }
         
         if (!user.getPassWord().equals(user.getPassWord2())) {
             bindingResult.rejectValue("passWord", "Fel lösenord");
@@ -68,7 +81,7 @@ public class AppController {
         if (bindingResult.hasErrors()) {
             return "register";
         } else {
-            repository.registerUser(user);
+            repository.registerUser(user, accountType);
         }
         
         return "redirect:/";
