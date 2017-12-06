@@ -28,11 +28,18 @@ public class AppController {
     
     @GetMapping("/register")
     public ModelAndView register() {
-        return new ModelAndView("register").addObject("user", new User());
+        return new ModelAndView("register")
+                .addObject("user", new User());
     }
 
     @GetMapping("/faq")
-    public ModelAndView faq() {
+    public ModelAndView faq(HttpSession session) {
+
+        if (session.getAttribute("user") == null) {
+            // Denna if-sats kollar om användaren är inloggad
+            return new ModelAndView("redirect:/");
+        }
+
         return new ModelAndView("faq");
     }
 
@@ -60,28 +67,11 @@ public class AppController {
         
         if (bindingResult.hasErrors()) {
             return "register";
+        } else {
+            repository.registerUser(user);
         }
         
-        try (Connection conn = dataSource.getConnection()) {
-            PreparedStatement ps = conn.prepareStatement("INSERT INTO [dbo].[user] (email, firstname, lastname, password, homeaddress, usertype)" +
-                    "VALUES (?,?,?,?,?,?);");
-            
-            
-            ps.setString(1, user.getEmail());
-            ps.setString(2, user.getFirstName());
-            ps.setString(3, user.getLastName());
-            ps.setString(4, user.getPassWord());
-            ps.setString(5, user.getHomeAddress());
-            ps.setString(6, "student");
-            
-            int rs = ps.executeUpdate();
-            // läs av inten för att se om det funkade?
-            
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        
-        return "home";
+        return "redirect:/";
     }
     
     @GetMapping("/home")
