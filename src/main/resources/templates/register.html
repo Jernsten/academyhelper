@@ -15,6 +15,7 @@
         <form action="/register" th:object="${user}" method="POST">
 
             <p><input type="email" name="email" th:field="*{email}" placeholder="Email"/></p>
+            <p th:if="${#fields.hasErrors('email')}">Emailaddressen är redan registrerad</p>
 
             <p><input type="text" th:field="*{firstName}" placeholder="Förnamn"/></p>
             <p th:if="${#fields.hasErrors('firstName')}">Ditt förnamn måste vara mellan 2 och 50 tecken långt!</p>
@@ -35,6 +36,7 @@
                 <option th:each="program : ${programList}"
                         th:text="${program.name}"
                         th:value="${program.id}"></option>
+
             </select></p>
 
             <p><input type="text" name="activationcode" placeholder="Aktiveringskod"/> * fråga din lärare</p>
