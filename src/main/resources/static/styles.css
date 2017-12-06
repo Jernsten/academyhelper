@@ -98,16 +98,19 @@ div#login form {
   font-style: italic;
   margin-bottom: 6vh;
 }
-.container > div {
+.container > div,
+.frame > div {
   margin: 2vh 3vw;
   padding: 2vh 2vw;
   border: solid #00aa3c;
   background-color: rgba(90, 110, 120, 0.1);
 }
-.container > div h2 {
+.container > div h2,
+.frame > div h2 {
   text-align: center;
   margin: 1vh auto;
 }
-.container > div p {
+.container > div p,
+.frame > div p {
   margin-left: 3vw;
 }

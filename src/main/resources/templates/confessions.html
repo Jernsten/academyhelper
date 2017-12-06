@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Bikten</title>
+    <link rel="stylesheet" type="text/css" href="styles.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<a href="/home">
+    <header>
+
+    </header>
+</a>
+<main id="confessions">
+
+    <h2>Bikt</h2>
+
+    <div class="frame">
+        <div id="newConfession">
+
+            <form th:action="@{/newConfession}" method="post" th:object="${newConfession}">
+
+                <textarea placeholder="...om du vill skriva en anonym bekännelse kan du göra det här"
+                          th:field="*{content}"></textarea>
+                <button type="submit">SKICKA</button>
+            </form>
+
+        </div>
+        
+        <div class="confession"
+             th:each="confession : ${confessions}">
+            <p th:text="${confession.content}"></p>
+            <time th:text="${confession.timeStamp}"></time>
+        </div>
+
+
+    </div>
+
+</main>
+<script src="script.js" type="text/javascript"></script>
+</body>
+</html>

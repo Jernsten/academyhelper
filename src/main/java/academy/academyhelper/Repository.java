@@ -7,10 +7,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class Repository {
@@ -30,6 +31,8 @@ public class Repository {
             
             rs.next();
             
+            
+            // Blir password null om användare inte finns?
             String pw = rs.getString("password");
             
             if (pw.equals(password)) {
@@ -40,14 +43,58 @@ public class Repository {
                 String homeaddress = rs.getString("homeaddress");
                 String usertype = rs.getString("usertype");
                 String klass = rs.getString("klass");
-                // int userID, String firstName, String lastName, String email, String passWord, String homeAdress
+                
                 user = new User(id, firstname, lastname, email, password, homeaddress);
+                return user;
             }
             
         } catch (SQLException e) {
             e.printStackTrace();
         }
         
-        return user;
+        return null;
+    }
+    
+    public List<Confession> getConfessions() {
+        List<Confession> confessions = new ArrayList<>();
+        String sql = "SELECT * FROM [dbo].[confession] ORDER BY Timestamp DESC";
+        
+        try (Connection conn = dataSource.getConnection()) {
+            PreparedStatement ps = conn
+                    .prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                String content = rs.getString("content");
+                Timestamp timestamp = rs.getTimestamp("timestamp");
+                
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm - dd/yy");
+                String tid = timestamp.toLocalDateTime().format(dtf);
+   
+                // Bättre variabelnamn!
+                
+                confessions.add(new Confession(content, tid));
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        
+        return confessions;
+    }
+    
+    public void insertConfession(Confession newConfession) {
+        String sql = "INSERT INTO [dbo].[confession] (content) VALUES (?)";
+        
+        try (Connection conn = dataSource.getConnection()) {
+            
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, newConfession.getContent());
+            int rs = ps.executeUpdate();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
