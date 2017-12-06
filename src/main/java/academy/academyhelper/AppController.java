@@ -30,7 +30,13 @@ public class AppController {
     public ModelAndView register() {
         return new ModelAndView("register").addObject("user", new User());
     }
-    
+
+    @GetMapping("/faq")
+    public ModelAndView faq() {
+        return new ModelAndView("faq");
+    }
+
+
     @PostMapping("/login")
     public ModelAndView login(HttpSession session, @RequestParam String email, @RequestParam String password) {
         
