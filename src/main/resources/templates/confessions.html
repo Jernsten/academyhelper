@@ -32,7 +32,7 @@
         <blockquote class="oval-thought-border"
              th:each="confession : ${confessions}">
             <p th:text="${confession.content}"></p>
-            <p th:text="${confession.timeStamp}"></p>
+            <time th:text="${confession.timeStamp}"></time>
         </blockquote>
 
 
