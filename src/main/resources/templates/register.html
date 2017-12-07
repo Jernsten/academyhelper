@@ -30,18 +30,21 @@
             <p><input type="password" name="password2" th:field="*{passWord2}" placeholder="Upprepa lösenord"/></p>
             <p th:if="${#fields.hasErrors('passWord')}">Lösenordet matchar inte eller är för kort!</p>
 
-            <label for="program">Klass</label>
+
             <p><select id="program"
                        th:field="*{program}">
+                <option value="0">Klass</option>
                 <option th:each="program : ${programList}"
                         th:text="${program.name}"
                         th:value="${program.id}"></option>
 
             </select></p>
 
-            <p><input type="text" name="activationcode" placeholder="Aktiveringskod"/> * fråga din lärare</p>
+            <p><input type="text" name="activationcode" placeholder="Aktiveringskod"/></p>
 
-            <p><input type="submit" value="Submit"/></p>
+            <p id="loginbutton">
+                <button type="submit">GO!</button>
+            </p>
         </form>
     </div>
 </main>
