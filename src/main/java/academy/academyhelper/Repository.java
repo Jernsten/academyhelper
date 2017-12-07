@@ -64,7 +64,7 @@ public class Repository {
                 String content = rs.getString("content");
                 Timestamp timestamp = rs.getTimestamp("timestamp");
                 
-                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm - dd/yy");
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm - d/M");
                 String tid = timestamp.toLocalDateTime().format(dtf);
                 
                 // Bättre variabelnamn!

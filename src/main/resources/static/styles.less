@@ -10,7 +10,7 @@ header {
   right: 0;
   width: 100vw;
   height: 16vh;
-  z-index: 10;
+  z-index: 11;
   background: white;
 
   img {
@@ -126,10 +126,14 @@ div#login {
     font-size: 12px;
     color: #009933;
     font-style: italic;
+
+    select {
+      width: 204px;
+    }
   }
 
   button {
-    margin: 1.5vh auto 0 auto;
+
     position: static;
     display: inline-block;
     padding: 10px 20px;
@@ -141,12 +145,14 @@ div#login {
     letter-spacing: 1px;
     background-color: #00aa3c95;
     color: white;
-    width: 100%;
+    width: 57%;
     border-radius: 5px;
     height: 2.5em;
     border-style: none;
   }
 }
+
+
 
 // ------------------------------------------------ HOME ------------------------------------------
 
@@ -208,6 +214,145 @@ div#login {
       color: #0000009c;
     }
   }
-
 }
 
+//-------------------------------------------------- FAQ ----------------------------
+
+main#faq {
+
+  .container > div, .frame > div {
+    margin: 3vh 5vw;
+    padding: 3vh 2vw;
+    background-color: rgba(90, 110, 120, 0.1);
+    border-radius: 7px;
+
+    h2 {
+      text-align: center;
+      color: #565556;
+      margin: -29px auto;
+      font-size: 20px;
+      letter-spacing: 0px;
+      font-weight: normal;
+      height: 0vh;
+    }
+  }
+}
+
+// ------------------------------------------------- Confessions --------------------
+@bubblegreen: #00aa3c;
+
+main#confessions {
+
+  h2 {
+    text-align: center;
+    color: #565556;
+    margin: 0px auto;
+    font-size: 31px;
+    letter-spacing: 6px;
+    font-weight: normal;
+    height: 6vh;
+  }
+
+  blockquote {
+    margin: 1em 0;
+
+    textarea {
+      background-color: #f0f8ff00;
+      border-style: none;
+    }
+
+    p {
+      font-size: 1.3em;
+      font-family: fantasy;
+      font-style: italic;
+    }
+
+    time {
+      font-size: 0.8em;
+      font-family: fantasy;
+      font-style: italic;
+      text-align: right;
+    }
+  }
+
+  blockquote#newConfession {
+    background-image: radial-gradient(white, #079933);
+    font-size: 1em;
+    height: 51px;
+    font-family: fantasy;
+
+    textarea {
+      width: 81%;
+      font-size: 1em;
+      font-family: fantasy;
+      font-style: italic;
+    }
+
+    button {
+      font-size: 1em;
+      font-family: fantasy;
+      font-style: italic;
+    }
+  }
+
+  .oval-thought-border {
+    position: relative;
+    margin: 11em 0em;
+    padding: 3em 3em;
+    text-align: center;
+    color: #333;
+    /* css3 */
+
+    -webkit-border-radius: 240px 140px; // produces oval in safari 4 and chrome 4
+    -webkit-border-radius: 240px / 140px; // produces oval in chrome 4 (again!) but not supported in safari 4
+
+    -webkit-border-top-left-radius: 240px 140px;
+    -webkit-border-top-right-radius: 240px 140px;
+    -webkit-border-bottom-right-radius: 240px 140px;
+    -webkit-border-bottom-left-radius: 240px 140px;
+    -moz-border-radius: 240px / 140px;
+    //border-radius:240px / 140px;
+    background-image: radial-gradient(white, #079933);
+
+  }
+
+  /* creates the larger circle */
+  .oval-thought-border:before {
+    content: "";
+    position: absolute;
+    z-index: 11;
+    bottom: -40px;
+    right: 100px;
+    width: 50px;
+    height: 50px;
+    /* css3 */
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    /* reduce the damage in FF3.0 */
+    display: block;
+    background-image: radial-gradient(white, #079933);
+    z-index: 5;
+  }
+
+  /* creates the smaller circle */
+  .oval-thought-border:after {
+    content: "";
+    position: absolute;
+    z-index: 10;
+    bottom: -60px;
+    right: 50px;
+    width: 25px;
+    height: 25px;
+    /* css3 */
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+    /* reduce the damage in FF3.0 */
+    display: block;
+    background-image: radial-gradient(white, #079933);
+    z-index: 5;
+  }
+
+
+}

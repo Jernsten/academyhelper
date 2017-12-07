@@ -10,30 +10,28 @@
 <body>
 <a href="/home">
     <header>
-
+        <img src="/graphics/loggacentrerad.png"/>
     </header>
 </a>
 <main id="confessions">
 
-    <h2>Bikten</h2>
-
     <div class="frame">
-        <div id="newConfession">
+        <blockquote id="newConfession" class="oval-thought-border">
 
             <form th:action="@{/newConfession}" method="post" th:object="${newConfession}">
 
                 <textarea placeholder="...om du vill skriva en anonym bekännelse kan du göra det här"
                           th:field="*{content}"></textarea>
-                <button type="submit">SKICKA</button>
+                <div><button type="submit">SKICKA</button></div>
             </form>
 
-        </div>
+        </blockquote>
 
-        <div class="confession"
+        <blockquote class="oval-thought-border"
              th:each="confession : ${confessions}">
             <p th:text="${confession.content}"></p>
             <time th:text="${confession.timeStamp}"></time>
-        </div>
+        </blockquote>
 
 
     </div>
