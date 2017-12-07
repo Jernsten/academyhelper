@@ -7,17 +7,22 @@ header {
   left: 0;
   right: 0;
   width: 100vw;
-  height: 11vh;
-  background: white url(graphics/loggacentrerad.png);
-  background-size: cover;
-  background-position-y: bottom;
+  height: 16vh;
+  z-index: 10;
+  background: white;
+}
+header img {
+  width: 100vw;
+  background-color: white;
+  position: absolute;
+  top: 1vh;
 }
 header#start {
   display: none;
 }
 main {
   font-family: Montserrat, sans-serif;
-  margin: 11vh 0 3vh 0;
+  margin: 17vh 0 3vh 0;
   padding-top: 1vh;
   top: 11vh;
   bottom: 0;
@@ -31,7 +36,7 @@ main {
 }
 #startlogga {
   width: 100%;
-  padding-top: 18vh;
+  padding-top: 12vh;
 }
 div#login {
   width: fit-content;
@@ -135,7 +140,7 @@ div#login form {
 }
 .container > div,
 .frame > div {
-  margin: 6vh 3vw;
+  margin: 8vh 5vw;
   padding: 3vh 2vw;
   background-color: rgba(90, 110, 120, 0.1);
   border-radius: 7px;

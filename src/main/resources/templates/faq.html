@@ -9,7 +9,7 @@
 <body>
 <a href="/home">
     <header>
-
+        <img src="/graphics/loggacentrerad.png"/>
     </header>
 </a>
 <main>
@@ -17,18 +17,21 @@
     <h1 id="welcome">Inloggad som <span id="name" th:text="${session.user.firstName}"/></h1>
 
     <div class="container">
-        <div id="faq">
-            <h2>FAQ</h2>
-        </div>
+
         <div id="adress">
-            Vad har Academy för adress? <span class="arrow"></span>
-            <p class="hidden">
-                Academy Borgarfjordsgatan 4 (Plan3)
-                164 40 Kista
-                www.academy.se
-                Närmaste tunnelbanestation är Kista
-            </p>
+
+            <h2>Vad har Academy för adress?</h2>
+
+            <div class="text hidden">
+                <p class="firstp">
+                    Academy Borgarfjordsgatan 4 (Plan3)
+                    164 40 Kista
+                    www.academy.se
+                    Närmaste tunnelbanestation är Kista
+                </p>
+            </div>
         </div>
+
         <div id="lokaler">
             Våra lokaler och det som händer här! <span class="arrow"></span>
             <p class="hidden">Vad har Academy för öppettider?
