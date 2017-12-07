@@ -110,8 +110,10 @@ div#login form {
   color: #009933;
   font-style: italic;
 }
+.registerformcontainer form p select {
+  width: 204px;
+}
 .registerformcontainer form button {
-  margin: 1.5vh auto 0 auto;
   position: static;
   display: inline-block;
   padding: 10px 20px;
@@ -123,7 +125,7 @@ div#login form {
   letter-spacing: 1px;
   background-color: #00aa3c95;
   color: white;
-  width: 100%;
+  width: 57%;
   border-radius: 5px;
   height: 2.5em;
   border-style: none;
