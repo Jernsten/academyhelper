@@ -8,7 +8,7 @@ header {
   right: 0;
   width: 100vw;
   height: 16vh;
-  z-index: 10;
+  z-index: 11;
   background: white;
 }
 header img {
@@ -219,14 +219,41 @@ main#confessions h2 {
 main#confessions blockquote {
   margin: 1em 0;
 }
+main#confessions blockquote textarea {
+  background-color: #f0f8ff00;
+  border-style: none;
+}
 main#confessions blockquote p {
   font-size: 1.3em;
   font-family: fantasy;
   font-style: italic;
 }
+main#confessions blockquote time {
+  font-size: 0.8em;
+  font-family: fantasy;
+  font-style: italic;
+  text-align: right;
+}
+main#confessions blockquote#newConfession {
+  background-image: radial-gradient(white, #079933);
+  font-size: 1em;
+  height: 51px;
+  font-family: fantasy;
+}
+main#confessions blockquote#newConfession textarea {
+  width: 81%;
+  font-size: 1em;
+  font-family: fantasy;
+  font-style: italic;
+}
+main#confessions blockquote#newConfession button {
+  font-size: 1em;
+  font-family: fantasy;
+  font-style: italic;
+}
 main#confessions .oval-thought-border {
   position: relative;
-  margin: 6em 0em;
+  margin: 11em 0em;
   padding: 3em 3em;
   text-align: center;
   color: #333;
@@ -243,7 +270,7 @@ main#confessions .oval-thought-border {
 main#confessions .oval-thought-border:before {
   content: "";
   position: absolute;
-  z-index: 10;
+  z-index: 11;
   bottom: -40px;
   right: 100px;
   width: 50px;
@@ -255,6 +282,7 @@ main#confessions .oval-thought-border:before {
   /* reduce the damage in FF3.0 */
   display: block;
   background-image: radial-gradient(white, #079933);
+  z-index: 5;
 }
 main#confessions .oval-thought-border:after {
   content: "";
@@ -271,4 +299,5 @@ main#confessions .oval-thought-border:after {
   /* reduce the damage in FF3.0 */
   display: block;
   background-image: radial-gradient(white, #079933);
+  z-index: 5;
 }

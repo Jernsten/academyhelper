@@ -15,19 +15,17 @@
 </a>
 <main id="confessions">
 
-    <h2>Bikten</h2>
-
     <div class="frame">
-        <div id="newConfession">
+        <blockquote id="newConfession" class="oval-thought-border">
 
             <form th:action="@{/newConfession}" method="post" th:object="${newConfession}">
 
                 <textarea placeholder="...om du vill skriva en anonym bekännelse kan du göra det här"
                           th:field="*{content}"></textarea>
-                <button type="submit">SKICKA</button>
+                <div><button type="submit">SKICKA</button></div>
             </form>
 
-        </div>
+        </blockquote>
 
         <blockquote class="oval-thought-border"
              th:each="confession : ${confessions}">
