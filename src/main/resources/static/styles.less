@@ -208,6 +208,108 @@ div#login {
       color: #0000009c;
     }
   }
-
 }
 
+//-------------------------------------------------- FAQ ----------------------------
+
+main#faq {
+
+  .container > div, .frame > div {
+    margin: 3vh 5vw;
+    padding: 3vh 2vw;
+    background-color: rgba(90, 110, 120, 0.1);
+    border-radius: 7px;
+
+    h2 {
+      text-align: center;
+      color: #565556;
+      margin: -29px auto;
+      font-size: 20px;
+      letter-spacing: 0px;
+      font-weight: normal;
+      height: 0vh;
+    }
+  }
+}
+
+// ------------------------------------------------- Confessions --------------------
+@bubblegreen: #00aa3c;
+
+main#confessions {
+
+  h2 {
+    text-align: center;
+    color: #565556;
+    margin: 0px auto;
+    font-size: 31px;
+    letter-spacing: 6px;
+    font-weight: normal;
+    height: 6vh;
+  }
+
+  blockquote {
+    margin: 1em 0;
+  }
+
+  blockquote p {
+    margin: 0;
+    font-size: 2em;
+  }
+
+  .oval-thought-border {
+    position: relative;
+    margin: 6em 0em;
+    padding: 3em 3em;
+    text-align: center;
+    color: #333;
+    /* css3 */
+
+    -webkit-border-radius: 240px 140px; // produces oval in safari 4 and chrome 4
+    -webkit-border-radius: 240px / 140px; // produces oval in chrome 4 (again!) but not supported in safari 4
+
+    -webkit-border-top-left-radius: 240px 140px;
+    -webkit-border-top-right-radius: 240px 140px;
+    -webkit-border-bottom-right-radius: 240px 140px;
+    -webkit-border-bottom-left-radius: 240px 140px;
+    -moz-border-radius: 240px / 140px;
+    //border-radius:240px / 140px;
+    background-image: radial-gradient(white, #079933);
+
+  }
+
+  /* creates the larger circle */
+  .oval-thought-border:before {
+    content: "";
+    position: absolute;
+    z-index: 10;
+    bottom: -40px;
+    right: 100px;
+    width: 50px;
+    height: 50px;
+    /* css3 */
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    /* reduce the damage in FF3.0 */
+    display: block;
+    background-image: radial-gradient(white, #079933);
+  }
+
+  /* creates the smaller circle */
+  .oval-thought-border:after {
+    content: "";
+    position: absolute;
+    z-index: 10;
+    bottom: -60px;
+    right: 50px;
+    width: 25px;
+    height: 25px;
+    /* css3 */
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+    /* reduce the damage in FF3.0 */
+    display: block;
+    background-image: radial-gradient(white, #079933);
+  }
+}
