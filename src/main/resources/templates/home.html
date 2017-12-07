@@ -17,33 +17,55 @@
     <h1 id="welcome">Inloggad som <span id="name" th:text="${session.user.firstName}"/></h1>
 
     <div class="container">
+
         <div id="news">
-            <h2>Nyheter <span class="arrow"></span></h2>
-            <p class="hidden">På fredag är det fika i kaffe-loungen.</p>
-            <p class="hidden">Någon har lämnat en grön halsduk i en av toaletterna. Prata med någon i receptionen,
-                återfås mot beskrivning.</p>
+            <h2>Aktuellt</h2>
+
+            <p class="info">Information om vad som händer på Academy just nu</p>
+
+            <div class="text hidden">
+                <p class="firstp">På fredag kommer HM Drottning Silvia på besök och fikar med oss, kl 15 i
+                    kaffeloungen.</p>
+                <p>Om någon saknar en dator så har jag ett par i receptionen // Rebecca</p>
+            </div>
+
         </div>
+
+        <div id="confession">
+            <h2><a href="/confessions">Confessions</a></h2>
+            <p class="info">Lätta på hjärtat med en anonym bekännelse</p>
+        </div>
+
+        <div id="faq">
+            <h2><a href="faq.html">FAQ</a></h2>
+            <p class="info">Om du undrar efter något</p>
+        </div>
+
+        <div id="food">
+            <h2>Mat</h2>
+            <p class="info">Hungrig?</p>
+            <div class="text hidden">
+                <p class="firstp"><a href="http://eatery.se/">Eatery</a> är NOD-husets restaurang som serverar tre olika
+                    rätter varje dag.</p>
+                <p><a href="https://www.kistagalleria.se/eat-drink">Food Court Kista Galleria</a> Här hittar du allt
+                    från burgare till sushi.</p>
+            </div>
+        </div>
+
         <div id="travel">
             <div id="gohome">Åk hem</div>
             <div id="gethere">Åk hit</div>
         </div>
-        <div id="faq">
-            <a href="faq.html">FAQ</a>
-        </div>
-        <div id="food">
-            MAT <span class="arrow"></span>
-            <p class="hidden"><a href="http://eatery.se/">Eatery</a> är NOD-husets restaurang som serverar tre olika rätter varje dag.</p>
-            <p class="hidden"><a href="https://www.kistagalleria.se/eat-drink">Food Court Kista Galleria</a> Här hittar du allt från burgare till sushi.</p>
-        </div>
+
+
         <div id="sick">
             SJUK!
         </div>
+
         <div id="Boka grupprum">
             Grupprum
         </div>
-        <div id="confession">
-            <a href="/confessions"> BIKTEN </a>
-        </div>
+
     </div>
 </main>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

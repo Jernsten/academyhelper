@@ -87,7 +87,10 @@ public class AppController {
             bindingResult.rejectValue("email", "Det finns redan en användare registrerad med denna email-address");
         }
         
+        
         if (bindingResult.hasErrors()) {
+//            bindingResult.rejectValue("activationcode","Aaaaa");
+    
             model.addAttribute("programList", repository.getProgramList());
             return "register";
         } else {

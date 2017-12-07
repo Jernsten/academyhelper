@@ -31,7 +31,7 @@ main {
 }
 #startlogga {
   width: 100%;
-  padding-top: 7%;
+  padding-top: 18vh;
 }
 div#login {
   width: fit-content;
@@ -41,7 +41,7 @@ div#login {
   bottom: 0;
   left: 0;
   right: 0;
-  margin: auto;
+  margin: 46vh auto auto auto;
 }
 div#login form {
   background-color: #00aa3c95;
@@ -87,9 +87,10 @@ div#login form {
 #register {
   text-align: center;
   background-color: white;
+  padding-top: 2vh;
 }
 #register a {
-  font-size: 0.5em;
+  font-size: 0.8em;
   color: #9ad2ac;
 }
 #welcome {
@@ -97,20 +98,56 @@ div#login form {
   text-align: center;
   font-style: italic;
   margin-bottom: 6vh;
+  color: #565556bf;
+}
+.container {
+  margin-top: 12vh;
 }
 .container > div,
 .frame > div {
-  margin: 2vh 3vw;
-  padding: 2vh 2vw;
-  border: solid #00aa3c;
+  margin: 6vh 3vw;
+  padding: 3vh 2vw;
   background-color: rgba(90, 110, 120, 0.1);
+  border-radius: 7px;
 }
 .container > div h2,
 .frame > div h2 {
   text-align: center;
-  margin: 1vh auto;
+  color: #565556;
+  margin: -39px auto;
+  font-size: 31px;
+  letter-spacing: 6px;
+  font-weight: normal;
+  height: 6vh;
 }
-.container > div p,
-.frame > div p {
+.container > div h2 ~ p,
+.frame > div h2 ~ p {
+  color: #00000042;
+  position: relative;
+  top: 4vh;
+  font-style: italic;
+  font-family: -webkit-pictograph;
+  text-align: center;
+}
+.container > div h2 a,
+.frame > div h2 a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  height: 6vh;
+}
+.container > div .text,
+.frame > div .text {
+  margin-top: 10vh;
+}
+.container > div .text p,
+.frame > div .text p {
   margin-left: 3vw;
+  font-family: Georgia, Times, 'Times New Roman', serif;
+  background-color: #0799330f;
+  border-radius: 5px;
+  padding: 3vh 4vw;
+  margin-top: 1.5vh;
+  margin-bottom: 0vh;
+  color: #0000009c;
 }
