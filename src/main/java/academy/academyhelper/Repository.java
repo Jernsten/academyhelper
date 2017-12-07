@@ -27,9 +27,10 @@ public class Repository {
             ps.setString(1, email);
             ResultSet rs = ps.executeQuery();
             
-            rs.next();
+            if(!rs.next()) { // Om det inte gick att logga in
+                return user;
+            }
             
-            // Blir password null om användare inte finns?
             String pw = rs.getString("password");
             
             if (pw.equals(password)) {
@@ -130,7 +131,7 @@ public class Repository {
                 int id = rs.getInt("id");
                 String program = rs.getString("name");
                 
-                programList.add(new Program(id,program));
+                programList.add(new Program(id, program));
             }
             
             
@@ -139,5 +140,22 @@ public class Repository {
         }
         
         return programList;
+    }
+    
+    public boolean emailExists(String email) {
+        String sql = "SELECT email FROM [dbo].[user] WHERE email = ?";
+        
+        try (Connection conn = dataSource.getConnection()) {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+            
+            return rs.next();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return false;
     }
 }

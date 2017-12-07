@@ -1,13 +1,13 @@
 $('.container div').click(function() {
 
-    if ($(this).children("p").hasClass("hidden")) {
-        $(this).children("p").slideDown();
-        $(this).children("p").removeClass("hidden");
-        $(this).children("span.arrow").text("ᐃ");
+    if ($(this).children(".text").hasClass("hidden")) {
+        $(this).children(".text").slideDown();
+        $(this).children(".text").removeClass("hidden");
+        $(this).children(".info").slideUp();
     } else {
-        $(this).children("p").slideUp();
-        $(this).children("p").addClass("hidden");
-        $(this).children("span.arrow").text("ᐁ");
+        $(this).children(".text").slideUp();
+        $(this).children(".text").addClass("hidden");
+        $(this).children(".info").slideDown();
     }
 
 });

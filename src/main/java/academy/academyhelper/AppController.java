@@ -3,6 +3,7 @@ package academy.academyhelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
@@ -26,31 +27,26 @@ public class AppController {
     @Autowired
     Repository repository;
     
-    @GetMapping("/register")
-    public ModelAndView register() {
-        return new ModelAndView("register")
-                .addObject("user", new User())
-                .addObject("programList", repository.getProgramList());
-    }
-
     @GetMapping("/faq")
     public ModelAndView faq(HttpSession session) {
-
+        
         if (session.getAttribute("user") == null) {
             // Denna if-sats kollar om användaren är inloggad
             return new ModelAndView("redirect:/");
         }
-
+        
         return new ModelAndView("faq");
     }
-
-
+    
+    
     @PostMapping("/login")
     public ModelAndView login(HttpSession session, @RequestParam String email, @RequestParam String password) {
         
         User user = repository.signIn(email, password);
         
-        if (user != null) {
+        if (user == null) {
+            return new ModelAndView("login");
+        } else {
             session.setAttribute("user", user);
             session.setMaxInactiveInterval(300);
         }
@@ -59,8 +55,15 @@ public class AppController {
                 .addObject("user", user);
     }
     
+    @GetMapping("/register")
+    public ModelAndView register() {
+        return new ModelAndView("register")
+                .addObject("user", new User())
+                .addObject("programList", repository.getProgramList());
+    }
+    
     @PostMapping("/register")
-    public String register(@Valid User user, BindingResult bindingResult, @RequestParam String activationcode) {
+    public String register(@Valid User user, BindingResult bindingResult, @RequestParam String activationcode, Model model) {
         
         String accountType = null;
         
@@ -73,13 +76,22 @@ public class AppController {
                 break;
             case "Academy@dmin":
                 accountType = "Admin";
+                break;
         }
         
         if (!user.getPassWord().equals(user.getPassWord2())) {
             bindingResult.rejectValue("passWord", "Fel lösenord");
         }
         
+        if (repository.emailExists(user.getEmail())) {
+            bindingResult.rejectValue("email", "Det finns redan en användare registrerad med denna email-address");
+        }
+        
+        
         if (bindingResult.hasErrors()) {
+//            bindingResult.rejectValue("activationcode","Aaaaa");
+    
+            model.addAttribute("programList", repository.getProgramList());
             return "register";
         } else {
             repository.registerUser(user, accountType);
@@ -94,11 +106,18 @@ public class AppController {
         if (session.getAttribute("user") != null) {
             return new ModelAndView("home");
         }
+        
         return new ModelAndView("redirect:/");
     }
     
     @GetMapping("/confessions")
-    public ModelAndView confessions() {
+    public ModelAndView confessions(HttpSession session) {
+        
+        if (session.getAttribute("user") == null) {
+            // Denna if-sats kollar om användaren är inloggad
+            return new ModelAndView("redirect:/");
+        }
+        
         List<Confession> confessions = repository.getConfessions();
         
         return new ModelAndView("confessions")
@@ -107,9 +126,19 @@ public class AppController {
     }
     
     @PostMapping("/newConfession")
-    public ModelAndView newConfession(@ModelAttribute Confession newConfession) {
+    public String newConfession(@ModelAttribute Confession newConfession) {
         repository.insertConfession(newConfession);
         
-        return confessions();
+        return "redirect:/confessions";
+    }
+    
+    @GetMapping("/forgot")
+    public ModelAndView forgot(){
+        return new ModelAndView("forgot");
+    }
+    
+    @PostMapping("/forgot")
+    public ModelAndView sendEmail(){
+        return new ModelAndView("emailsent");
     }
 }
