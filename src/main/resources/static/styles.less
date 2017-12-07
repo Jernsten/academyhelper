@@ -108,6 +108,39 @@ div#login {
 }
 
 //------------------------------------------------ REGISTER --------------------------------------
+.registerformcontainer input {
+  width: 200px;
+  text-align: center;
+}
+
+.registerformcontainer form {
+  text-align: center;
+
+  p {
+    font-size: 12px;
+    color: #009933;
+    font-style: italic;
+  }
+
+  button {
+    margin: 1.5vh auto 0 auto;
+    position: static;
+    display: inline-block;
+    padding: 10px 20px;
+    float: none;
+    font-family: Montserrat, sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    background-color: #00aa3c95;
+    color: white;
+    width: 100%;
+    border-radius: 5px;
+    height: 2.5em;
+    border-style: none;
+  }
+}
 
 // ------------------------------------------------ HOME ------------------------------------------
 
@@ -129,7 +162,6 @@ div#login {
   background-color: rgba(90, 110, 120, .1);
   border-radius: 7px;
 
-
   h2 {
     text-align: center;
     color: #565556;
@@ -139,7 +171,7 @@ div#login {
     font-weight: normal;
     height: 6vh;
 
-    &~p {
+    & ~ p {
       color: #00000042;
       position: relative;
       top: 4vh;
