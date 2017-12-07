@@ -101,6 +101,10 @@ div#login form {
 .registerformcontainer input {
   width: 200px;
   text-align: center;
+  border-style: solid;
+  border-radius: 5px;
+  border-color: #00aa3c;
+  height: 26px;
 }
 .registerformcontainer form {
   text-align: center;
@@ -111,7 +115,13 @@ div#login form {
   font-style: italic;
 }
 .registerformcontainer form p select {
-  width: 204px;
+  width: 208px;
+  text-align: center;
+  border-style: solid;
+  border-radius: 5px;
+  border-color: #00aa3c;
+  height: 26px;
+  border-width: 2px;
 }
 .registerformcontainer form button {
   position: static;
