@@ -16,7 +16,7 @@
 <main id="confessions">
 
     <div class="frame">
-        <blockquote id="newConfession" class="oval-thought-border">
+        <blockquote id="newConfession" class="">
 
             <form th:action="@{/newConfession}" method="post" th:object="${newConfession}">
 
@@ -27,7 +27,7 @@
 
         </blockquote>
 
-        <blockquote class="oval-thought-border"
+        <blockquote class=""
              th:each="confession : ${confessions}">
             <p th:text="${confession.content}"></p>
             <time th:text="${confession.timeStamp}"></time>

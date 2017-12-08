@@ -203,118 +203,33 @@ div#login form {
   margin-bottom: 0vh;
   color: #000000;
 }
-main#faq .container > div,
-main#faq .frame > div {
-  /*margin: 3vh 5vw;
-    padding: 3vh 2vw;
-    background-color: rgba(90, 110, 120, 0.1);
-    border-radius: 7px;*/
-}
-main#faq .container > div h2,
-main#faq .frame > div h2 {
-  /*text-align: center;
-      color: #565556;
-      margin: -29px auto;
-      font-size: 20px;
-      letter-spacing: 0px;
-      font-weight: normal;
-      height: 0vh;*/
-}
-main#confessions {
-  /* creates the larger circle */
-  /* creates the smaller circle */
-}
-main#confessions h2 {
-  text-align: center;
-  color: #565556;
-  margin: 0px auto;
-  font-size: 31px;
-  letter-spacing: 6px;
-  font-weight: normal;
-  height: 6vh;
-}
 main#confessions blockquote {
-  margin: 1em 0;
-}
-main#confessions blockquote textarea {
-  background-color: #f0f8ff00;
-  border-style: none;
+  background-color: #00aa3c17;
+  border-radius: 16px;
+  margin: 8vh 18vw;
+  padding: 1vh 1vw 0vh;
+  height: auto;
 }
 main#confessions blockquote p {
-  font-size: 1.3em;
-  font-family: fantasy;
+  padding: 1vh 5vw;
+  font-size: 1.1em;
   font-style: italic;
+  font-family: monospace;
+  letter-spacing: 2px;
+  margin: 0vh 0vw;
+}
+main#confessions blockquote p:before {
+  content: '"';
+}
+main#confessions blockquote p:after {
+  content: '"';
 }
 main#confessions blockquote time {
-  font-size: 0.8em;
-  font-family: fantasy;
-  font-style: italic;
-  text-align: right;
-}
-main#confessions blockquote#newConfession {
-  background-image: radial-gradient(white, #079933);
-  font-size: 1em;
-  height: 51px;
-  font-family: fantasy;
-}
-main#confessions blockquote#newConfession textarea {
-  width: 81%;
-  font-size: 1em;
-  font-family: fantasy;
-  font-style: italic;
-}
-main#confessions blockquote#newConfession button {
-  font-size: 1em;
-  font-family: fantasy;
-  font-style: italic;
-}
-main#confessions .oval-thought-border {
   position: relative;
-  margin: 11em 0em;
-  padding: 3em 3em;
-  text-align: center;
-  color: #333;
-  /* css3 */
-  -webkit-border-radius: 240px 140px;
-  -webkit-border-radius: 1.71428571px;
-  -webkit-border-top-left-radius: 240px 140px;
-  -webkit-border-top-right-radius: 240px 140px;
-  -webkit-border-bottom-right-radius: 240px 140px;
-  -webkit-border-bottom-left-radius: 240px 140px;
-  -moz-border-radius: 1.71428571px;
-  background-image: radial-gradient(white, #079933);
-}
-main#confessions .oval-thought-border:before {
-  content: "";
-  position: absolute;
-  z-index: 11;
-  bottom: -40px;
-  right: 100px;
-  width: 50px;
-  height: 50px;
-  /* css3 */
-  -webkit-border-radius: 50px;
-  -moz-border-radius: 50px;
-  border-radius: 50px;
-  /* reduce the damage in FF3.0 */
+  top: 17px;
+  right: 7px;
+  text-align: right;
   display: block;
-  background-image: radial-gradient(white, #079933);
-  z-index: 5;
-}
-main#confessions .oval-thought-border:after {
-  content: "";
-  position: absolute;
-  z-index: 10;
-  bottom: -60px;
-  right: 50px;
-  width: 25px;
-  height: 25px;
-  /* css3 */
-  -webkit-border-radius: 25px;
-  -moz-border-radius: 25px;
-  border-radius: 25px;
-  /* reduce the damage in FF3.0 */
-  display: block;
-  background-image: radial-gradient(white, #079933);
-  z-index: 5;
+  font-size: 0.9em;
+  color: #56555685;
 }
