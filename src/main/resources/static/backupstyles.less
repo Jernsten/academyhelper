@@ -201,32 +201,69 @@ div#login {
 
 // ------------------------------------------------ HOME ------------------------------------------
 
-main#home {
-  font-family: Montserrat, sans-serif;
-  margin: 18vh 0 3vh 0;
-  padding-top: 1vh;
-  top: 11vh;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: white;
-  font-size: 14px;
-  display: block;
+#container {
+  margin-top: 12vh;
+}
 
-  div {
-    margin: 0.9vh auto;
-    background: #5a595a1a;
-    padding: 1vh 3vh 1vh 3vh;
-    /* box-shadow: 1px 1px 1px 0px black; */
+main#home > div#container > div {
+  margin: 8vh 5vw;
+  padding: 3vh 2vw;
+  background-color: #00aa3c17;
+  border-radius: 7px;
 
-    h2 {
-      font-family: Montserrat, sans-serif;
-      letter-spacing: 2px;
-      font-weight: 500;
-      font-size: 1.9em;
-      font-variant-caps: all-petite-caps;
+  h2 {
+    text-align: right;
+    color: #565556;
+    margin: -46px auto;
+    font-size: 19px;
+    letter-spacing: 1px;
+    height: 6vh;
+    font-family: Montserrat, sans-serif;
+
+    & ~ p {
+      color: #000000c9;
+      position: relative;
+      top: 4vh;
+      font-family: inherit;
+      text-align: left;
+      margin: 3vh 5vw;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      height: 6vh;
     }
   }
+
+  .text {
+    margin-top: 8vh;
+    padding-right: 3vw;
+
+    p {
+      margin-left: 3vw;
+      font-family: Georgia, Times, 'Times New Roman', serif;
+      background-color: #ffffff;
+      border-radius: 5px;
+      padding: 3vh 4vw;
+      margin-top: 1.5vh;
+      margin-bottom: 0vh;
+      color: #000000;
+    }
+  }
+}
+
+form.firstp input {
+  display: block;
+  width: -webkit-fill-available;
+  height: 5vh;
+  border-radius: 7px;
+  margin: 2vh -2vw 2vh 1vw;
+  text-align: center;
+  border-style: solid;
+  border-color: #00aa3c14;
+  box-shadow: inset 0px 0px 25px 0px #00aa3c24;
 }
 
 //-------------------------------------------------- FAQ ----------------------------
@@ -305,6 +342,7 @@ main#confessions div.frame {
     &:nth-child(5n + 4) {
       box-shadow: inset 0px 0px 263px -87px rgba(0, 170, 60, 0.7);
     }
+
 
     p {
       display: block;

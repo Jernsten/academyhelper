@@ -1,13 +1,15 @@
-$('.container div').click(function() {
+$('main#home div#container div').click(function () {
 
-    if ($(this).children(".text").hasClass("hidden")) {
-        $(this).children(".text").slideDown();
-        $(this).children(".text").removeClass("hidden");
-        $(this).children(".info").fadeToggle();
-    } else {
-        $(this).children(".text").slideUp();
-        $(this).children(".text").addClass("hidden");
-        $(this).children(".info").fadeToggle();
-    }
+    $(this).children(".info").slideToggle();
+    $(this).children(".text").slideToggle();
 
+});
+
+$("document").ready(function () {
+    $("#countdown").fadeOut(7000, "swing");
+});
+
+
+$("#loginbutton").click(function () {
+    $("header img")
 });

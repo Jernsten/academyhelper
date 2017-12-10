@@ -9,91 +9,80 @@
 <body>
 <a href="/home">
     <header>
+        <div id="countdown">
+            <div id="numberOfDays">17</div>
+            <div>DAGAR KVAR</div>
+        </div>
+        <h1 id="welcome"><span id="name" th:text="${session.user.firstName}"/></h1>
         <img src="/graphics/loggacentrerad.png"/>
     </header>
 </a>
-<main id="login">
 
-    <h1 id="welcome">Inloggad som <span id="name" th:text="${session.user.firstName}"/></h1>
+<main id="home">
+    <div id="news">
+        <h2>Aktuellt</h2>
 
-    <div class="container">
+        <p class="info">Information om vad som händer på Academy just nu</p>
 
-        <div id="news">
-            <h2>Aktuellt</h2>
-
-            <p class="info">Information om vad som händer på Academy just nu</p>
-
-            <div class="text hidden">
-                <p class="firstp">På fredag kommer HM Drottning Silvia på besök och fikar med oss, kl 15 i
-                    kaffeloungen.</p>
-                <p>Om någon saknar en dator så har jag ett par i receptionen // Rebecca</p>
-            </div>
-
-        </div>
-
-        <div id="confession">
-            <h2><a href="/confessions">Confessions</a></h2>
-            <p class="info">Lätta på hjärtat med en anonym bekännelse</p>
-        </div>
-
-        <div id="faq">
-            <h2><a href="faq.html">FAQ</a></h2>
-            <p class="info">Om du undrar efter något</p>
-        </div>
-
-        <div id="food">
-            <h2>Mat</h2>
-            <p class="info">Hungrig?</p>
-            <div class="text hidden">
-                <p class="firstp"><a href="http://eatery.se/">Eatery</a> är NOD-husets restaurang som serverar tre olika
-                    rätter varje dag.</p>
-                <p><a href="https://www.kistagalleria.se/eat-drink">Food Court Kista Galleria</a> Här hittar du allt
-                    från burgare till sushi.</p>
-            </div>
-        </div>
-
-        <div id="travel">
-            <h2>Hitta hit</h2>
-            <p class="info">Så här åker du kollektivt från T-centralen</p>
-            <div class="text hidden">
-                <p class="firstp">
-                    <a href="https://www.google.se/maps/dir/T-Centralen+T-bana,+Stockholm/Academy,+a+part+of+Academic+Work,+Borgarfjordsgatan+4,+164+55+Kista/@59.3793078,17.9211142,12z/data=!4m14!4m13!1m5!1m1!1s0x465f9d60812e6cc7:0xbe2201dc8bf32611!2m2!1d18.0592629!2d59.330947!1m5!1m1!1s0x465f9eecf6836e1d:0x58153322eecfd39a!2m2!1d17.9468557!2d59.4073629!3e3">
-                        Ta dig hit med SL från T-centralen
-                    </a>
-                </p>
-            </div>
-        </div>
-
-
-        <div id="sick">
-            <h2>Om du blir sjuk</h2>
-            <p class="info">Anmäl här om du av någon anledning måste stanna hemma</p>
-            <div class="text hidden">
-                <p class="firstp">
-                <form id="form" name="form" method="post" action=" ">
-
-                    Förnamn:<br />
-                    <input type="text" name="fnamn" id="fnamn" /> <br />
-
-                    Efternamn:<br />
-                    <input type="text" name="enamn" id="enamn" /> <br />
-
-                    Meddelande:<br />
-                    <textarea name="meddelande" id="meddelande" cols="45" rows="5"></textarea> <br />
-
-                    <input type="submit" name="skicka" id="skicka" value="Skicka meddelandet" />
-
-                </form>
-
-                </p>
-            </div>
-        </div>
-
-        <div id="Boka grupprum">
-            Grupprum
+        <div class="text hidden">
+            <p>På fredag kommer HM Drottning Silvia på besök och fikar med oss, kl 15 i
+                kaffeloungen.</p>
+            <p>Om någon saknar en dator så har jag ett par i receptionen // Rebecca</p>
         </div>
 
     </div>
+
+    <div id="confession">
+        <h2><a href="/confessions">Confessions</a></h2>
+        <p class="info">Lätta på hjärtat med en anonym bekännelse</p>
+    </div>
+
+    <div id="faq">
+        <h2><a href="faq.html">FAQ</a></h2>
+        <p class="info">Om du undrar efter något</p>
+    </div>
+
+    <div id="food">
+        <h2>Mat</h2>
+        <p class="info">Hungrig?</p>
+        <div class="text hidden">
+            <p><a href="http://eatery.se/">Eatery</a> är NOD-husets restaurang som serverar tre olika
+                rätter varje dag.</p>
+            <p><a href="https://www.kistagalleria.se/eat-drink">Food Court Kista Galleria</a> Här hittar du allt
+                från burgare till sushi.</p>
+        </div>
+    </div>
+
+    <div id="travel">
+        <h2>Hitta hit</h2>
+        <p class="info">Så här åker du kollektivt från T-centralen</p>
+        <div class="text hidden">
+            <p>
+                <a href="https://www.google.se/maps/dir/T-Centralen+T-bana,+Stockholm/Academy,+a+part+of+Academic+Work,+Borgarfjordsgatan+4,+164+55+Kista/@59.3793078,17.9211142,12z/data=!4m14!4m13!1m5!1m1!1s0x465f9d60812e6cc7:0xbe2201dc8bf32611!2m2!1d18.0592629!2d59.330947!1m5!1m1!1s0x465f9eecf6836e1d:0x58153322eecfd39a!2m2!1d17.9468557!2d59.4073629!3e3">
+                    Ta dig hit med SL från T-centralen
+                </a>
+            </p>
+        </div>
+    </div>
+
+
+    <div id="sick">
+        <h2>Om du blir sjuk</h2>
+        <p class="info">Anmäl här om du av någon anledning måste stanna hemma</p>
+        <div class="text hidden">
+            <form action="/sick" method="post" class="firstp">
+                <input type="text" name="fnamn" id="fnamn" placeholder="Förnamn"/>
+                <input type="text" name="enamn" id="enamn" placeholder="Efternamn"/>
+                <textarea name="meddelande" id="meddelande" placeholder="Lämna ett meddelande"></textarea>
+                <button type="submit">Sjukanmäl mig</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="Boka grupprum">
+        Grupprum
+    </div>
+
 </main>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="script.js" type="text/javascript"></script>

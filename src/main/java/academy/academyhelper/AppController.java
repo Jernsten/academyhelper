@@ -90,7 +90,7 @@ public class AppController {
         
         if (bindingResult.hasErrors()) {
 //            bindingResult.rejectValue("activationcode","Aaaaa");
-    
+            
             model.addAttribute("programList", repository.getProgramList());
             return "register";
         } else {
@@ -127,18 +127,25 @@ public class AppController {
     
     @PostMapping("/newConfession")
     public String newConfession(@ModelAttribute Confession newConfession) {
-        repository.insertConfession(newConfession);
+        
+        String confession = newConfession.getContent().trim();
+        
+        if (!confession.equals("")) {
+            newConfession.setContent(confession);
+            repository.insertConfession(newConfession);
+        }
+        
         
         return "redirect:/confessions";
     }
     
     @GetMapping("/forgot")
-    public ModelAndView forgot(){
+    public ModelAndView forgot() {
         return new ModelAndView("forgot");
     }
     
     @PostMapping("/forgot")
-    public ModelAndView sendEmail(){
+    public ModelAndView sendEmail() {
         return new ModelAndView("emailsent");
     }
 }
