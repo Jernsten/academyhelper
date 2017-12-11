@@ -1,7 +1,5 @@
 $('main#home > div').click(function () {
-    $(this).children("h2").slideToggle();
-    $(this).children('.info').slideToggle();
-    $(this).children('.text').slideToggle();
+    $(this).children().slideToggle();
 
 });
 
@@ -10,7 +8,7 @@ $("window").ready(function () {
         $("#countdown").fadeToggle(3500, "swing");
     });
 
-    //$(".text").slideToggle();
+    $("main#home > div > div.text").slideToggle();
 });
 
 

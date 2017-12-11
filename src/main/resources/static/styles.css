@@ -237,14 +237,14 @@ main#home > div#news > div.text > p {
   display: inline-flex;
   background: none;
 }
-main#home > div h2 {
+main#home > div > h2 {
   font-family: Montserrat, sans-serif;
   letter-spacing: 2px;
   font-weight: 500;
   font-size: 1.9em;
   font-variant-caps: all-petite-caps;
 }
-main#home > div p.info {
+main#home > div > p.info {
   font-size: 0.8em;
 }
 main#home > div > div.text p {

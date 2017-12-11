@@ -43,16 +43,17 @@ public class AppController {
     public ModelAndView login(HttpSession session, @RequestParam String email, @RequestParam String password) {
         
         User user = repository.signIn(email, password);
+        List<String> news = repository.getNews();
         
         if (user == null) {
             return new ModelAndView("login");
         } else {
             session.setAttribute("user", user);
             session.setMaxInactiveInterval(300);
+            session.setAttribute("news", news);
         }
         
-        return new ModelAndView("home")
-                .addObject("user", user);
+        return new ModelAndView("redirect:/home");
     }
     
     @GetMapping("/register")

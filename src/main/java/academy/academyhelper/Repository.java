@@ -170,4 +170,23 @@ public class Repository {
             e.printStackTrace();
         }
     }
+    
+    public List<String> getNews() {
+        List<String> news = new ArrayList<>();
+        String sql = "SELECT * FROM [dbo].[news] ORDER BY [Timestamp] DESC ";
+        
+        try (Connection conn = dataSource.getConnection()) {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()) {
+                news.add(rs.getString("content")+" //"+rs.getString("Author"));
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return news;
+    }
 }
