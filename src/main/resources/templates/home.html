@@ -13,7 +13,7 @@
             <div id="numberOfDays">17</div>
             <div>DAGAR KVAR</div>
         </div>
-        <h1 id="welcome"><span id="name" th:text="${session.user.firstName}"/></h1>
+        <h1 id="welcome"><span id="name" th:text="${session.user.firstName} + ' ' + |(${session.user.userType})|"/></h1>
         <img src="/graphics/loggacentrerad.png"/>
     </header>
 </a>
@@ -83,14 +83,13 @@
     <div id="sick">
         <h2>Frånvaro</h2>
         <p class="info">Anmäl här om du av någon anledning inte kan närvara, tex vid sjukdom eller intervju</p>
-        <div class="text">
-            <form action="/sick" method="post" class="firstp">
+        <form action="mailto:salaspontus@hotmail.com" enctype="text/plain" method="post" class="firstp">
                 <input type="text" name="fnamn" id="fnamn" placeholder="Förnamn"/>
                 <input type="text" name="enamn" id="enamn" placeholder="Efternamn"/>
                 <textarea name="meddelande" id="meddelande" placeholder="Orsak till frånvaro"></textarea>
                 <button type="submit">Skicka</button>
             </form>
-        </div>
+
     </div>
 
     <div id="Boka grupprum">
