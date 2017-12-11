@@ -5,25 +5,26 @@ package academy.academyhelper;
 import javax.validation.constraints.Size;
 
 public class User {
-
+    
     private int userID;
-
-    @Size(min=2, max=30)
+    
+    @Size(min = 2, max = 30)
     private String firstName;
     
-    @Size(min=2, max=30)
+    @Size(min = 2, max = 30)
     private String lastName;
     private String email;
     
-    @Size(min=6, max=50)
+    @Size(min = 6, max = 50)
     private String passWord;
     private String passWord2;
     
-    @Size(min=6, max=50)
+    @Size(min = 6, max = 50)
     private String homeAddress;
     private int program;
+    private String userType;
     
-    public User(int userID, String firstName, String lastName, String email, String passWord, String passWord2, String homeAddress, int program) {
+    public User(int userID, String firstName, String lastName, String email, String passWord, String passWord2, String homeAddress, int program, String userType) {
         this.userID = userID;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -32,6 +33,7 @@ public class User {
         this.passWord2 = passWord2;
         this.homeAddress = homeAddress;
         this.program = program;
+        this.userType = userType;
     }
     
     public User() {
@@ -99,5 +101,13 @@ public class User {
     
     public void setProgram(int program) {
         this.program = program;
+    }
+    
+    public String getUserType() {
+        return userType;
+    }
+    
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 }

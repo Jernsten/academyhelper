@@ -12,43 +12,42 @@
         <img src="/graphics/loggacentrerad.png"/>
     </header>
 </a>
-<main>
-    <div class="registerformcontainer">
-        <form action="/register" th:object="${user}" method="POST">
+<main id="register">
+    <form action="/register" th:object="${user}" method="POST">
 
-            <p><input type="email" name="email" th:field="*{email}" placeholder="Email"/></p>
-            <p th:if="${#fields.hasErrors('email')}">Emailaddressen är redan registrerad</p>
+        <p><input type="email" name="email" th:field="*{email}" placeholder="Mailadress"/></p>
+        <p th:if="${#fields.hasErrors('email')}">Mailadressen är tom eller redan registrerad.</p>
 
-            <p><input type="text" th:field="*{firstName}" placeholder="Förnamn"/></p>
-            <p th:if="${#fields.hasErrors('firstName')}">Ditt förnamn måste vara mellan 2 och 50 tecken långt!</p>
+        <p><input type="text" th:field="*{firstName}" placeholder="Förnamn"/></p>
+        <p th:if="${#fields.hasErrors('firstName')}">Ditt förnamn får vara 2-50 tecken långt.</p>
 
-            <p><input type="text" th:field="*{lastName}" placeholder="Efternamn"/></p>
-            <p th:if="${#fields.hasErrors('lastName')}">Ditt efternamn måste vara mellan 2 och 50 tecken långt!</p>
+        <p><input type="text" th:field="*{lastName}" placeholder="Efternamn"/></p>
+        <p th:if="${#fields.hasErrors('lastName')}">Ditt efternamn får vara 2-50 tecken långt.</p>
 
-            <p><input type="text" th:field="*{homeAddress}" placeholder="Adress"/></p>
-            <p th:if="${#fields.hasErrors('homeAddress')}">Din adress måste vara mellan 5 och 50 tecken lång!</p>
+        <p><input type="text" th:field="*{homeAddress}" placeholder="Hemadress"/></p>
+        <p th:if="${#fields.hasErrors('homeAddress')}">Din adress ska vara 5-50 tecken långt.</p>
 
-            <p><input type="password" name="password" th:field="*{passWord}" placeholder="Lösenord"/></p>
-            <p><input type="password" name="password2" th:field="*{passWord2}" placeholder="Upprepa lösenord"/></p>
-            <p th:if="${#fields.hasErrors('passWord')}">Lösenordet matchar inte eller är för kort!</p>
+        <p><input type="password" name="password" th:field="*{passWord}" placeholder="Lösenord"/></p>
+        <p><input type="password" name="password2" th:field="*{passWord2}" placeholder="Upprepa"/></p>
+        <p th:if="${#fields.hasErrors('passWord')}">Lösenordet måste vara minst 6 tecken långt.</p>
 
 
-            <p><select id="program"
-                       th:field="*{program}">
-                <option value="0">Klass</option>
-                <option th:each="program : ${programList}"
-                        th:text="${program.name}"
-                        th:value="${program.id}"></option>
+        <p><select id="program"
+                   th:field="*{program}">
+            <option value="0">Klass</option>
+            <option th:each="program : ${programList}"
+                    th:text="${program.name}"
+                    th:value="${program.id}"></option>
 
-            </select></p>
+        </select></p>
+        <p th:if="${#fields.hasErrors('program')}">Välj ditt program.</p>
 
-            <p><input type="text" name="activationcode" placeholder="Aktiveringskod"/></p>
-
-            <div id="loginbutton">
-                <button type="submit">REGISTRERA</button>
-            </div>
-        </form>
-    </div>
+        <p><input type="text" name="userType" placeholder="Aktiveringskod" th:field="*{userType}"/></p>
+        <p th:if="${#fields.hasErrors('userType')}">Fråga administrationen om aktiveringskod.</p>
+        <div id="loginbutton">
+            <button type="submit">REGISTRERA</button>
+        </div>
+    </form>
 </main>
 </body>
 </html>

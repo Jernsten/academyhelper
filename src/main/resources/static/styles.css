@@ -134,27 +134,37 @@ main#index form {
   font-size: 0.8em;
   color: #9ad2ac;
 }
-.registerformcontainer form {
+main#register > form {
   text-align: center;
 }
-.registerformcontainer form p {
-  font-size: 12px;
-  color: #009933;
-  font-style: italic;
-  margin: 3vh auto 3vh auto;
+main#register > form > p {
+  text-align: center;
+  color: #079933;
 }
-.registerformcontainer form p input,
-.registerformcontainer form p select {
-  width: 200px;
-  height: 26px;
+main#register > form > p > input {
+  width: 57vw;
+  height: 30px;
+  font-size: 12px;
+  color: #757575;
   display: inline-block;
   border-radius: 7px;
-  text-align: center;
+  /*text-align: center;*/
   border-style: solid;
   border-color: #00aa3c14;
   box-shadow: inset 0px 0px 216px -111px #00aa3c;
 }
-.registerformcontainer button {
+main#register > form > p > select {
+  width: 58vw;
+  height: 36px;
+  font-size: 12px;
+  color: #757575;
+  display: inline-block;
+  border-radius: 7px;
+  border-style: solid;
+  border-color: #00aa3c14;
+  box-shadow: inset 0px 0px 216px -111px #00aa3c;
+}
+main#register div#loginbutton > button {
   position: static;
   display: inline-block;
   padding: 10px 20px;
@@ -166,7 +176,7 @@ main#index form {
   letter-spacing: 1px;
   background-color: #00aa3c95;
   color: white;
-  width: 57%;
+  width: 57vw;
   border-radius: 5px;
   height: 2.5em;
   border-style: none;
@@ -188,11 +198,31 @@ main#home > div {
   border-radius: 14px;
 }
 main#home > div#news {
-  background-image: url(http://pakryss.se/wp-content/uploads/Logg_3.jpg);
+  background-image: url(/graphics/open-book.jpg);
   /* background-position: center center; */
-  background-size: 100vw;
+  background-size: 113vw;
   background-position: top;
-  filter: contrast(93%);
+  background-position-y: -4vh;
+  filter: contrast(103%);
+  /* margin: 0vh 4vw; */
+  padding: 1vh 6vw;
+}
+main#home > div#news > h2 {
+  font-family: Montserrat, sans-serif;
+  letter-spacing: 2px;
+  font-weight: 500;
+  font-size: 1.9em;
+  font-variant-caps: all-petite-caps;
+  display: inline-block;
+  /* margin: auto auto; */
+  width: 48%;
+  /* padding-right: 2vw; */
+}
+main#home > div#news > p.info {
+  font-size: 0.8em;
+  display: inline-block;
+  width: 48%;
+  padding-left: 2vw;
 }
 main#home > div#news > div.text {
   display: flex;
@@ -292,17 +322,17 @@ main#home > a > div p.info {
   color: white;
   text-align: right;
 }
-main#confessions div.frame {
-  margin: 7vh 0vw 0vh 1vw;
+main#confessions {
+  margin: 17vh 0vw 0vh 1vw;
 }
-main#confessions div.frame div form {
+main#confessions > div#newConfession {
   margin: 7vh 3vw;
   padding: 0vh 4vw 0vh;
   border-radius: 15px;
   box-shadow: inset 0px 0px 263px -87px #00aa3c;
   display: flex;
 }
-main#confessions div.frame div form textarea {
+main#confessions > div#newConfession > form > textarea {
   background-color: transparent;
   border-style: none;
   padding: 2vh 9vw 5vh 0vw;
@@ -313,16 +343,16 @@ main#confessions div.frame div form textarea {
   border-right-color: white;
   border-right-width: 3px;
 }
-main#confessions div.frame div form div {
+main#confessions > div#newConfession > form > div {
   display: flex;
   position: absolute;
   right: 10vw;
   top: 30vh;
 }
-main#confessions div.frame div form div button {
+main#confessions > div#newConfession > form > div > button {
   color: #00000078;
 }
-main#confessions div.frame blockquote {
+main#confessions > blockquote {
   margin: 7vh 3vw;
   padding: 0vh 4vw 0vh;
   border-radius: 15px;
@@ -330,25 +360,35 @@ main#confessions div.frame blockquote {
   display: table;
   font-family: monospace;
 }
-main#confessions div.frame blockquote#newConfession {
+main#confessions > blockquote#newConfession {
   border: inset 6px rgba(0, 170, 60, 0.2);
 }
-main#confessions div.frame blockquote:nth-child(5n + 1) {
-  box-shadow: inset 0px 0px 263px -87px rgba(0, 170, 60, 0.1);
+main#confessions > blockquote:nth-child(7n) {
+  box-shadow: inset 0px 0px 263px -87px rgba(0, 170, 60, 0.2);
 }
-main#confessions div.frame blockquote:nth-child(5n + 2) {
-  box-shadow: inset 0px 0px 263px -87px rgba(0, 170, 60, 0.3);
+main#confessions > blockquote:nth-child(7n + 1) {
+  box-shadow: inset 0px 0px 263px -87px rgba(0, 170, 60, 0.4);
 }
-main#confessions div.frame blockquote:nth-child(5n + 3) {
-  box-shadow: inset 0px 0px 263px -87px rgba(0, 170, 60, 0.5);
+main#confessions > blockquote:nth-child(7n + 2) {
+  box-shadow: inset 0px 0px 263px -87px rgba(0, 170, 60, 0.6);
 }
-main#confessions div.frame blockquote:nth-child(5n + 4) {
-  box-shadow: inset 0px 0px 263px -87px rgba(0, 170, 60, 0.7);
+main#confessions > blockquote:nth-child(7n + 3) {
+  box-shadow: inset 0px 0px 263px -87px rgba(0, 170, 60, 0.75);
 }
-main#confessions div.frame blockquote p {
+main#confessions > blockquote > p {
   display: block;
 }
-main#confessions div.frame blockquote time {
+main#confessions > blockquote > span.delete {
+  position: relative;
+  right: 8vw;
+  top: -4vh;
+}
+main#confessions > blockquote > span.delete > a {
+  text-decoration: none;
+  color: red;
+  font-weight: bolder;
+}
+main#confessions > blockquote > time {
   display: block;
   position: absolute;
   font-size: 0.8em;

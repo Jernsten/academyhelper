@@ -42,7 +42,7 @@ public class Repository {
                 String usertype = rs.getString("usertype");
                 int program = rs.getInt("program");
                 
-                user = new User(id, firstname, lastname, email, password, homeaddress, usertype, program);
+                user = new User(id, firstname, lastname, email, password, homeaddress, usertype, program, usertype);
             }
             
         } catch (SQLException e) {
@@ -61,15 +61,14 @@ public class Repository {
             ResultSet rs = ps.executeQuery();
             
             while (rs.next()) {
+                int id = rs.getInt("ID");
                 String content = rs.getString("content");
                 Timestamp timestamp = rs.getTimestamp("timestamp");
                 
-                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm - d/M");
-                String tid = timestamp.toLocalDateTime().format(dtf);
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("H:m - d/L");
+                String timeStamp = timestamp.toLocalDateTime().format(dtf);
                 
-                // Bättre variabelnamn!
-                
-                confessions.add(new Confession(content, tid));
+                confessions.add(new Confession(id, content, timeStamp));
             }
             
         } catch (SQLException e) {
@@ -157,5 +156,18 @@ public class Repository {
         }
         
         return false;
+    }
+    
+    public void deleteConfession(int id) {
+        String sql = "DELETE FROM [dbo].[confession] WHERE id = ?";
+        
+        try (Connection conn = dataSource.getConnection()) {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

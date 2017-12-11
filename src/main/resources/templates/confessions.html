@@ -15,26 +15,30 @@
     </header>
 </a>
 <main id="confessions">
-    <div class="frame">
-        <div id="newConfession" class="">
+    <div id="newConfession" class="">
 
-            <form th:action="@{/newConfession}" method="post" th:object="${newConfession}">
+        <form th:action="@{/newConfession}" method="post" th:object="${newConfession}">
 
-                <textarea placeholder="Om du vill lämna ett anonymt meddelande kan du göra det här"
+                <textarea placeholder="Lätta på hjärtat med en anonym bekännelse"
                           th:field="*{content}"></textarea>
-                <div><button type="submit">SKICKA</button></div>
-            </form>
-
-        </div>
-
-        <blockquote class=""
-             th:each="confession : ${confessions}">
-            <p th:text="${confession.content}"></p>
-            <time th:text="${confession.timeStamp}"></time>
-        </blockquote>
-
+            <div>
+                <button type="submit">SKICKA</button>
+            </div>
+        </form>
 
     </div>
+
+    <blockquote th:each="confession : ${confessions}">
+        <p th:text="${confession.content}"></p>
+
+        <span th:if="${session.user.userType == 'Admin'}" class="delete">
+
+            <a th:href="@{'/deleteConfession/' + ${confession.id}}">-</a>
+
+        </span>
+
+        <time th:text="${confession.timeStamp}"></time>
+    </blockquote>
 
 </main>
 <script src="script.js" type="text/javascript"></script>
