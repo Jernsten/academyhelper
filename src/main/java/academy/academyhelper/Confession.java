@@ -1,15 +1,25 @@
 package academy.academyhelper;
 
 public class Confession {
+    private int id;
     private String content;
     private String timeStamp;
+    
+    public Confession(int id, String content, String timeStamp) {
+        this.id = id;
+        this.content = content;
+        this.timeStamp = timeStamp;
+    }
     
     public Confession() {
     }
     
-    public Confession(String content, String timeStamp) {
-        this.content = content;
-        this.timeStamp = timeStamp;
+    public int getId() {
+        return id;
+    }
+    
+    public void setId(int id) {
+        this.id = id;
     }
     
     public String getContent() {

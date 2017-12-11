@@ -63,11 +63,11 @@ public class AppController {
     }
     
     @PostMapping("/register")
-    public String register(@Valid User user, BindingResult bindingResult, @RequestParam String activationcode, Model model) {
+    public String register(@Valid User user, BindingResult bindingResult, @RequestParam String userType, Model model) {
         
         String accountType = null;
         
-        switch (activationcode) {
+        switch (userType) {
             case "AcademyStudent":
                 accountType = "Student";
                 break;
@@ -83,14 +83,23 @@ public class AppController {
             bindingResult.rejectValue("passWord", "Fel lösenord");
         }
         
+        if (user.getEmail().isEmpty()) {
+            bindingResult.rejectValue("email", "Skriv din mailadress.");
+        }
+        
         if (repository.emailExists(user.getEmail())) {
             bindingResult.rejectValue("email", "Det finns redan en användare registrerad med denna email-address");
         }
         
+        if (user.getProgram() == 0) {
+            bindingResult.rejectValue("program", "Välj en klass");
+        }
+        
+        if (!(user.getUserType().equals("AcademyStudent") || user.getUserType().equals("AcademyTe@cher") || user.getUserType().equals("Academy@dmin"))) {
+            bindingResult.rejectValue("userType", "Fel aktiveringskod");
+        }
         
         if (bindingResult.hasErrors()) {
-//            bindingResult.rejectValue("activationcode","Aaaaa");
-            
             model.addAttribute("programList", repository.getProgramList());
             return "register";
         } else {
@@ -123,6 +132,14 @@ public class AppController {
         return new ModelAndView("confessions")
                 .addObject("newConfession", new Confession())
                 .addObject("confessions", confessions);
+    }
+    
+    @GetMapping("/deleteConfession/{id}")
+    public String deleteConfession(@PathVariable int id){
+        
+        repository.deleteConfession(id);
+        
+        return "redirect:/confessions";
     }
     
     @PostMapping("/newConfession")
