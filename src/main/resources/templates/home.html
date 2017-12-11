@@ -26,18 +26,22 @@
 
         <p class="info">Information om vad som händer på Academy just nu</p>
 
-        <div th:unless="${session.user.userType == 'Admin'}" class="text">
-            <p th:each="article : ${session.news}"></p>
+        <div class="text">
+            <p th:each="article : ${session.news}">
+                <span th:text="${article.content} + ' //' + ${article.author}"></span>
+            </p>
         </div>
-
-        <div th:if="${session.user.userType == 'Admin'}" class="text">
-            <p>På fredag kommer HM Drottning Silvia på besök och fikar med oss, kl 15 i
-                kaffeloungen.</p>
-            <p>Om någon saknar en dator så har jag ett par i receptionen // Rebecca</p>
-        </div>
-
     </div>
+    <form th:if="${session.user.userType == 'Admin'}"
+          th:action="@{/makeNews}"
+          th:object="${newArticle}"
+          method="post">
 
+        <textarea th:field="*{content}" placeholder="Här kan du skriva en ny nyhet"></textarea>
+        <div><button type="submit">Uppdatera!</button></div>
+
+        <input type="hidden" value="${session.user.name}" th:field="*{author}"/>
+    </form>
     <a href="/confessions">
         <div id="confession">
             <h2>Confessions</h2>

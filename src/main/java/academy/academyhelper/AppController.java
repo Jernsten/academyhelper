@@ -5,16 +5,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import javax.validation.Valid;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.List;
 
 @Controller
@@ -40,20 +36,18 @@ public class AppController {
     
     
     @PostMapping("/login")
-    public ModelAndView login(HttpSession session, @RequestParam String email, @RequestParam String password) {
+    public String login(HttpSession session, @RequestParam String email, @RequestParam String password) {
         
         User user = repository.signIn(email, password);
-        List<String> news = repository.getNews();
         
         if (user == null) {
-            return new ModelAndView("login");
+            return "redirect:/login";
         } else {
             session.setAttribute("user", user);
             session.setMaxInactiveInterval(300);
-            session.setAttribute("news", news);
         }
         
-        return new ModelAndView("redirect:/home");
+        return "redirect:/home";
     }
     
     @GetMapping("/register")
@@ -111,13 +105,18 @@ public class AppController {
     }
     
     @GetMapping("/home")
-    public ModelAndView home(HttpSession session) {
+    public String home(HttpSession session, Model model) {
         
-        if (session.getAttribute("user") != null) {
-            return new ModelAndView("home");
+        if (session.getAttribute("user") == null) {
+            return "redirect:/";
         }
         
-        return new ModelAndView("redirect:/");
+        List<Article> news = repository.getNews();
+        news = news.subList(0,2);
+        session.setAttribute("news", news);
+        model.addAttribute("newArticle", new NewArticle());
+        
+        return "home";
     }
     
     @GetMapping("/confessions")
@@ -165,5 +164,11 @@ public class AppController {
     @PostMapping("/forgot")
     public ModelAndView sendEmail() {
         return new ModelAndView("emailsent");
+    }
+    
+    @PostMapping("/makeNews")
+    public String makeNews(@ModelAttribute NewArticle newArticle) {
+        repository.makeNews(newArticle);
+        return "redirect:/home";
     }
 }

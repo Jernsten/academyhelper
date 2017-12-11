@@ -63,12 +63,12 @@ public class Repository {
             while (rs.next()) {
                 int id = rs.getInt("ID");
                 String content = rs.getString("content");
-                Timestamp timestamp = rs.getTimestamp("timestamp");
+                Timestamp timeStamp = rs.getTimestamp("timestamp");
                 
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("H:m - d/L");
-                String timeStamp = timestamp.toLocalDateTime().format(dtf);
+                String time = timeStamp.toLocalDateTime().format(dtf);
                 
-                confessions.add(new Confession(id, content, timeStamp));
+                confessions.add(new Confession(id, content, time));
             }
             
         } catch (SQLException e) {
@@ -171,8 +171,8 @@ public class Repository {
         }
     }
     
-    public List<String> getNews() {
-        List<String> news = new ArrayList<>();
+    public List<Article> getNews() {
+        List<Article> news = new ArrayList<>();
         String sql = "SELECT * FROM [dbo].[news] ORDER BY [Timestamp] DESC ";
         
         try (Connection conn = dataSource.getConnection()) {
@@ -180,7 +180,16 @@ public class Repository {
             ResultSet rs = ps.executeQuery();
             
             while(rs.next()) {
-                news.add(rs.getString("content")+" //"+rs.getString("Author"));
+                int id = rs.getInt("id");
+                String author = rs.getString("author");
+                String content = rs.getString("content");
+                Timestamp timeStamp = rs.getTimestamp("timestamp");
+    
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("H:m - d/L");
+                String time = timeStamp.toLocalDateTime().format(dtf);
+                
+                Article article = new Article(id,author,content,time);
+                news.add(article);
             }
             
         } catch (SQLException e) {
@@ -188,5 +197,21 @@ public class Repository {
         }
         
         return news;
+    }
+    
+    public void makeNews(NewArticle newArticle) {
+        String sql = "INSERT INTO [dbo].[news] (author, content) VALUES (?,?)";
+    
+        try (Connection conn = dataSource.getConnection()) {
+        
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, newArticle.getAuthor());
+            ps.setString(2, newArticle.getContent());
+            
+            int rs = ps.executeUpdate();
+        
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
