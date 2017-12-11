@@ -228,14 +228,13 @@ main#home > div#news > div.text {
   display: flex;
 }
 main#home > div#news > div.text > p {
-  background-image: linear-gradient(180deg, white 61%, transparent);
-  border-radius: 10px;
   font-size: 1em;
-  margin: 4vh 0vw;
+  /* margin: 4vh 0vw; */
   padding: 2vh 6vw 2vh 4vw;
-  max-width: 32vw;
-  display: inline-block;
+  max-width: 37%;
   min-height: 25vh;
+  display: inline-flex;
+  background: none;
 }
 main#home > div h2 {
   font-family: Montserrat, sans-serif;
