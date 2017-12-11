@@ -13,7 +13,7 @@
             <div id="numberOfDays">17</div>
             <div>DAGAR KVAR</div>
         </div>
-        <h1 id="welcome"><span id="name" th:text="${session.user.firstName}"/></h1>
+        <h1 id="welcome"><span id="name" th:text="${session.user.firstName} + ' ' + |(${session.user.userType})|"/></h1>
         <img src="/graphics/loggacentrerad.png"/>
     </header>
 </a>
