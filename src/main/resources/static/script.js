@@ -1,15 +1,16 @@
-$('main#home div#container div').click(function () {
-
-    $(this).children(".info").slideToggle();
-    $(this).children(".text").slideToggle();
+$('main#home > div').click(function () {
+    $(this).children("h2").slideToggle();
+    $(this).children('.info').slideToggle();
+    $(this).children('.text').slideToggle();
 
 });
 
-$("document").ready(function () {
+$("window").ready(function () {
     $("#countdown").fadeOut(7000, "swing");
+    $(".text").slideToggle();
 });
 
 
-$("#loginbutton").click(function () {
-    $("header img")
+$("div#loginbutton > button").click(function () {
+    $('div#login').fadeToggle(300);
 });

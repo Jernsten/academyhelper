@@ -53,9 +53,6 @@ header img {
   top: 1vh;
   left: 43px;
 }
-header#start {
-  display: none;
-}
 main {
   font-family: Montserrat, sans-serif;
   margin: 17vh 0 3vh 0;
@@ -70,11 +67,13 @@ main {
 .hidden {
   display: none;
 }
-#startlogga {
-  width: 100%;
-  padding-top: 12vh;
+header#start {
+  opacity: 0;
 }
-div#login {
+main#index div#startlogga img {
+  width: 100vw;
+}
+main#index div#login {
   width: fit-content;
   height: fit-content;
   position: absolute;
@@ -84,20 +83,15 @@ div#login {
   right: 0;
   margin: 46vh auto auto auto;
 }
-div#login form {
-  background-color: #00aa3c95;
-  padding: 0.7em;
-  border-radius: 10px;
-}
-#login #email,
-#login #password,
-#login #loginbutton {
+main#index div#login #email,
+main#index div#login #password,
+main#index div#login #loginbutton {
   margin: 1vh 1vw;
   text-align: center;
 }
-#login #email input,
-#login #password input,
-#login #loginbutton input {
+main#index div#login #email input,
+main#index div#login #password input,
+main#index div#login #loginbutton input {
   width: 17em;
   height: 2.5em;
   text-align: center;
@@ -105,9 +99,9 @@ div#login form {
   border-radius: 5px;
   border-style: none;
 }
-#login #email button,
-#login #password button,
-#login #loginbutton button {
+main#index div#login #email button,
+main#index div#login #password button,
+main#index div#login #loginbutton button {
   margin: 1.5vh auto 0 auto;
   position: static;
   display: inline-block;
@@ -124,6 +118,11 @@ div#login form {
   border-radius: 5px;
   height: 2.5em;
   border-style: none;
+}
+main#index form {
+  background-color: #00aa3c95;
+  padding: 0.7em;
+  border-radius: 10px;
 }
 #register {
   text-align: center;
@@ -173,28 +172,125 @@ div#login form {
 }
 main#home {
   font-family: Montserrat, sans-serif;
-  margin: 18vh 0 3vh 0;
+  margin: 21vh 0 3vh 0;
   padding-top: 1vh;
-  top: 11vh;
-  bottom: 0;
-  left: 0;
-  right: 0;
   background-color: white;
   font-size: 14px;
   display: block;
 }
-main#home div {
-  margin: 0.9vh auto;
+main#home > div {
+  margin: 6vh auto;
   background: #5a595a1a;
   padding: 1vh 3vh 1vh 3vh;
-  /* box-shadow: 1px 1px 1px 0px black; */
+  box-shadow: 2px 2px 5px 0px #00000029;
+  /* border: inset #0000001f 0px; */
+  border-radius: 14px;
 }
-main#home div h2 {
+main#home > div#news {
+  background-image: url(http://pakryss.se/wp-content/uploads/Logg_3.jpg);
+  /* background-position: center center; */
+  background-size: 100vw;
+  background-position: top;
+  filter: contrast(93%);
+  display: inline-block;
+}
+main#home > div#news > div.text {
+  display: flex;
+}
+main#home > div#news > div.text > p {
+  background-image: linear-gradient(180deg, white 61%, transparent);
+  border-radius: 10px;
+  font-size: 1.em;
+  margin: 4vh 0vw;
+  padding: 2vh 6vw 2vh 4vw;
+  max-width: 32vw;
+  display: inline-block;
+  min-height: 25vh;
+}
+main#home > div h2 {
   font-family: Montserrat, sans-serif;
   letter-spacing: 2px;
   font-weight: 500;
   font-size: 1.9em;
   font-variant-caps: all-petite-caps;
+}
+main#home > div p.info {
+  font-size: 0.8em;
+}
+main#home > div > div.text p {
+  background-image: linear-gradient(168deg, white, #eeeeee 24%);
+  border-radius: 10px;
+  padding: 5vh 5vw;
+  border: #eeeeee inset 0px;
+}
+main#home > div > div.text > a {
+  text-decoration: none;
+  color: inherit;
+}
+main#home > div > div.text > a > div {
+  margin: 6vh auto;
+  background: #5a595a1a;
+  padding: 1vh 3vh 1vh 3vh;
+  box-shadow: 2px 2px 5px 0px #00000029;
+  /* border: inset #0000001f 0px; */
+  border-radius: 14px;
+  background-image: url(/graphics/clouds.jpeg);
+  background-size: 112vw 16vh;
+  background-position: top;
+}
+main#home > div > div.text > a > div#eatery {
+  background-image: url(http://eatery.se/wp-content/themes/eatery.hubpage_tema_1.0.0/images/bkg01.jpg);
+  background-size: cover;
+  background-position: center center;
+  filter: grayscale(66%);
+}
+main#home > div > div.text > a > div#kista {
+  background-image: url(https://static.thatsup.co/content/img/article/15/dec/känd-krögarduo-bakom-nytt-restaurangkoncept-i-kista-galleria.jpg);
+  background-size: cover;
+  background-position: center center;
+  filter: grayscale(61%);
+}
+main#home > div > div.text > a > div h4 {
+  color: white;
+  font-size: 1em;
+}
+main#home > div > div.text > a > div p {
+  font-size: 1em;
+  color: white;
+  background: transparent;
+}
+main#home > a {
+  text-decoration: none;
+  color: inherit;
+  background-image: url('/graphics/clouds.jpeg');
+}
+main#home > a > div {
+  margin: 6vh auto;
+  background: #5a595a1a;
+  padding: 1vh 3vh 1vh 3vh;
+  box-shadow: 2px 2px 5px 0px #00000029;
+  /* border: inset #0000001f 0px; */
+  border-radius: 14px;
+  background-image: url(/graphics/clouds.jpeg);
+  background-size: 112vw 16vh;
+  background-position: top;
+}
+main#home > a > div#faq {
+  background-image: url(http://www.hannspree.eu/archiv/content_en/faq.png);
+  background-position: bottom;
+  height: 14vh;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: white;
+  filter: hue-rotate(443deg);
+}
+main#home > a > div h2 {
+  color: white;
+  text-align: right;
+}
+main#home > a > div p.info {
+  color: white;
+  text-align: right;
 }
 main#confessions div.frame {
   margin: 7vh 0vw 0vh 1vw;

@@ -62,10 +62,6 @@ header {
   }
 }
 
-header#start {
-  display: none;
-}
-
 main {
   font-family: Montserrat, sans-serif;
   margin: 17vh 0 3vh 0;
@@ -86,60 +82,64 @@ main {
 
 //--------------------------------------- LOGIN ----------------------------------------------
 
-#startlogga {
-  width: 100%;
-  padding-top: 12vh;
+header#start {
+  opacity: 0;
 }
 
-div#login {
-  width: fit-content;
-  height: fit-content;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: 46vh auto auto auto;
+main#index {
+
+  div#startlogga img {
+    width: 100vw;
+  }
+
+  div#login {
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 46vh auto auto auto;
+
+    #email, #password, #loginbutton {
+      margin: 1vh 1vw;
+      text-align: center;
+
+      input {
+        width: 17em;
+        height: 2.5em;
+        text-align: center;
+        font-size: 1em;
+        border-radius: 5px;
+        border-style: none;
+      }
+
+      button {
+        margin: 1.5vh auto 0 auto;
+        position: static;
+        display: inline-block;
+        padding: 10px 20px;
+        float: none;
+        font-family: Montserrat, sans-serif;
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 400;
+        letter-spacing: 1px;
+        background-color: #00aa3c95;
+        color: white;
+        width: 100%;
+        border-radius: 5px;
+        height: 2.5em;
+        border-style: none;
+      }
+    }
+  }
 
   form {
     background-color: #00aa3c95;
     padding: 0.7em;
     border-radius: 10px;
-  }
-}
-
-#login {
-  #email, #password, #loginbutton {
-    margin: 1vh 1vw;
-    text-align: center;
-
-    input {
-      width: 17em;
-      height: 2.5em;
-      text-align: center;
-      font-size: 1em;
-      border-radius: 5px;
-      border-style: none;
-    }
-
-    button {
-      margin: 1.5vh auto 0 auto;
-      position: static;
-      display: inline-block;
-      padding: 10px 20px;
-      float: none;
-      font-family: Montserrat, sans-serif;
-      font-size: 16px;
-      line-height: 24px;
-      font-weight: 400;
-      letter-spacing: 1px;
-      background-color: #00aa3c95;
-      color: white;
-      width: 100%;
-      border-radius: 5px;
-      height: 2.5em;
-      border-style: none;
-    }
   }
 }
 
@@ -203,28 +203,142 @@ div#login {
 
 main#home {
   font-family: Montserrat, sans-serif;
-  margin: 18vh 0 3vh 0;
+  margin: 21vh 0 3vh 0;
   padding-top: 1vh;
-  top: 11vh;
-  bottom: 0;
-  left: 0;
-  right: 0;
   background-color: white;
   font-size: 14px;
   display: block;
 
-  div {
-    margin: 0.9vh auto;
+  & > div {
+    margin: 6vh auto;
     background: #5a595a1a;
     padding: 1vh 3vh 1vh 3vh;
-    /* box-shadow: 1px 1px 1px 0px black; */
+    box-shadow: 2px 2px 5px 0px #00000029;
+    /* border: inset #0000001f 0px; */
+    border-radius: 14px;
 
+    &#news {
+      background-image: url(http://pakryss.se/wp-content/uploads/Logg_3.jpg);
+      /* background-position: center center; */
+      background-size: 100vw;
+      background-position: top;
+      filter: contrast(93%);
+
+      & > div.text {
+        display: flex;
+
+        & > p {
+          background-image: linear-gradient(180deg, white 61%, transparent);
+          border-radius: 10px;
+          font-size: 1.em;
+          margin: 4vh 0vw;
+          padding: 2vh 6vw 2vh 4vw;
+          max-width: 32vw;
+          display: inline-block;
+          min-height: 25vh;
+        }
+      }
+    }
     h2 {
       font-family: Montserrat, sans-serif;
       letter-spacing: 2px;
       font-weight: 500;
       font-size: 1.9em;
       font-variant-caps: all-petite-caps;
+    }
+
+    p.info {
+      font-size: 0.8em;
+    }
+
+    & > div.text {
+
+      p {
+        background-image: linear-gradient(168deg, white, #eeeeee 24%);
+        border-radius: 10px;
+        padding: 5vh 5vw;
+        border: #eeeeee inset 0px;
+      }
+
+      & > a {
+        text-decoration: none;
+        color: inherit;
+
+        & > div {
+          margin: 6vh auto;
+          background: #5a595a1a;
+          padding: 1vh 3vh 1vh 3vh;
+          box-shadow: 2px 2px 5px 0px #00000029;
+          /* border: inset #0000001f 0px; */
+          border-radius: 14px;
+          background-image: url(/graphics/clouds.jpeg);
+          background-size: 112vw 16vh;
+          background-position: top;
+
+          &#eatery {
+            background-image: url(http://eatery.se/wp-content/themes/eatery.hubpage_tema_1.0.0/images/bkg01.jpg);
+            background-size: cover;
+            background-position: center center;
+            filter: grayscale(66%);
+          }
+
+          &#kista {
+            background-image: url(https://static.thatsup.co/content/img/article/15/dec/känd-krögarduo-bakom-nytt-restaurangkoncept-i-kista-galleria.jpg);
+            background-size: cover;
+            background-position: center center;
+            filter: grayscale(61%);
+          }
+
+          h4 {
+            color: white;
+            font-size: 1em;
+          }
+
+          p {
+            font-size: 1em;
+            color: white;
+            background: transparent;
+          }
+        }
+      }
+    }
+  }
+
+  & > a {
+    text-decoration: none;
+    color: inherit;
+    background-image: url('/graphics/clouds.jpeg');
+
+    & > div {
+      margin: 6vh auto;
+      background: #5a595a1a;
+      padding: 1vh 3vh 1vh 3vh;
+      box-shadow: 2px 2px 5px 0px #00000029;
+      /* border: inset #0000001f 0px; */
+      border-radius: 14px;
+      background-image: url(/graphics/clouds.jpeg);
+      background-size: 112vw 16vh;
+      background-position: top;
+
+      &#faq {
+        background-image: url(http://www.hannspree.eu/archiv/content_en/faq.png);
+        background-position: bottom;
+        height: 14vh;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-color: white;
+        filter: hue-rotate(443deg);
+      }
+
+      h2 {
+        color: white;
+        text-align: right;
+      }
+
+      p.info {
+        color: white;
+        text-align: right;
+      }
     }
   }
 }
