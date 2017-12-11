@@ -22,6 +22,7 @@ header div#countdown {
   font-family: Montserrat, sans-serif;
   font-weight: initial;
   color: #565556bd;
+  display: none;
 }
 header div#countdown div {
   font-size: 0.6em;
@@ -192,7 +193,6 @@ main#home > div#news {
   background-size: 100vw;
   background-position: top;
   filter: contrast(93%);
-  display: inline-block;
 }
 main#home > div#news > div.text {
   display: flex;
@@ -200,7 +200,7 @@ main#home > div#news > div.text {
 main#home > div#news > div.text > p {
   background-image: linear-gradient(180deg, white 61%, transparent);
   border-radius: 10px;
-  font-size: 1.em;
+  font-size: 1em;
   margin: 4vh 0vw;
   padding: 2vh 6vw 2vh 4vw;
   max-width: 32vw;

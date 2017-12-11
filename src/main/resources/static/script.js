@@ -6,7 +6,10 @@ $('main#home > div').click(function () {
 });
 
 $("window").ready(function () {
-    $("#countdown").fadeOut(7000, "swing");
+    $("#countdown").fadeToggle(3500, "swing", function() {
+        $("#countdown").fadeToggle(3500, "swing");
+    });
+
     $(".text").slideToggle();
 });
 
