@@ -34,7 +34,20 @@ header div#countdown div#numberOfDays {
   line-height: 63px;
   text-align: center;
 }
-header #welcome {
+header .welcome {
+  margin-bottom: 6vh;
+  text-align: left;
+  color: #565556;
+  position: fixed;
+  z-index: 20;
+  top: 1.7vh;
+  right: 11vw;
+  font-size: 0.7em;
+  text-transform: uppercase;
+  font-family: Montserrat, sans-serif;
+  font-weight: initial;
+}
+header .welcomeadmin {
   margin-bottom: 6vh;
   text-align: left;
   color: #565556;
