@@ -382,10 +382,25 @@ main#home {
 
 main#faq {
 
-  .container > div, .frame > div {
+  & > div {
+    border-style: solid;
 
-    h2 {
+    & > h2 {
 
+    }
+
+    & > div {
+      border-style: solid;
+
+
+      & > h3 {
+
+      }
+
+      & > div {
+        border-style: solid;
+
+      }
     }
   }
 }

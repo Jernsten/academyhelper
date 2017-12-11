@@ -226,6 +226,7 @@ main#home > div#news > p.info {
 }
 main#home > div#news > div.text {
   display: flex;
+  min-height: 38vh;
 }
 main#home > div#news > div.text > p {
   font-size: 1em;
@@ -320,6 +321,15 @@ main#home > a > div h2 {
 main#home > a > div p.info {
   color: white;
   text-align: right;
+}
+main#faq > div {
+  border-style: solid;
+}
+main#faq > div > div {
+  border-style: solid;
+}
+main#faq > div > div > div {
+  border-style: solid;
 }
 main#confessions {
   margin: 17vh 0vw 0vh 1vw;
