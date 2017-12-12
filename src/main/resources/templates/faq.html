@@ -9,7 +9,11 @@
 <body>
 <a href="/home">
     <header>
-        <h1 id="welcome"><span id="name" th:text="${session.user.firstName} + ' ' + |(${session.user.userType})|"/></h1>
+                <span th:switch="${session.user.userType}">
+            <h1 th:case="'Admin'" class="welcomeadmin"><span class="name" th:text="${session.user.firstName} + ' ' + |(${session.user.userType})|"/></h1>
+            <h1 th:case="'Student'" class="welcome"><span class="name" th:text="${session.user.firstName}"/></h1>
+            <h1 th:case="'Teacher'" class="welcome"><span class="name" th:text="${session.user.firstName}"/></h1>
+        </span>
         <img src="/graphics/loggacentrerad.png"/>
     </header>
 </a>
