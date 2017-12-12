@@ -34,9 +34,20 @@ public class AppController {
         return new ModelAndView("faq");
     }
     
+    @GetMapping("/login")
+    public String getLogin(HttpSession session) {
+        
+        if (session.getAttribute("user") == null) {
+            // Denna if-sats kollar om användaren är inloggad
+            return "redirect:/";
+        }
+        
+        return "redirect:/home";
+    }
+    
     
     @PostMapping("/login")
-    public String login(HttpSession session, @RequestParam String email, @RequestParam String password) {
+    public String postLogin(HttpSession session, @RequestParam String email, @RequestParam String password) {
         
         User user = repository.signIn(email, password);
         

@@ -150,6 +150,7 @@ main#index, main#forgot {
   padding-top: 2vh;
 
   a {
+    text-decoration: none;
     font-size: 0.8em;
     color: #9ad2ac;
   }
@@ -237,8 +238,9 @@ main#home {
       background-position: top;
       background-position-y: -4vh;
       filter: contrast(103%);
-      /* margin: 0vh 4vw; */
-      padding: 1vh 6vw;
+      padding: 3vh 9vw;
+      min-height: 13vh;
+      font-family: serif;
 
       & > h2 {
         font-family: Montserrat, sans-serif;
@@ -261,11 +263,10 @@ main#home {
 
       & > div.text {
         display: flex;
-        min-height: 38vh;
 
         & > p {
           font-size: 1em;
-          /* margin: 4vh 0vw; */
+          margin: 2vh 4vw;
           padding: 2vh 6vw 2vh 4vw;
           max-width: 37%;
           min-height: 25vh;
@@ -383,19 +384,31 @@ main#home {
 
   & > a {
     text-decoration: none;
-    color: inherit;
-    background-image: url('/graphics/clouds.jpeg');
 
     & > div {
       margin: 6vh auto;
       background: #5a595a1a;
       padding: 1vh 3vh 1vh 3vh;
       box-shadow: 2px 2px 5px 0px #00000029;
-      /* border: inset #0000001f 0px; */
       border-radius: 14px;
-      background-image: url(/graphics/clouds.jpeg);
-      background-size: 112vw 16vh;
-      background-position: top;
+
+      &#confession {
+
+        background-image: none;
+        background-size: auto;
+        margin: 7vh 0vw;
+        padding: 1vh 3vh 1vh 3vh;
+
+        border-radius: 15px;
+        box-shadow: inset 0px 0px 263px -87px #00aa3c;
+        font-family: monospace;
+
+        & > p, & > h2 {
+          text-align: center;
+          display: block;
+          color: black;
+        }
+      }
 
       &#faq {
         background-image: url(http://www.hannspree.eu/archiv/content_en/faq.png);
@@ -407,12 +420,21 @@ main#home {
         filter: hue-rotate(443deg);
       }
 
-      h2 {
+      &#admin {
+        background-image: radial-gradient(#00aa3c, red 163%);
+        & > p, & > h2 {
+          text-align: center;
+          display: block;
+          color: white;
+        }
+      }
+
+      & > h2 {
         color: white;
         text-align: right;
       }
 
-      p.info {
+      & > p.info {
         color: white;
         text-align: right;
       }
@@ -540,3 +562,55 @@ main#confessions {
   }
 }
 
+// ------------------------------------------------ADMIN ------------------------------
+
+main#admin {
+  & > div {
+    margin: 6vh auto;
+    background: #5a595a1a;
+    padding: 1vh 3vh 1vh 3vh;
+    box-shadow: 2px 2px 5px 0px #00000029;
+    /* border: inset #0000001f 0px; */
+    border-radius: 14px;
+
+    input {
+      display: block;
+      margin: 0 0 2vh 0;
+      width: 100%;
+      height: 4vh;
+      font-size: 1em;
+    }
+
+    select {
+      width: 100%;
+      display: block;
+      background-color: white;
+      border-style: none;
+      height: 6vh;
+      font-size: 1em;
+    }
+
+    div > button {
+      margin: 1.5vh auto 0 auto;
+      position: static;
+      display: inline-block;
+      padding: 10px 20px;
+      float: none;
+      font-family: Montserrat, sans-serif;
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: 400;
+      letter-spacing: 1px;
+      background-color: #00aa3c95;
+      color: white;
+      width: 100%;
+      border-radius: 5px;
+      height: 2.5em;
+      border-style: none;
+
+      &.delete {
+        background-color: #ff0000ad;
+      }
+    }
+  }
+}
