@@ -139,16 +139,22 @@ public class AppController {
     }
     
     @GetMapping("/deleteConfession/{id}")
-    public String deleteConfession(@PathVariable int id) {
-        
+    public String deleteConfession(HttpSession session, @PathVariable int id) {
+        if (session.getAttribute("user") == null) {
+            // Denna if-sats kollar om användaren är inloggad
+            return "redirect:/";
+        }
         repository.deleteConfession(id);
         
         return "redirect:/confessions";
     }
     
     @PostMapping("/newConfession")
-    public String newConfession(@ModelAttribute Confession newConfession) {
-        
+    public String newConfession(HttpSession session, @ModelAttribute Confession newConfession) {
+        if (session.getAttribute("user") == null) {
+            // Denna if-sats kollar om användaren är inloggad
+            return "redirect:/";
+        }
         String confession = newConfession.getContent().trim();
         
         if (!confession.equals("")) {
@@ -161,44 +167,70 @@ public class AppController {
     }
     
     @GetMapping("/forgot")
-    public ModelAndView forgot() {
-        return new ModelAndView("forgot");
+    public String forgot() {
+        
+        return "/forgot";
     }
     
     @PostMapping("/forgot")
     public ModelAndView sendEmail() {
+        
         return new ModelAndView("emailsent");
     }
     
     @PostMapping("/makeNews")
-    public String makeNews(@ModelAttribute NewArticle newArticle) {
+    public String makeNews(HttpSession session, @ModelAttribute NewArticle newArticle) {
+        if (session.getAttribute("user") == null) {
+            // Denna if-sats kollar om användaren är inloggad
+            return "redirect:/";
+        }
         repository.makeNews(newArticle);
         return "redirect:/home";
     }
     
     @GetMapping("/admin")
-    public String administration(Model model) {
+    public String administration(HttpSession session, Model model) {
+        if (session.getAttribute("user") == null) {
+            // Denna if-sats kollar om användaren är inloggad
+            return "redirect:/";
+        }
+        
         model.addAttribute("programList", repository.getProgramList());
         model.addAttribute("userList", repository.getUserList());
         return "/admin";
     }
     
     @PostMapping("/addprogram")
-    public String addProgram(@RequestParam String name, @RequestParam String date) {
+    public String addProgram(HttpSession session, @RequestParam String name, @RequestParam String date) {
+        if (session.getAttribute("user") == null) {
+            // Denna if-sats kollar om användaren är inloggad
+            return "redirect:/";
+        }
+        
         repository.addProgram(name, date);
         
         return "redirect:/admin";
     }
     
     @PostMapping("/deleteprogram")
-    public String deleteProgram(@RequestParam String programtodelete) {
+    public String deleteProgram(HttpSession session, @RequestParam String programtodelete) {
+        if (session.getAttribute("user") == null) {
+            // Denna if-sats kollar om användaren är inloggad
+            return "redirect:/";
+        }
+        
         repository.deleteProgram(programtodelete);
         
         return "redirect:/admin";
     }
     
     @PostMapping("/deleteuser")
-    public String deleteUser(@RequestParam int usertodelete) {
+    public String deleteUser(HttpSession session, @RequestParam int usertodelete) {
+        if (session.getAttribute("user") == null) {
+            // Denna if-sats kollar om användaren är inloggad
+            return "redirect:/";
+        }
+        
         repository.deleteUser(usertodelete);
         
         return "redirect:/admin";
