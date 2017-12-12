@@ -7,9 +7,13 @@ import org.springframework.stereotype.Component;
 import javax.sql.DataSource;
 import javax.validation.Valid;
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 
 @Component
 public class Repository {
@@ -27,7 +31,7 @@ public class Repository {
             ps.setString(1, email);
             ResultSet rs = ps.executeQuery();
             
-            if(!rs.next()) { // Om det inte gick att logga in
+            if (!rs.next()) { // Om det inte gick att logga in
                 return user;
             }
             
@@ -43,6 +47,8 @@ public class Repository {
                 int program = rs.getInt("program");
                 
                 user = new User(id, firstname, lastname, email, password, homeaddress, usertype, program, usertype);
+            } else {
+                return user;
             }
             
         } catch (SQLException e) {
@@ -129,8 +135,12 @@ public class Repository {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String program = rs.getString("name");
+                Timestamp timeStamp = rs.getTimestamp("graduation");
                 
-                programList.add(new Program(id, program));
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yymmdd");
+                String time = timeStamp.toLocalDateTime().format(dtf);
+                
+                programList.add(new Program(id, program, time));
             }
             
             
@@ -179,16 +189,16 @@ public class Repository {
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             
-            while(rs.next()) {
+            while (rs.next()) {
                 int id = rs.getInt("id");
                 String author = rs.getString("author");
                 String content = rs.getString("content");
                 Timestamp timeStamp = rs.getTimestamp("timestamp");
-    
+                
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("H:m - d/L");
                 String time = timeStamp.toLocalDateTime().format(dtf);
                 
-                Article article = new Article(id,author,content,time);
+                Article article = new Article(id, author, content, time);
                 news.add(article);
             }
             
@@ -201,14 +211,120 @@ public class Repository {
     
     public void makeNews(NewArticle newArticle) {
         String sql = "INSERT INTO [dbo].[news] (author, content) VALUES (?,?)";
-    
-        try (Connection conn = dataSource.getConnection()) {
         
+        try (Connection conn = dataSource.getConnection()) {
+            
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, newArticle.getAuthor());
             ps.setString(2, newArticle.getContent());
             
             int rs = ps.executeUpdate();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void addProgram(String name, String date) {
+        
+        String sql = "INSERT INTO [dbo].[program] (name, graduation) VALUES (?,?)";
+        
+        try (Connection conn = dataSource.getConnection()) {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            
+            ps.setString(1, name);
+            ps.setString(2, date);
+            ps.executeUpdate();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public int daysLeft(User user) {
+        
+        int program = user.getProgram();
+        int days = 1;
+        
+        String sql = "SELECT graduation FROM [dbo].[program] WHERE id = ?";
+        
+        try (Connection conn = dataSource.getConnection()) {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            
+            ps.setInt(1, program);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            
+            Timestamp ts = rs.getTimestamp("graduation");
+            
+            LocalDateTime graduation = ts.toLocalDateTime();
+            LocalDate then = graduation.toLocalDate();
+            LocalDate now = LocalDate.now();
+            
+            days += Period.between(now, then).getDays();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return days;
+    }
+    
+    public void deleteProgram(String programtodelete) {
+        int programID = Integer.parseInt(programtodelete);
+        
+        String sql = "DELETE FROM [dbo].[program] WHERE id = ?";
+        String sql2 = "DELETE FROM [dbo].[user] WHERE program = ?";
+        
+        try (Connection conn = dataSource.getConnection()) {
+            // Radera program
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, programID);
+            ps.executeUpdate();
+            
+            // Radera alla användare på det programmet
+            ps = conn.prepareStatement(sql2);
+            ps.setInt(1, programID);
+            ps.executeUpdate();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+    }
+    
+    public List<User> getUserList() {
+        List<User> userList = new ArrayList<>();
+        
+        String sql = "Select * From [dbo].[user]";
+        
+        try (Connection conn = dataSource.getConnection()) {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                String firstName = rs.getString("firstname");
+                String lastName = rs.getString("lastname");
+                String userType = rs.getString("usertype");
+                int userId = rs.getInt("id");
+                
+                userList.add(new User(userId, firstName,lastName,userType));
+            }
+            
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return userList;
+    }
+    
+    public void deleteUser(int usertodelete) {
+        String sql = "DELETE FROM [dbo].[user] WHERE id = ?";
+    
+        try (Connection conn = dataSource.getConnection()) {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, usertodelete);
+            ps.executeUpdate();
         
         } catch (SQLException e) {
             e.printStackTrace();

@@ -2,6 +2,8 @@ package academy.academyhelper;
 
 
 
+import org.apache.commons.lang3.text.WordUtils;
+
 import javax.validation.constraints.Size;
 
 public class User {
@@ -36,6 +38,13 @@ public class User {
         this.userType = userType;
     }
     
+    public User(int userID, String firstName, String lastName, String userType) {
+        this.userID = userID;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userType = userType;
+    }
+    
     public User() {
     }
     
@@ -52,6 +61,8 @@ public class User {
     }
     
     public void setFirstName(String firstName) {
+        firstName = WordUtils.capitalize(firstName);
+    
         this.firstName = firstName;
     }
     
@@ -60,6 +71,7 @@ public class User {
     }
     
     public void setLastName(String lastName) {
+        lastName = WordUtils.capitalize(lastName);
         this.lastName = lastName;
     }
     

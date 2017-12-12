@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Admin</title>
+    <link rel="stylesheet" type="text/css" href="styles.css"/>
+</head>
+<body>
+<a href="/home">
+    <header>
+        <span th:switch="${session.user.userType}">
+            <h1 th:case="'Admin'" class="welcomeadmin"><span class="name"
+                                                             th:text="${session.user.firstName} + ' ' + |(${session.user.userType})|"/></h1>
+            <h1 th:case="'Student'" class="welcome"><span class="name" th:text="${session.user.firstName}"/></h1>
+            <h1 th:case="'Teacher'" class="welcome"><span class="name" th:text="${session.user.firstName}"/></h1>
+        </span>
+        <img src="/graphics/loggacentrerad.png"/>
+    </header>
+</a>
+
+<main id="admin">
+
+    <div id="addprogram">
+        <h2>Lägg in nytt program</h2>
+        <div>
+            <form action="/addprogram" method="post">
+                <input type="text" name="name" placeholder="Namn på programmet (tex JavaHT17)"/>
+                <input type="text" name="date" placeholder="Examensdatum (yymmdd)"/>
+                <div>
+                    <button type="submit">Lägg till</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="deleteprogram">
+        <h2>Ta bort ett program och alla dess användare</h2>
+        <div>
+            <form action="/deleteprogram" method="post">
+
+                <select id="program" name="programtodelete">
+                    <option value="0">Klass</option>
+                    <option th:each="program : ${programList}"
+                            th:text="${program.name + ' (' + program.graduation+')'}"
+                            th:value="${program.id}"></option>
+                </select>
+                <div>
+                    <button type="submit">Radera</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="deleteuser">
+        <h2>Ta bort en enskild användare</h2>
+        <div>
+            <form action="/deleteuser" method="post">
+
+                <select id="user" name="usertodelete">
+                    <option value="0">Användare</option>
+                    <option th:each="user : ${userList}"
+                            th:text="${user.firstName + ' ' + user.lastName+' (' + user.userType + ')'}"
+                            th:value="${user.userID}"></option>
+                </select>
+                <div>
+                    <button type="submit">Radera</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+</main>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="script.js" type="text/javascript"></script>
+</body>
+</html>

@@ -41,7 +41,7 @@ public class AppController {
         User user = repository.signIn(email, password);
         
         if (user == null) {
-            return "redirect:/login";
+            return "/login";
         } else {
             session.setAttribute("user", user);
             session.setMaxInactiveInterval(300);
@@ -111,10 +111,12 @@ public class AppController {
             return "redirect:/";
         }
         
-        List<Article> news = repository.getNews();
-        news = news.subList(0,2);
+        List<Article> news = repository.getNews().subList(0, 2);
         session.setAttribute("news", news);
-        model.addAttribute("newArticle", new NewArticle());
+        
+        session.setAttribute("daysLeft", repository.daysLeft((User) session.getAttribute("user")));
+        
+        model.addAttribute("newArticle", new NewArticle()); // bara för admin
         
         return "home";
     }
@@ -135,7 +137,7 @@ public class AppController {
     }
     
     @GetMapping("/deleteConfession/{id}")
-    public String deleteConfession(@PathVariable int id){
+    public String deleteConfession(@PathVariable int id) {
         
         repository.deleteConfession(id);
         
@@ -170,5 +172,33 @@ public class AppController {
     public String makeNews(@ModelAttribute NewArticle newArticle) {
         repository.makeNews(newArticle);
         return "redirect:/home";
+    }
+    
+    @GetMapping("/admin")
+    public String administration(Model model) {
+        model.addAttribute("programList", repository.getProgramList());
+        model.addAttribute("userList", repository.getUserList());
+        return "/admin";
+    }
+    
+    @PostMapping("/addprogram")
+    public String addProgram(@RequestParam String name, @RequestParam String date) {
+        repository.addProgram(name, date);
+        
+        return "redirect:/admin";
+    }
+    
+    @PostMapping("/deleteprogram")
+    public String deleteProgram(@RequestParam String programtodelete) {
+        repository.deleteProgram(programtodelete);
+        
+        return "redirect:/admin";
+    }
+    
+    @PostMapping("/deleteuser")
+    public String deleteUser(@RequestParam int usertodelete) {
+        repository.deleteUser(usertodelete);
+        
+        return "redirect:/admin";
     }
 }
