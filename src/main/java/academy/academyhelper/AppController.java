@@ -106,17 +106,19 @@ public class AppController {
     
     @GetMapping("/home")
     public String home(HttpSession session, Model model) {
+        User user = (User) session.getAttribute("user");
         
-        if (session.getAttribute("user") == null) {
+        if (user == null) {
             return "redirect:/";
         }
         
         List<Article> news = repository.getNews().subList(0, 2);
         session.setAttribute("news", news);
+        session.setAttribute("daysLeft", repository.daysLeft(user));
         
-        session.setAttribute("daysLeft", repository.daysLeft((User) session.getAttribute("user")));
-        
-        model.addAttribute("newArticle", new NewArticle()); // bara för admin
+        if (user.getUserType().equals("Admin")) {
+            model.addAttribute("newArticle", new NewArticle(user.getFirstName()));
+        }
         
         return "home";
     }

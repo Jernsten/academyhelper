@@ -1,9 +1,5 @@
 package academy.academyhelper;
 
-
-
-import org.apache.commons.lang3.text.WordUtils;
-
 import javax.validation.constraints.Size;
 
 public class User {

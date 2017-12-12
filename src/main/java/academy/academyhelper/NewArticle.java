@@ -12,6 +12,10 @@ public class NewArticle {
     public NewArticle() {
     }
     
+    public NewArticle(String author) {
+        this.author = author;
+    }
+    
     public String getAuthor() {
         return author;
     }

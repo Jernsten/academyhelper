@@ -9,27 +9,29 @@
 <body>
 <header id="start">
 </header>
-<main>
-    <div>
-        <img src="/graphics/loggacentrerad.png" id="startlogga" />
-        <div id="login">
-            <form action="/login" method="POST">
-                    <p>Inlogg misslyckades <a href="/forgot">Glömt lösenordet?</a></p>
-                <div id="email">
-                    <input type="email" name="email" placeholder="Mailadress"/>
-                </div>
-                <div id="password">
-                    <input type="password" name="password" placeholder="Lösenord"/>
-                </div>
-                <div id="loginbutton">
-                    <button type="submit">GO!</button>
-                </div>
-            </form>
-            <div id="register">
-                <a href="/register">Inte medlem än?</a>
+<main id="forgot">
+    <div id="startlogga">
+        <img src="/graphics/loggacentrerad.png" />
+    </div>
+    <div id="login">
+        <form action="/login" method="POST">
+            <p>Inlogg misslyckades <a href="/forgot">Glömt lösenord?</a></p>
+            <div id="email">
+                <input type="email" name="email" placeholder="Mailadress"/>
             </div>
+            <div id="password">
+                <input type="password" name="password" placeholder="Lösenord"/>
+            </div>
+            <div id="loginbutton">
+                <button type="submit">GO!</button>
+            </div>
+        </form>
+        <div id="register">
+            <a href="/register">Inte medlem än?</a>
         </div>
     </div>
 </main>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="script.js" type="text/javascript"></script>
 </body>
 </html>

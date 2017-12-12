@@ -190,6 +190,7 @@ public class Repository {
             ResultSet rs = ps.executeQuery();
             
             while (rs.next()) {
+                
                 int id = rs.getInt("id");
                 String author = rs.getString("author");
                 String content = rs.getString("content");
@@ -200,6 +201,7 @@ public class Repository {
                 
                 Article article = new Article(id, author, content, time);
                 news.add(article);
+                
             }
             
         } catch (SQLException e) {

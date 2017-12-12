@@ -71,10 +71,12 @@ main {
 header#start {
   opacity: 0;
 }
-main#index div#startlogga img {
+main#index div#startlogga img,
+main#forgot div#startlogga img {
   width: 100vw;
 }
-main#index div#login {
+main#index div#login,
+main#forgot div#login {
   width: fit-content;
   height: fit-content;
   position: absolute;
@@ -85,14 +87,20 @@ main#index div#login {
   margin: 46vh auto auto auto;
 }
 main#index div#login #email,
+main#forgot div#login #email,
 main#index div#login #password,
-main#index div#login #loginbutton {
+main#forgot div#login #password,
+main#index div#login #loginbutton,
+main#forgot div#login #loginbutton {
   margin: 1vh 1vw;
   text-align: center;
 }
 main#index div#login #email input,
+main#forgot div#login #email input,
 main#index div#login #password input,
-main#index div#login #loginbutton input {
+main#forgot div#login #password input,
+main#index div#login #loginbutton input,
+main#forgot div#login #loginbutton input {
   width: 17em;
   height: 2.5em;
   text-align: center;
@@ -101,8 +109,11 @@ main#index div#login #loginbutton input {
   border-style: none;
 }
 main#index div#login #email button,
+main#forgot div#login #email button,
 main#index div#login #password button,
-main#index div#login #loginbutton button {
+main#forgot div#login #password button,
+main#index div#login #loginbutton button,
+main#forgot div#login #loginbutton button {
   margin: 1.5vh auto 0 auto;
   position: static;
   display: inline-block;
@@ -120,7 +131,8 @@ main#index div#login #loginbutton button {
   height: 2.5em;
   border-style: none;
 }
-main#index form {
+main#index form,
+main#forgot form {
   background-color: #00aa3c95;
   padding: 0.7em;
   border-radius: 10px;
