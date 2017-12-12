@@ -24,37 +24,24 @@ header div#countdown {
   color: #565556bd;
   display: none;
 }
-header div#countdown div {
+header div#countdown > div {
   font-size: 0.6em;
   text-align: center;
   background: white;
 }
-header div#countdown div#numberOfDays {
+header div#countdown > div#numberOfDays {
   font-size: 5em;
   line-height: 63px;
   text-align: center;
 }
-header .welcome {
+header > h1.welcome {
   margin-bottom: 6vh;
-  text-align: left;
+  text-align: right;
   color: #565556;
   position: fixed;
   z-index: 20;
   top: 1.7vh;
-  right: 11vw;
-  font-size: 0.7em;
-  text-transform: uppercase;
-  font-family: Montserrat, sans-serif;
-  font-weight: initial;
-}
-header .welcomeadmin {
-  margin-bottom: 6vh;
-  text-align: left;
-  color: #565556;
-  position: fixed;
-  z-index: 20;
-  top: 1.7vh;
-  right: 3vw;
+  right: 7vw;
   font-size: 0.7em;
   text-transform: uppercase;
   font-family: Montserrat, sans-serif;

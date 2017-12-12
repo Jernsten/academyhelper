@@ -13,11 +13,13 @@
             <div id="numberOfDays" th:text="${session.daysLeft}">17</div>
             <div>DAGAR KVAR</div>
         </div>
-        <span th:switch="${session.user.userType}">
-            <h1 th:case="'Admin'" class="welcomeadmin"><span class="name" th:text="${session.user.firstName} + ' ' + |(${session.user.userType})|"/></h1>
-            <h1 th:case="'Student'" class="welcome"><span class="name" th:text="${session.user.firstName}"/></h1>
-            <h1 th:case="'Teacher'" class="welcome"><span class="name" th:text="${session.user.firstName}"/></h1>
-        </span>
+
+        <h1 th:if="${session.user.userType == 'Admin'}" class="welcome">
+            <span th:text="${session.user.firstName} + ' (ADMIN)'"></span>
+        </h1>
+        <h1 th:unless="${session.user.userType == 'Admin'}" class="welcome">
+            <span th:text="${session.user.firstName}"></span>
+        </h1>
         <img src="/graphics/loggacentrerad.png"/>
     </header>
 </a>
@@ -40,7 +42,9 @@
           method="post">
 
         <textarea th:field="*{content}" placeholder="Här kan du skriva en ny nyhet"></textarea>
-        <div><button type="submit">Uppdatera!</button></div>
+        <div>
+            <button type="submit">Uppdatera!</button>
+        </div>
 
         <input type="hidden" value="${session.user.name}" th:field="*{author}"/> // PROBLEM!
 

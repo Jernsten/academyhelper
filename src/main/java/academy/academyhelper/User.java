@@ -61,8 +61,8 @@ public class User {
     }
     
     public void setFirstName(String firstName) {
-        firstName = WordUtils.capitalize(firstName);
-    
+        firstName = firstName.substring(0, 1).toUpperCase() + firstName.substring(1);
+        
         this.firstName = firstName;
     }
     
@@ -71,7 +71,7 @@ public class User {
     }
     
     public void setLastName(String lastName) {
-        lastName = WordUtils.capitalize(lastName);
+        lastName = lastName.substring(0, 1).toUpperCase() + lastName.substring(1);
         this.lastName = lastName;
     }
     

@@ -26,7 +26,7 @@ header {
     color: #565556bd;
     display: none;
 
-    div {
+    & > div {
 
       font-size: 0.6em;
       text-align: center;
@@ -40,33 +40,19 @@ header {
     }
   }
 
-  .welcome {
+  & > h1.welcome {
     margin-bottom: 6vh;
-    text-align: left;
+    text-align: right;
     color: #565556;
     position: fixed;
     z-index: 20;
     top: 1.7vh;
-    right: 11vw;
+    right: 7vw;
     font-size: 0.7em;
     text-transform: uppercase;
     font-family: Montserrat, sans-serif;
     font-weight: initial;
   }
-  .welcomeadmin {
-    margin-bottom: 6vh;
-    text-align: left;
-    color: #565556;
-    position: fixed;
-    z-index: 20;
-    top: 1.7vh;
-    right: 3vw;
-    font-size: 0.7em;
-    text-transform: uppercase;
-    font-family: Montserrat, sans-serif;
-    font-weight: initial;
-  }
-
 
   img {
     width: 100vw;
@@ -405,7 +391,6 @@ main#faq {
 
     & > div {
       border-style: solid;
-
 
       & > h3 {
 
