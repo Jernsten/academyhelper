@@ -42,11 +42,13 @@
           th:object="${newArticle}"
           method="post"
           id="makenews">
-
-        <textarea th:field="*{content}" placeholder="Här kan du skriva en ny nyhet"></textarea>
-        <input type="hidden" th:field="*{author}"/>
-        <div>
-            <button type="submit">Uppdatera!</button>
+        <h2>Lägg till nyhet här</h2>
+        <div class="text">
+            <textarea th:field="*{content}" placeholder="Här kan du skriva en ny nyhet"></textarea>
+            <input type="hidden" th:field="*{author}"/>
+            <div>
+                <button type="submit">Uppdatera!</button>
+            </div>
         </div>
 
     </form>

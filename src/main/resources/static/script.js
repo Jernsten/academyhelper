@@ -8,12 +8,12 @@ $("window").ready(function () {
         $("#countdown").fadeToggle(3500, "swing");
     });
 
-    $("main#home > div > div.text").slideToggle();
+    $("main#home div.text").slideToggle();
 });
 
 
 $("div#loginbutton > button").click(function () {
-    $('div#login').fadeToggle(300);
+    $('div#startlogga>img');
 });
 
 $('main#faq > div').click(function () {
@@ -21,5 +21,10 @@ $('main#faq > div').click(function () {
 });
 
 $('main#faq > div > h3').click(function () {
+    $(this).next().slideToggle();
+});
+
+$('main#home > form#makenews > h2').click(function(){
+    $(this).slideToggle();
     $(this).next().slideToggle();
 });

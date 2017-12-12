@@ -137,7 +137,7 @@ public class Repository {
                 String program = rs.getString("name");
                 Timestamp timeStamp = rs.getTimestamp("graduation");
                 
-                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yymmdd");
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyMMdd");
                 String time = timeStamp.toLocalDateTime().format(dtf);
                 
                 programList.add(new Program(id, program, time));
@@ -201,7 +201,6 @@ public class Repository {
                 
                 Article article = new Article(id, author, content, time);
                 news.add(article);
-                
             }
             
         } catch (SQLException e) {
