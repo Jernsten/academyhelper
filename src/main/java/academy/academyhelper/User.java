@@ -43,7 +43,14 @@ public class User {
     
     public User() {
     }
-    
+
+    public User(String firstName, String lastName, String email) {
+
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
+
     public int getUserID() {
         return userID;
     }

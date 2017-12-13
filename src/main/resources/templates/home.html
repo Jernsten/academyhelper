@@ -111,9 +111,17 @@
 
     </div>
 
-    <div id="Boka grupprum">
-        Grupprum
+    <div th:if="${session.user.userType == 'Student'}" id="Mina lärare">
+        <h2>Mina lärare</h2>
+    <ul>
+        <li th:each="teacher : ${teachers}">
+            <span th:text="${teacher.firstName} + ' ' + ${teacher.lastName}"></span>
+            <a th:href="'mailto:'+${teacher.email}" th:text="${teacher.email}"></a>
+        </li>
+    </ul>
     </div>
+
+
 
 </main>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

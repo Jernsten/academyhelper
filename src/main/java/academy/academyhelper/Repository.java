@@ -142,7 +142,7 @@ public class Repository {
                 
                 programList.add(new Program(id, program, time));
             }
-            
+
             
         } catch (SQLException e) {
             e.printStackTrace();
@@ -331,5 +331,34 @@ public class Repository {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public List<User> getTeacherList(User user) {
+        List<User> teacherList = new ArrayList<>();
+
+        String sql = "  Select *" +
+                "  From [dbo].[user]" +
+                "  where usertype = 'Teacher'" +
+                "  AND program = ?";
+
+        try (Connection conn = dataSource.getConnection()) {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1,user.getProgram());
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                String firstName = rs.getString("firstname");
+                String lastName = rs.getString("lastname");
+                String email = rs.getString("email");
+
+                teacherList.add(new User(firstName,lastName,email));
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return teacherList;
     }
 }
