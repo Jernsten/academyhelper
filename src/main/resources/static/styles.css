@@ -484,6 +484,15 @@ main#admin > div input {
   margin: 0 0 2vh 0;
   width: 100%;
   height: 4vh;
+  font-size: 1em;
+}
+main#admin > div select {
+  width: 100%;
+  display: block;
+  background-color: white;
+  border-style: none;
+  height: 6vh;
+  font-size: 1em;
 }
 main#admin > div div > button {
   margin: 1.5vh auto 0 auto;
@@ -504,5 +513,5 @@ main#admin > div div > button {
   border-style: none;
 }
 main#admin > div div > button.delete {
-  background-color: red;
+  background-color: #ff0000ad;
 }

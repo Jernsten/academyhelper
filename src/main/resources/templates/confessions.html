@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Bikten</title>
-    <link rel="stylesheet" type="text/css" href="styles.css"/>
+    <link rel="stylesheet" type="text/css" href="/styles.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
@@ -20,7 +20,17 @@
     </header>
 </a>
 <main id="confessions">
-    <div id="newConfession" class="">
+
+    <div id="changeTopic">
+        <div>
+
+        </div>
+        <div id="topic" th:each="topic : ${topics}">
+            <a th:href="@{/confessions/}+${topic.id}"><h3 th:text="${topic.name}">(Rubrik)</h3></a>
+        </div>
+    </div>
+
+    <div id="newConfession" class="" th:if="${topicId == 0}">
 
         <form th:action="@{/newConfession}" method="post" th:object="${newConfession}">
 
@@ -32,8 +42,21 @@
         </form>
 
     </div>
+    <div id="newPost">
+        <form th:action="@{/newPost/} + ${topicId}" method="post" th:object="${newPost}">
+            <textarea placeholder="Skriv ett meddelande"
+                      th:field="*{content}">
+            </textarea>
+            <input type="hidden" th:value="${session.user.userID}"/>
+            <div>
+                <button type="submit">SKICKA</button>
+            </div>
+        </form>
 
-    <blockquote th:each="confession : ${confessions}">
+    </div>
+
+
+    <blockquote th:each="confession : ${confessions}" th:if="${topicId == 0}">
         <p th:text="${confession.content}"></p>
 
         <span th:if="${session.user.userType == 'Admin'}" class="delete">
@@ -45,7 +68,20 @@
         <time th:text="${confession.timeStamp}"></time>
     </blockquote>
 
+    <blockquote th:each="post : ${posts}" th:unless="${topicId == 0}">
+
+        <p><span th:text="${post.name}"/>: <span th:text="${post.content}"/></p>
+
+        <span th:if="${session.user.userType == 'Admin'}" class="delete">
+
+            <!--<a th:href="@{'/deleteConfession/' + ${confession.id}}">-</a>-->
+
+        </span>
+
+        <time th:text="${post.timestamp}"></time>
+    </blockquote>
+
 </main>
-<script src="script.js" type="text/javascript"></script>
+<script src="/script.js" type="text/javascript"></script>
 </body>
 </html>

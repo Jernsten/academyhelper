@@ -169,10 +169,8 @@ public class Repository {
     }
     
     public void deleteConfession(int id) {
-        String sql = "DELETE FROM [dbo].[confession] WHERE id = ?";
-        
         try (Connection conn = dataSource.getConnection()) {
-            PreparedStatement ps = conn.prepareStatement(sql);
+            PreparedStatement ps = conn.prepareStatement("DELETE FROM [dbo].[confession] WHERE id = ?");
             ps.setInt(1, id);
             ps.executeUpdate();
             
@@ -308,7 +306,7 @@ public class Repository {
                 String userType = rs.getString("usertype");
                 int userId = rs.getInt("id");
                 
-                userList.add(new User(userId, firstName,lastName,userType));
+                userList.add(new User(userId, firstName, lastName, userType));
             }
             
             
@@ -320,13 +318,95 @@ public class Repository {
     }
     
     public void deleteUser(int usertodelete) {
-        String sql = "DELETE FROM [dbo].[user] WHERE id = ?";
-    
+        
         try (Connection conn = dataSource.getConnection()) {
-            PreparedStatement ps = conn.prepareStatement(sql);
+            PreparedStatement ps = conn.prepareStatement("DELETE FROM [dbo].[user] WHERE id = ?");
             ps.setInt(1, usertodelete);
             ps.executeUpdate();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public List<Topic> getTopics() {
+        List<Topic> topics = new ArrayList<>();
+        String sql = "SELECT * FROM [dbo].[topic] ORDER BY [id] DESC ";
         
+        try (Connection conn = dataSource.getConnection()) {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                
+                int id = rs.getInt("id");
+                String name = rs.getString("Name");
+                
+                Topic topic = new Topic(id, name);
+                topics.add(topic);
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return topics;
+    }
+    
+    public List<Post> getPosts(int topicId) {
+        List<Post> postList = new ArrayList<>();
+        //String sql = "SELECT * FROM [dbo].[forum] WHERE [TopicId] = ? ORDER BY [TIMESTAMP ] DESC ";
+        
+        String sql = "SELECT id" +
+                ", userid" +
+                ", content" +
+                ", [Timestamp]" +
+                ", likes" +
+                ", topicid" +
+                ", (SELECT firstname FROM dbo.[user] as du1 WHERE df.userid = du1.id) as Firstname" +
+                ", (SELECT lastname FROM dbo.[user] as du2 Where df.userid = du2.id) as Lastname " +
+                "FROM DBO.forum as df " +
+                "WHERE [TopicId] = ? ORDER BY [Timestamp] DESC ";
+        
+        try (Connection conn = dataSource.getConnection()) {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, topicId);
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                
+                int id = rs.getInt("id");
+                int userId = rs.getInt("UserId");
+                String content = rs.getString("Content");
+                Timestamp timeStamp = rs.getTimestamp("Timestamp");
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("H:m - d/L");
+                String time = timeStamp.toLocalDateTime().format(dtf);
+                int likes = rs.getInt("Likes");
+                String name = rs.getString("firstname") + " " + rs.getString("lastname");
+                
+                // (int id, int userId, String content, String timestamp, int likes, int topicId)
+                Post post = new Post(id, userId, content, time, likes, topicId, name);
+                postList.add(post);
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return postList;
+    }
+    
+    public void insertPost(Post newPost, User user, int topicId) {
+        String sql = "INSERT INTO [dbo].[forum] (userid, content, topicid) VALUES (?,?,?)";
+        
+        try (Connection conn = dataSource.getConnection()) {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, user.getUserID());
+            ps.setString(2, newPost.getContent());
+            ps.setInt(3, topicId);
+            
+            int rs = ps.executeUpdate();
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }

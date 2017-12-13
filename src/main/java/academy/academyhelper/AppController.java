@@ -134,19 +134,26 @@ public class AppController {
         return "home";
     }
     
-    @GetMapping("/confessions")
-    public ModelAndView confessions(HttpSession session) {
+    @GetMapping("/confessions/{topicId}")
+    public ModelAndView confessions(HttpSession session, @PathVariable int topicId) {
         
         if (session.getAttribute("user") == null) {
             // Denna if-sats kollar om användaren är inloggad
             return new ModelAndView("redirect:/");
         }
         
+        
         List<Confession> confessions = repository.getConfessions();
+        List<Topic> topics = repository.getTopics();
+        List<Post> posts = repository.getPosts(topicId);
         
         return new ModelAndView("confessions")
+                .addObject("topicId", topicId)
                 .addObject("newConfession", new Confession())
-                .addObject("confessions", confessions);
+                .addObject("newPost", new Post())
+                .addObject("confessions", confessions)
+                .addObject("topics", topics)
+                .addObject("posts", posts);
     }
     
     @GetMapping("/deleteConfession/{id}")
@@ -177,6 +184,25 @@ public class AppController {
         return "redirect:/confessions";
     }
     
+    @PostMapping("/newPost/{topicId}")
+    public String newPost(HttpSession session, @ModelAttribute Post newPost, @PathVariable int topicId) {
+        User user = (User) session.getAttribute("user");
+        
+        if (user == null) {
+            // Denna if-sats kollar om användaren är inloggad
+            return "redirect:/";
+        }
+        
+        String post = newPost.getContent().trim();
+        
+        if (!post.equals("")) {
+            newPost.setContent(post);
+            repository.insertPost(newPost, user, topicId);
+        }
+        
+        return "redirect:/confessions/"+topicId; // Vilken topic?
+    }
+    
     @GetMapping("/forgot")
     public String forgot() {
         
@@ -201,13 +227,15 @@ public class AppController {
     
     @GetMapping("/admin")
     public String administration(HttpSession session, Model model) {
-        if (session.getAttribute("user") == null) {
-            // Denna if-sats kollar om användaren är inloggad
-            return "redirect:/";
+        User user = (User) session.getAttribute("user");
+        if (user == null || !user.getUserType().equals("Admin")) {
+            // Denna if-sats kollar om användaren är inloggad och admin
+            return "redirect:/home";
         }
         
         model.addAttribute("programList", repository.getProgramList());
         model.addAttribute("userList", repository.getUserList());
+
         return "/admin";
     }
     
