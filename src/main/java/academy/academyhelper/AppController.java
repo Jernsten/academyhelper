@@ -130,6 +130,10 @@ public class AppController {
         if (user.getUserType().equals("Admin")) {
             model.addAttribute("newArticle", new NewArticle(user.getFirstName()));
         }
+
+        if (user.getUserType().equals("Student")) {
+            model.addAttribute("teachers", repository.getTeacherList(user));
+        }
         
         return "home";
     }
