@@ -296,7 +296,7 @@ public class Repository {
     public List<User> getUserList() {
         List<User> userList = new ArrayList<>();
         
-        String sql = "Select * From [dbo].[user]";
+        String sql = "Select * From [dbo].[user] Order By  usertype, firstname, lastname";
         
         try (Connection conn = dataSource.getConnection()) {
             PreparedStatement ps = conn.prepareStatement(sql);
