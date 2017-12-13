@@ -55,8 +55,8 @@
 
     <a href="/confessions/0">
         <div id="confession">
-            <h2>Confessions</h2>
-            <p class="info">Hur känner du?</p>
+            <h2>Academy Forum</h2>
+            <p class="info">Hade du något på hjärtat?</p>
         </div>
     </a>
 
@@ -121,7 +121,7 @@
         </div>
     </a>
 
-    <div th:if="${session.user.userType == 'Student'}" id="Mina lärare">
+    <div th:if="${session.user.userType == 'Student'}" id="myteachers">
         <h2>Mina lärare</h2>
         <ul>
             <li th:each="teacher : ${teachers}">

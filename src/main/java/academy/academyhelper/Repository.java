@@ -142,7 +142,7 @@ public class Repository {
                 
                 programList.add(new Program(id, program, time));
             }
-
+            
             
         } catch (SQLException e) {
             e.printStackTrace();
@@ -411,33 +411,75 @@ public class Repository {
             e.printStackTrace();
         }
     }
-
+    
     public List<User> getTeacherList(User user) {
         List<User> teacherList = new ArrayList<>();
-
+        
         String sql = "  Select *" +
                 "  From [dbo].[user]" +
                 "  where usertype = 'Teacher'" +
                 "  AND program = ?";
-
+        
         try (Connection conn = dataSource.getConnection()) {
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1,user.getProgram());
+            ps.setInt(1, user.getProgram());
             ResultSet rs = ps.executeQuery();
-
+            
             while (rs.next()) {
                 String firstName = rs.getString("firstname");
                 String lastName = rs.getString("lastname");
                 String email = rs.getString("email");
-
-                teacherList.add(new User(firstName,lastName,email));
+                
+                teacherList.add(new User(firstName, lastName, email));
             }
-
-
+            
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        
         return teacherList;
+    }
+    
+    public void addTopic(String newtopic) {
+        String sql = "INSERT INTO [dbo].[topic] Values(?) ";
+        
+        try (Connection conn = dataSource.getConnection()) {
+            
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, newtopic);
+            ps.executeUpdate();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void deleteTopic(int topicId) {
+        try (Connection conn = dataSource.getConnection()) {
+            // Radera alla meddelanden på topicId
+            PreparedStatement ps = conn.prepareStatement("DELETE FROM [dbo].[forum] WHERE TopicId = ?");
+            ps.setInt(1, topicId);
+            ps.executeUpdate();
+            
+            // Radera topic med topicId
+            ps = conn.prepareStatement("DELETE FROM [dbo].[topic] WHERE id = ?");
+            ps.setInt(1, topicId);
+            ps.executeUpdate();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void deletePost(int postid) {
+        try (Connection conn = dataSource.getConnection()) {
+            PreparedStatement ps = conn.prepareStatement("DELETE FROM [dbo].[forum] WHERE id = ?");
+            ps.setInt(1, postid);
+            ps.executeUpdate();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

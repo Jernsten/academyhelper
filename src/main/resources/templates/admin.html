@@ -46,7 +46,7 @@
                             th:value="${program.id}"></option>
                 </select>
                 <div>
-                    <button type="submit" class="delete">Radera</button>
+                    <button type="submit" class="delete">Radera program</button>
                 </div>
             </form>
         </div>
@@ -64,7 +64,24 @@
                             th:value="${user.userID}"></option>
                 </select>
                 <div>
-                    <button type="submit" class="delete">Radera</button>
+                    <button type="submit" class="delete">Radera användare</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="deletetopic">
+        <h2>Radera tråd från Academy Forum</h2>
+        <div>
+            <form action="/deletetopic" method="post">
+                <select id="topics" name="topictodelete">
+                    <option value="0">Trådar</option>
+                    <option th:each="topic : ${topics}"
+                            th:text="${topic.name}"
+                            th:value="${topic.id}"></option>
+                </select>
+                <div>
+                    <button type="submit" class="delete">Radera tråd</button>
                 </div>
             </form>
         </div>

@@ -23,10 +23,17 @@
 
     <div id="changeTopic">
         <div>
-
+            <a href="/confessions/0"><h3>Bikten(anonymt)</h3></a>
         </div>
-        <div id="topic" th:each="topic : ${topics}">
+        <div class="topic" th:each="topic : ${topics}">
             <a th:href="@{/confessions/}+${topic.id}"><h3 th:text="${topic.name}">(Rubrik)</h3></a>
+        </div>
+        <div id="addTopic">
+            <form action="/addTopic" method="post">
+                <h3></h3>
+                <input type="text" name="newtopic"/>
+                <button type="submit">#NyTråd</button>
+            </form>
         </div>
     </div>
 
@@ -39,10 +46,12 @@
             <div>
                 <button type="submit">SKICKA</button>
             </div>
+
         </form>
 
     </div>
-    <div id="newPost">
+
+    <div id="newPost" th:unless="${topicId == 0}">
         <form th:action="@{/newPost/} + ${topicId}" method="post" th:object="${newPost}">
             <textarea placeholder="Skriv ett meddelande"
                       th:field="*{content}">
@@ -61,7 +70,7 @@
 
         <span th:if="${session.user.userType == 'Admin'}" class="delete">
 
-            <a th:href="@{'/deleteConfession/' + ${confession.id}}">-</a>
+            <a th:href="@{'/deleteConfession/' + ${confession.id}+ '/' + ${topicId}}">-</a>
 
         </span>
 
@@ -74,7 +83,7 @@
 
         <span th:if="${session.user.userType == 'Admin'}" class="delete">
 
-            <!--<a th:href="@{'/deleteConfession/' + ${confession.id}}">-</a>-->
+            <a th:href="@{'/deletePost/' + ${post.id} + '/' + ${topicId}}">-</a>
 
         </span>
 
