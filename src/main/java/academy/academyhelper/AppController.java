@@ -1,5 +1,6 @@
 package academy.academyhelper;
 
+import com.sendgrid.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -116,7 +118,7 @@ public class AppController {
     }
     
     @GetMapping("/home")
-    public String home(HttpSession session, Model model) {
+    public String home(HttpSession session, Model model) throws Exception {
         User user = (User) session.getAttribute("user");
         
         if (user == null) {
@@ -134,10 +136,35 @@ public class AppController {
         if (user.getUserType().equals("Student")) {
             model.addAttribute("teachers", repository.getTeacherList(user));
         }
-        
+
         return "home";
     }
-    
+
+    @GetMapping("/email")
+    public String email() throws Exception {
+
+        Email from = new Email("academyhelpernoreply@gmail.com");
+        String subject = "Automatiskt frånvaro mail";
+        Email to = new Email("tomas_o_83@hotmail.com");
+        Content content = new Content("text/plain", "JAG ÄR VÄLDIGT SJUK!!");
+        Mail mail = new Mail(from, subject, to, content);
+
+        SendGrid sg = new SendGrid("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");
+        Request request = new Request();
+        try {
+            request.setMethod(Method.POST);
+            request.setEndpoint("mail/send");
+            request.setBody(mail.build());
+            Response response = sg.api(request);
+            System.out.println(response.getStatusCode());
+            System.out.println(response.getBody());
+            System.out.println(response.getHeaders());
+        } catch (IOException ex) {
+            throw ex;
+        }
+        return "redirect:/home";
+    }
+
     @GetMapping("/confessions/{topicId}")
     public ModelAndView confessions(HttpSession session, @PathVariable int topicId) {
         
