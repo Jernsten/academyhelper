@@ -1,11 +1,14 @@
 package academy.academyhelper;
 
+import com.sendgrid.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.sql.DataSource;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -480,6 +483,38 @@ public class Repository {
             
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void mail(@RequestParam String message, User user, List<User> teacherMail) throws IOException {
+        for (User teacher:teacherMail) {
+
+
+            Email from = new Email("academyhelpnoreply@gmail.com");
+            String subject = "Automatiskt frånvaro mail";
+            Email to = new Email(teacher.getEmail());
+            Content content = new Content("text/plain", "NAMN: " + user.getFirstName() + " " + user.getLastName() + " EMAIL: " + user.getEmail()
+                    + "\n" + " MEDDELANDE: " + message);
+            Mail mail = new Mail(from, subject, to, content);
+
+            SendGrid sg = new SendGrid("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");
+            Request request = new Request();
+
+            try {
+                request.setMethod(Method.POST);
+                request.setEndpoint("mail/send");
+                request.setBody(mail.build());
+
+                Response response = sg.api(request);
+
+                System.out.println(response.getStatusCode());
+                System.out.println(response.getBody());
+                System.out.println(response.getHeaders());
+
+            } catch (IOException ex) {
+                throw ex;
+            }
+
         }
     }
 }
