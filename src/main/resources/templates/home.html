@@ -55,8 +55,8 @@
 
     <a href="/confessions/0">
         <div id="confession">
-            <h2>Confessions</h2>
-            <p class="info">Hur känner du?</p>
+            <h2>Academy Forum</h2>
+            <p class="info">Hade du något på hjärtat?</p>
         </div>
     </a>
 
@@ -107,18 +107,19 @@
     </div>
 
 
-    <div id="sick">
+    <box id="sick">
         <h2>Frånvaro</h2>
         <p class="info">Anmäl här om du av någon anledning inte kan närvara, tex vid sjukdom eller intervju</p>
         <div class="text">
             <form action="mailto:salaspontus@hotmail.com" enctype="text/plain" method="post" class="text">
-                <input type="text" name="fnamn" id="fnamn" placeholder="Förnamn"/>
-                <input type="text" name="enamn" id="enamn" placeholder="Efternamn"/>
+                <!--<input type="hidden" name="fnamn" id="fnamn" th:value="${session.user.firstName}"/>
+                <input type="text" name="enamn" id="enamn" th:value=${session.user.lastName}"/>-->
+
                 <textarea name="meddelande" id="meddelande" placeholder="Orsak till frånvaro"></textarea>
                 <button type="submit">Skicka</button>
             </form>
         </div>
-    </div>
+    </box>
 
     <a th:if="${session.user.userType == 'Admin'}" href="/admin">
         <div id="admin">
@@ -127,7 +128,7 @@
         </div>
     </a>
 
-    <div th:if="${session.user.userType == 'Student'}" id="Mina lärare">
+    <div th:if="${session.user.userType == 'Student'}" id="myteachers">
         <h2>Mina lärare</h2>
         <ul>
             <li th:each="teacher : ${teachers}">

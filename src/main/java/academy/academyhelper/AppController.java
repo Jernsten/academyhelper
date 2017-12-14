@@ -47,7 +47,6 @@ public class AppController {
         return "redirect:/home";
     }
     
-    
     @PostMapping("/login")
     public String postLogin(HttpSession session, @RequestParam String email, @RequestParam String password) {
         
@@ -132,39 +131,43 @@ public class AppController {
         if (user.getUserType().equals("Admin")) {
             model.addAttribute("newArticle", new NewArticle(user.getFirstName()));
         }
-
+        
         if (user.getUserType().equals("Student")) {
             model.addAttribute("teachers", repository.getTeacherList(user));
         }
-
+        
         return "home";
     }
-
+    
     @GetMapping("/email")
     public String email() throws Exception {
-
-        Email from = new Email("academyhelpernoreply@gmail.com");
+        
+        Email from = new Email("");
         String subject = "Automatiskt frånvaro mail";
-        Email to = new Email("tomas_o_83@hotmail.com");
+        Email to = new Email("");
         Content content = new Content("text/plain", "JAG ÄR VÄLDIGT SJUK!!");
         Mail mail = new Mail(from, subject, to, content);
-
-        SendGrid sg = new SendGrid("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");
+        
+        SendGrid sg = new SendGrid("");
         Request request = new Request();
+        
         try {
             request.setMethod(Method.POST);
             request.setEndpoint("mail/send");
             request.setBody(mail.build());
+
             Response response = sg.api(request);
+
             System.out.println(response.getStatusCode());
             System.out.println(response.getBody());
             System.out.println(response.getHeaders());
+        
         } catch (IOException ex) {
             throw ex;
         }
         return "redirect:/home";
     }
-
+    
     @GetMapping("/confessions/{topicId}")
     public ModelAndView confessions(HttpSession session, @PathVariable int topicId) {
         
@@ -187,15 +190,17 @@ public class AppController {
                 .addObject("posts", posts);
     }
     
-    @GetMapping("/deleteConfession/{id}")
-    public String deleteConfession(HttpSession session, @PathVariable int id) {
-        if (session.getAttribute("user") == null) {
-            // Denna if-sats kollar om användaren är inloggad
-            return "redirect:/";
+    @GetMapping("/deleteConfession/{id}/{topicid}")
+    public String deleteConfession(HttpSession session, @PathVariable int id, @PathVariable int topicid) {
+        User user = (User) session.getAttribute("user");
+        if (user == null || !user.getUserType().equals("Admin")) {
+            // Denna if-sats kollar om användaren är inloggad och admin
+            return "redirect:/home";
         }
+        
         repository.deleteConfession(id);
         
-        return "redirect:/confessions";
+        return "redirect:/confessions/" + topicid;
     }
     
     @PostMapping("/newConfession")
@@ -204,6 +209,7 @@ public class AppController {
             // Denna if-sats kollar om användaren är inloggad
             return "redirect:/";
         }
+        
         String confession = newConfession.getContent().trim();
         
         if (!confession.equals("")) {
@@ -212,7 +218,7 @@ public class AppController {
         }
         
         
-        return "redirect:/confessions";
+        return "redirect:/confessions/0";
     }
     
     @PostMapping("/newPost/{topicId}")
@@ -231,7 +237,7 @@ public class AppController {
             repository.insertPost(newPost, user, topicId);
         }
         
-        return "redirect:/confessions/"+topicId; // Vilken topic?
+        return "redirect:/confessions/" + topicId; // Vilken topic?
     }
     
     @GetMapping("/forgot")
@@ -248,11 +254,16 @@ public class AppController {
     
     @PostMapping("/makeNews")
     public String makeNews(HttpSession session, @ModelAttribute NewArticle newArticle) {
+        
         if (session.getAttribute("user") == null) {
             // Denna if-sats kollar om användaren är inloggad
             return "redirect:/";
         }
-        repository.makeNews(newArticle);
+        
+        if (!newArticle.getContent().isEmpty()) {
+            repository.makeNews(newArticle);
+        }
+        
         return "redirect:/home";
     }
     
@@ -266,15 +277,16 @@ public class AppController {
         
         model.addAttribute("programList", repository.getProgramList());
         model.addAttribute("userList", repository.getUserList());
-
+        model.addAttribute("topics", repository.getTopics());
         return "/admin";
     }
     
     @PostMapping("/addprogram")
     public String addProgram(HttpSession session, @RequestParam String name, @RequestParam String date) {
-        if (session.getAttribute("user") == null) {
-            // Denna if-sats kollar om användaren är inloggad
-            return "redirect:/";
+        User user = (User) session.getAttribute("user");
+        if (user == null || !user.getUserType().equals("Admin")) {
+            // Denna if-sats kollar om användaren är inloggad och admin
+            return "redirect:/home";
         }
         
         repository.addProgram(name, date);
@@ -284,9 +296,10 @@ public class AppController {
     
     @PostMapping("/deleteprogram")
     public String deleteProgram(HttpSession session, @RequestParam String programtodelete) {
-        if (session.getAttribute("user") == null) {
-            // Denna if-sats kollar om användaren är inloggad
-            return "redirect:/";
+        User user = (User) session.getAttribute("user");
+        if (user == null || !user.getUserType().equals("Admin")) {
+            // Denna if-sats kollar om användaren är inloggad och admin
+            return "redirect:/home";
         }
         
         repository.deleteProgram(programtodelete);
@@ -296,13 +309,50 @@ public class AppController {
     
     @PostMapping("/deleteuser")
     public String deleteUser(HttpSession session, @RequestParam int usertodelete) {
-        if (session.getAttribute("user") == null) {
-            // Denna if-sats kollar om användaren är inloggad
-            return "redirect:/";
+        User user = (User) session.getAttribute("user");
+        if (user == null || !user.getUserType().equals("Admin")) {
+            // Denna if-sats kollar om användaren är inloggad och admin
+            return "redirect:/home";
         }
         
         repository.deleteUser(usertodelete);
         
         return "redirect:/admin";
+    }
+    
+    @PostMapping("/addTopic")
+    public String addTopic(HttpSession session, @RequestParam String newtopic) {
+        if (session.getAttribute("user") == null) {
+            // Denna if-sats kollar om användaren är inloggad
+            return "redirect:/";
+        }
+        
+        repository.addTopic(newtopic);
+        return "redirect:/confessions/0";
+    }
+    
+    @PostMapping("/deletetopic")
+    public String deleteTopic(HttpSession session, @RequestParam int topictodelete) {
+        User user = (User) session.getAttribute("user");
+        if (user == null || !user.getUserType().equals("Admin")) {
+            // Denna if-sats kollar om användaren är inloggad och admin
+            return "redirect:/home";
+        }
+        
+        repository.deleteTopic(topictodelete);
+        return "redirect:/admin";
+    }
+    
+    @GetMapping("/deletePost/{postid}/{topicid}")
+    public String deletePost(HttpSession session, @PathVariable int postid, @PathVariable int topicid) {
+        User user = (User) session.getAttribute("user");
+        if (user == null || !user.getUserType().equals("Admin")) {
+            // Denna if-sats kollar om användaren är inloggad och admin
+            return "redirect:/home";
+        }
+        
+        repository.deletePost(postid);
+        
+        return "redirect:/confessions/" + topicid;
     }
 }

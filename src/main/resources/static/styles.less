@@ -475,35 +475,100 @@ main#confessions {
 
   margin: 17vh 0vw 0vh 1vw;
 
-  & > div#newConfession {
+  & > div#changeTopic {
+    margin: 6vh 3vw 7vh;
+
+    & > div {
+      display: inline-flex;
+      border-radius: 6px;
+      box-shadow: inset 0px 0px 263px -87px #0086aa;
+      font-family: monospace;
+      padding: 0vh 1vh;
+      margin: 0.3vh 0vw;
+
+      & > a {
+        text-decoration: none;
+        color: black;
+
+        & > h3 {
+          font-size: 0.9em;
+
+          &:before {
+            content: '#';
+          }
+        }
+      }
+
+      &#addTopic > form {
+        padding: 0.85vh 0vh 1vh;
+
+        & > h3 {
+          font-size: 0.9em;
+          display: inline;
+          &:before {
+            content: '>>';
+          }
+        }
+
+        & > input {
+          display: inline;
+          background: transparent;
+          border-style: none;
+          width: 12vh;
+          font-family: monospace;
+          font-size: 0.9em;
+          font-weight: bold;
+          height: 2em;
+        }
+
+        & > button {
+          display: inline;
+          font-family: monospace;
+          font-size: 0.9em;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  & > div#newConfession, & > div#newPost {
     margin: 7vh 3vw;
     padding: 0vh 4vw 0vh;
     border-radius: 15px;
     box-shadow: inset 0px 0px 263px -87px #00aa3c;
-    display: flex;
+    display: block;
+    height: 7em;
 
     & > form {
 
       & > textarea {
         background-color: transparent;
         border-style: none;
-        padding: 2vh 9vw 5vh 0vw;
+        padding: 4vh 0;
         resize: none;
         font-family: monospace;
         font-size: 1.1em;
+        /* line-height: 1.1em; */
         border-right-style: solid;
         border-right-color: white;
         border-right-width: 3px;
+        display: inline-flex;
+        /* height: 6em; */
+        vertical-align: middle;
       }
 
       & > div {
-        display: flex;
-        position: absolute;
-        right: 10vw;
-        top: 30vh;
+        display: inline-flex;
+        height: 6em;
+        width: 7em;
 
         & > button {
           color: #00000078;
+          height: 100%;
+          width: 100%;
+          font-size: 1em;
+          font-family: monospace;
+          letter-spacing: 1px;
         }
       }
     }
