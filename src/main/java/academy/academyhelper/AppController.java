@@ -139,35 +139,16 @@ public class AppController {
         return "home";
     }
     
-    @GetMapping("/email")
-    public String email() throws Exception {
-        
-        Email from = new Email("");
-        String subject = "Automatiskt frånvaro mail";
-        Email to = new Email("");
-        Content content = new Content("text/plain", "JAG ÄR VÄLDIGT SJUK!!");
-        Mail mail = new Mail(from, subject, to, content);
-        
-        SendGrid sg = new SendGrid("");
-        Request request = new Request();
-        
-        try {
-            request.setMethod(Method.POST);
-            request.setEndpoint("mail/send");
-            request.setBody(mail.build());
-
-            Response response = sg.api(request);
-
-            System.out.println(response.getStatusCode());
-            System.out.println(response.getBody());
-            System.out.println(response.getHeaders());
-        
-        } catch (IOException ex) {
-            throw ex;
-        }
+    @PostMapping("/email")
+    public String email(HttpSession session, @RequestParam String message) throws Exception {
+        User user = (User) session.getAttribute("user");
+        List<User> teacherMail = repository.getTeacherList(user);
+        repository.mail(message, user, teacherMail);
         return "redirect:/home";
     }
-    
+
+
+
     @GetMapping("/confessions/{topicId}")
     public ModelAndView confessions(HttpSession session, @PathVariable int topicId) {
         

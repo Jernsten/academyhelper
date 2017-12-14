@@ -105,12 +105,12 @@
         <h2>Frånvaro</h2>
         <p class="info">Anmäl här om du av någon anledning inte kan närvara, tex vid sjukdom eller intervju</p>
         <div class="text">
-            <form action="mailto:salaspontus@hotmail.com" enctype="text/plain" method="post" class="text">
+            <form action="/email" method="post" class="text">
                 <!--<input type="hidden" name="fnamn" id="fnamn" th:value="${session.user.firstName}"/>
                 <input type="text" name="enamn" id="enamn" th:value=${session.user.lastName}"/>-->
 
-                <textarea name="meddelande" id="meddelande" placeholder="Orsak till frånvaro"></textarea>
-                <button type="submit">Skicka</button>
+                <input type="text" name="message" id="meddelande" placeholder="Orsak till frånvaro"/>
+                <input type="submit" value="Skicka"/>
             </form>
         </div>
     </box>

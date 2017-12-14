@@ -1,5 +1,6 @@
 target/
 !.mvn/wrapper/maven-wrapper.jar
+academy.academyhelper.Repository
 
 ### STS ###
 .apt_generated
