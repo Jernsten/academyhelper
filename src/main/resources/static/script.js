@@ -1,7 +1,19 @@
-$('main#home > div').click(function () {
+$('main#home > div#news').click(function () {
     $(this).children().slideToggle();
-
 });
+
+$('main#home > div#food > h2').click(function () {
+    $(this).slideToggle();
+    $(this).next().slideToggle();
+});
+
+
+
+$('main#home > div#sick > h2').click(function(){
+    $(this).slideToggle();
+    $(this).next().slideToggle();
+    $(this).next().next().slideToggle();
+})
 
 $("document").ready(function () {
     $("#countdown").fadeToggle(3500, "swing", function() {

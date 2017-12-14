@@ -71,27 +71,21 @@
             <a href="http://eatery.se/">
                 <div id="eatery">
                     <h4>EATERY</h4>
-                    <p>NOD-husets restaurang som serverar tre olika
-                        rätter varje dag. Lunch 98 kr</p>
                 </div>
             </a>
             <a href="https://www.kistagalleria.se/eat-drink">
                 <div id="kista">
                     <h4>FOOD COURT KISTA GALLERIA</h4>
-                    <p>Här hittar du allt
-                        från burgare till sushi.</p>
                 </div>
             </a>
             <a href="http://www.convini.se/">
                 <div id="Convini">
-                    <h4>Convini</h4>
-                    <p>Både mat och kaffe direkt i Academys matsal.</p>
                 </div>
             </a>
         </div>
     </div>
 
-    <div id="travel">
+    <!--<div id="travel">
         <h2>Hitta hit</h2>
         <p class="info">Så här åker du kollektivt från T-centralen</p>
         <div class="text">
@@ -101,10 +95,10 @@
                 </a>
             </p>
         </div>
-    </div>
+    </div>-->
 
 
-    <box id="sick">
+    <div id="sick">
         <h2>Frånvaro</h2>
         <p class="info">Anmäl här om du av någon anledning inte kan närvara, tex vid sjukdom eller intervju</p>
         <div class="text">
@@ -113,10 +107,10 @@
                 <input type="text" name="enamn" id="enamn" th:value=${session.user.lastName}"/>-->
 
                 <textarea name="meddelande" id="meddelande" placeholder="Orsak till frånvaro"></textarea>
-                <button type="submit">Skicka</button>
+                <div><button type="submit">Skicka</button></div>
             </form>
         </div>
-    </box>
+    </div>
 
     <a th:if="${session.user.userType == 'Admin'}" href="/admin">
         <div id="admin">

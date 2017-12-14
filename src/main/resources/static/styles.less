@@ -231,6 +231,46 @@ main#home {
     /* border: inset #0000001f 0px; */
     border-radius: 14px;
 
+    &#sick {
+      background-image: none;
+      background-size: auto;
+      margin: 7vh 0vw;
+      padding: 3vh 3vh 3vh 3vh;
+      border-radius: 15px;
+      box-shadow: inset 0px 0px 154px -27px #673AB7;
+      font-family: Montesserat, sans-serif;
+
+      & > h2 {
+        margin-bottom: 0em;
+      }
+
+      & > div > form > textarea {
+        width: 100%;
+        height: 7vh;
+        font-size: 1em;
+        resize: none;
+      }
+
+      & div > form > div > button {
+        margin: 1.5vh auto 0 auto;
+        position: static;
+        display: inline-block;
+        padding: 10px 20px;
+        float: none;
+        font-family: Montserrat, sans-serif;
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 400;
+        letter-spacing: 1px;
+        background-color: #00aa3c95;
+        color: white;
+        width: 100%;
+        border-radius: 5px;
+        height: 2.5em;
+        border-style: none;
+      }
+    }
+
     &#news {
       background-image: url(/graphics/open-book.jpg);
       /* background-position: center center; */
@@ -283,7 +323,7 @@ main#home {
       margin: 7vh 0vw;
       padding: 1vh 3vh 2vh 3vh;
       border-radius: 15px;
-      box-shadow: inset 0px 0px 154px -27px #00aa3c;
+      box-shadow: inset 0px 0px 108px 1px #0086aa;
       font-family: Monterras, sans-serif;
 
       & > h2 {
@@ -300,7 +340,8 @@ main#home {
     }
 
     & > p.info {
-      font-size: 0.8em;
+      font-size: 1em;
+      font-family: Montesserat, sans-serif;
     }
 
     & > div.text {
@@ -317,15 +358,16 @@ main#home {
         color: inherit;
 
         & > div {
-          margin: 6vh auto;
+          margin: 5vh auto;
           background: #5a595a1a;
           padding: 1vh 3vh 1vh 3vh;
           box-shadow: 2px 2px 5px 0px #00000029;
           /* border: inset #0000001f 0px; */
           border-radius: 14px;
-          background-image: url(http://www.convini.se/assets/uploads/2014/12/start_butik_kopp.png);
-          background-size: 112vw 16vh;
           background-position: top;
+          filter: hue-rotate(74deg);
+          background-size: 149vw;
+          font-family: Montesserat, sans-serif;
 
           &#eatery {
             background-image: url(http://eatery.se/wp-content/themes/eatery.hubpage_tema_1.0.0/images/bkg01.jpg);
@@ -341,9 +383,25 @@ main#home {
             filter: grayscale(61%);
           }
 
+          &#Convini {
+            background-image: url(/graphics/convini.jpg);
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 13vh;
+
+            & p {
+              color: black;
+              font-size: 1.5em;
+            }
+            & > h4 {
+              color: black;
+            }
+          }
+
           h4 {
             color: white;
-            font-size: 1em;
+            font-size: 1.5em;
           }
 
           p {
@@ -469,25 +527,29 @@ main#home {
 
 main#faq {
 
-  & > div {
+  & div {
     border-style: solid;
+    border-radius: 7px;
+    border-color: #eeeeee;
+    background: #5a595a1a;
+    margin: 0.5vh;
+    padding: 0vh 0 0 2vw;
 
-    & > h2 {
-
-    }
-
-    & > div {
+    & h3 {
+      /* border-style: solid; */
       border-style: solid;
-
-      & > h3 {
-
-      }
-
-      & > div {
-        border-style: solid;
-
-      }
+      border-radius: 7px;
+      border-color: #eeeeee;
+      background: #5a595a1a;
+      margin: 0;
+      padding: 3vh 0vw 3vh 3vw;
     }
+  }
+
+  & > div > div {
+    background: white;
+    padding: 3vh 4vw 3vh 4vw;
+    font-size: 1.1em;
   }
 }
 
