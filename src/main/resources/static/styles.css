@@ -218,37 +218,50 @@ main#home > div#news {
   background-position-y: -4vh;
   filter: contrast(103%);
   padding: 3vh 9vw;
-  min-height: 13vh;
-  font-family: serif;
+  min-height: 8vh;
+  font-family: Montserrat, sans-serif;
 }
 main#home > div#news > h2 {
   font-family: Montserrat, sans-serif;
   letter-spacing: 2px;
-  font-weight: 500;
-  font-size: 1.9em;
+  font-weight: bold;
+  font-size: 1.2em;
   font-variant-caps: all-petite-caps;
   display: inline-block;
-  /* margin: auto auto; */
-  width: 48%;
-  /* padding-right: 2vw; */
+  margin: auto;
+  width: 47%;
 }
 main#home > div#news > p.info {
   font-size: 0.8em;
   display: inline-block;
-  width: 48%;
-  padding-left: 2vw;
+  width: 46%;
+  font-family: inherit;
+  margin: 1vh 0 0 4vw;
 }
 main#home > div#news > div.text {
   display: flex;
 }
 main#home > div#news > div.text > p {
-  font-size: 1em;
-  margin: 2vh 4vw;
-  padding: 2vh 6vw 2vh 4vw;
+  font-family: Montserrat, sans-serif;
+  font-size: 1.1em;
+  margin: 2vh 6vw 6vh 4vw;
+  padding: 0vh 0vw 0vh 0vw;
   max-width: 37%;
   min-height: 25vh;
   display: inline-flex;
   background: none;
+}
+main#home > div#food {
+  background-image: none;
+  background-size: auto;
+  margin: 7vh 0vw;
+  padding: 1vh 3vh 2vh 3vh;
+  border-radius: 15px;
+  box-shadow: inset 0px 0px 154px -27px #00aa3c;
+  font-family: Monterras, sans-serif;
+}
+main#home > div#food > h2 {
+  font-size: 2em;
 }
 main#home > div > h2 {
   font-family: Montserrat, sans-serif;
@@ -352,25 +365,32 @@ main#home > a > div#confession {
   background-image: none;
   background-size: auto;
   margin: 7vh 0vw;
-  padding: 1vh 3vh 1vh 3vh;
+  padding: 3vh 3vh 3vh 3vh;
   border-radius: 15px;
-  box-shadow: inset 0px 0px 263px -87px #00aa3c;
+  box-shadow: inset 0px 0px 154px -27px #00aa3c;
   font-family: monospace;
 }
 main#home > a > div#confession > p,
 main#home > a > div#confession > h2 {
-  text-align: center;
+  text-align: left;
   display: block;
   color: black;
+  font-size: 1.4em;
+  font-weight: 100;
 }
 main#home > a > div#faq {
-  background-image: url(http://www.hannspree.eu/archiv/content_en/faq.png);
-  background-position: bottom;
+  background-image: url(/graphics/faq_banner.jpg);
+  background-position: top;
   height: 14vh;
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   background-color: white;
-  filter: hue-rotate(443deg);
+  filter: hue-rotate(-27deg);
+}
+main#home > a > div#faq > h2 {
+  color: #565556;
+  text-align: left;
+  margin: 5vh 1vw;
 }
 main#home > a > div#admin {
   background-image: radial-gradient(#00aa3c, red 163%);
