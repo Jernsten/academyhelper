@@ -3,7 +3,7 @@ $('main#home > div').click(function () {
 
 });
 
-$("window").ready(function () {
+$("document").ready(function () {
     $("#countdown").fadeToggle(3500, "swing", function() {
         $("#countdown").fadeToggle(3500, "swing");
     });
@@ -27,4 +27,10 @@ $('main#faq > div > h3').click(function () {
 $('main#home > form#makenews > h2').click(function(){
     $(this).slideToggle();
     $(this).next().slideToggle();
+});
+
+$('main#home > box > h2').click(function () {
+    $(this).slideToggle();
+    $(this).next().slideToggle();
+    $(this).next().next().slideToggle();
 });
