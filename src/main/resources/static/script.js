@@ -7,7 +7,10 @@ $('main#home > div#food > h2').click(function () {
     $(this).next().slideToggle();
 });
 
-
+$('main#home > div#workout > h2').click(function () {
+    $(this).slideToggle();
+    $(this).next().slideToggle();
+});
 
 $('main#home > div#sick > h2').click(function(){
     $(this).slideToggle();
