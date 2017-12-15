@@ -246,9 +246,16 @@ main#home {
 
       & > div > form > textarea {
         width: 100%;
+        background: transparent;
+        border: none;
+        text-align: center;
         height: 7vh;
         font-size: 1em;
         resize: none;
+      }
+
+      & > div.text {
+        display: none;
       }
 
       & div > form > div > button {
@@ -291,6 +298,7 @@ main#home {
         display: inline-block;
         margin: auto;
         width: 47%;
+        transform: rotate(-0.6deg);
       }
 
       & > p.info {
@@ -299,10 +307,12 @@ main#home {
         width: 46%;
         font-family: inherit;
         margin: 1vh 0 0 4vw;
+        transform: rotate(0.8deg);
       }
 
       & > div.text {
         display: flex;
+        display: none;
 
         & > p {
           font-family: Montserrat, sans-serif;
@@ -313,6 +323,14 @@ main#home {
           min-height: 25vh;
           display: inline-flex;
           background: none;
+
+          &:first-child {
+            transform: rotate(-0.6deg);
+
+            &~p{
+              transform: rotate(0.8deg);
+            }
+          }
         }
       }
     }
@@ -328,6 +346,10 @@ main#home {
 
       & > h2 {
         font-size: 2em;
+      }
+
+      & > div.text {
+        display: none;
       }
     }
 
@@ -428,11 +450,16 @@ main#home {
     }
 
     & > div.text {
+      display: none;
+
       & > textarea#content {
         width: 100%;
         height: 7vh;
-        font-size: 1em;
         resize: none;
+        background: transparent;
+        border: none;
+        font-size: 1.3em;
+        text-align: center;
       }
 
       & > div > button {
@@ -574,6 +601,10 @@ main#confessions {
       & > a {
         text-decoration: none;
         color: black;
+
+        & > span#fat~h3 {
+          color: white;
+        }
 
         & > h3 {
           font-size: 0.9em;

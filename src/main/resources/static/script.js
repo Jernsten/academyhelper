@@ -20,7 +20,7 @@ $("document").ready(function () {
         $("#countdown").fadeToggle(3500, "swing");
     });
 
-    $("main#home div.text").slideToggle();
+//    $("main#home div.text").slideToggle();
 });
 
 

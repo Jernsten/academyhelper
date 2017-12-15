@@ -224,9 +224,15 @@ main#home > div#sick > h2 {
 }
 main#home > div#sick > div > form > textarea {
   width: 100%;
+  background: transparent;
+  border: none;
+  text-align: center;
   height: 7vh;
   font-size: 1em;
   resize: none;
+}
+main#home > div#sick > div.text {
+  display: none;
 }
 main#home > div#sick div > form > div > button {
   margin: 1.5vh auto 0 auto;
@@ -266,6 +272,7 @@ main#home > div#news > h2 {
   display: inline-block;
   margin: auto;
   width: 47%;
+  transform: rotate(-0.6deg);
 }
 main#home > div#news > p.info {
   font-size: 0.8em;
@@ -273,9 +280,11 @@ main#home > div#news > p.info {
   width: 46%;
   font-family: inherit;
   margin: 1vh 0 0 4vw;
+  transform: rotate(0.8deg);
 }
 main#home > div#news > div.text {
   display: flex;
+  display: none;
 }
 main#home > div#news > div.text > p {
   font-family: Montserrat, sans-serif;
@@ -286,6 +295,12 @@ main#home > div#news > div.text > p {
   min-height: 25vh;
   display: inline-flex;
   background: none;
+}
+main#home > div#news > div.text > p:first-child {
+  transform: rotate(-0.6deg);
+}
+main#home > div#news > div.text > p:first-child ~ p {
+  transform: rotate(0.8deg);
 }
 main#home > div#food {
   background-image: none;
@@ -298,6 +313,9 @@ main#home > div#food {
 }
 main#home > div#food > h2 {
   font-size: 2em;
+}
+main#home > div#food > div.text {
+  display: none;
 }
 main#home > div > h2 {
   font-family: Montserrat, sans-serif;
@@ -379,11 +397,17 @@ main#home > form#makenews > h2 {
   margin: 0;
   text-align: center;
 }
+main#home > form#makenews > div.text {
+  display: none;
+}
 main#home > form#makenews > div.text > textarea#content {
   width: 100%;
   height: 7vh;
-  font-size: 1em;
   resize: none;
+  background: transparent;
+  border: none;
+  font-size: 1.3em;
+  text-align: center;
 }
 main#home > form#makenews > div.text > div > button {
   margin: 1.5vh auto 0 auto;
@@ -500,6 +524,9 @@ main#confessions > div#changeTopic > div {
 main#confessions > div#changeTopic > div > a {
   text-decoration: none;
   color: black;
+}
+main#confessions > div#changeTopic > div > a > span#fat ~ h3 {
+  color: white;
 }
 main#confessions > div#changeTopic > div > a > h3 {
   font-size: 0.9em;
