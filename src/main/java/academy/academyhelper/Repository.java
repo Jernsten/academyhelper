@@ -490,14 +490,14 @@ public class Repository {
         for (User teacher:teacherMail) {
 
 
-            Email from = new Email("academyhelpnoreply@gmail.com");
+            Email from = new Email("hacademyhelpernoreplies@gmail.com");
             String subject = "Automatiskt frånvaro mail";
             Email to = new Email(teacher.getEmail());
             Content content = new Content("text/plain", "NAMN: " + user.getFirstName() + " " + user.getLastName() + " EMAIL: " + user.getEmail()
                     + "\n" + " MEDDELANDE: " + message);
             Mail mail = new Mail(from, subject, to, content);
 
-            SendGrid sg = new SendGrid("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");
+            SendGrid sg = new SendGrid("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");
             Request request = new Request();
 
             try {

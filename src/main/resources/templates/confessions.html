@@ -23,7 +23,7 @@
 
     <div id="changeTopic">
         <div>
-            <a href="/confessions/0"><h3>Bikten(anonymt)</h3></a>
+            <a href="/confessions/0"><span th:if="${0 == topicId}" id="fat"></span><h3>Bikten(anonymt)</h3></a>
         </div>
         <div class="topic" th:each="topic : ${topics}">
             <a th:href="@{/confessions/}+${topic.id}">

@@ -217,14 +217,16 @@ main#home > div#sick {
   padding: 3vh 3vh 3vh 3vh;
   border-radius: 15px;
   box-shadow: inset 0px 0px 154px -27px #673AB7;
-  font-family: Montesserat, sans-serif;
+  font-family: Montserrat, sans-serif;
 }
 main#home > div#sick > h2 {
-  margin-bottom: 0em;
+  font-variant-caps: normal;
+  color: #565556;
+  text-align: left;
+  margin: 5vh 1vw;
 }
 main#home > div#sick > div > form > textarea {
   width: 100%;
-  background: transparent;
   border: none;
   text-align: center;
   height: 7vh;
@@ -259,10 +261,16 @@ main#home > div#workout {
   padding: 3vh 3vh 3vh 3vh;
   border-radius: 15px;
   box-shadow: inset 0px 0px 154px -27px #CA278C;
-  font-family: Montesserat, sans-serif;
+  font-family: Montserrat, sans-serif;
+}
+main#home > div#workout > div.text {
+  display: none;
 }
 main#home > div#workout > h2 {
-  margin-bottom: 0em;
+  color: #565556;
+  text-align: left;
+  margin: 5vh 1vw;
+  font-variant-caps: normal;
 }
 main#home > div#workout > div > form > textarea {
   width: 100%;
@@ -309,7 +317,7 @@ main#home > div#news > div.text > p {
   font-size: 1.1em;
   margin: 2vh 6vw 6vh 4vw;
   padding: 0vh 0vw 0vh 0vw;
-  max-width: 37%;
+  max-width: 36%;
   min-height: 25vh;
   display: inline-flex;
   background: none;
@@ -327,24 +335,29 @@ main#home > div#food {
   padding: 1vh 3vh 2vh 3vh;
   border-radius: 15px;
   box-shadow: inset 0px 0px 108px 1px #0086aa;
-  font-family: Monterras, sans-serif;
+  font-family: Montserrat, sans-serif;
 }
 main#home > div#food > h2 {
-  font-size: 2em;
+  font-variant-caps: normal;
+  color: #565556;
+  text-align: left;
+  margin: 5vh 1vw;
 }
 main#home > div#food > div.text {
   display: none;
 }
 main#home > div > h2 {
-  font-family: Montserrat, sans-serif;
-  letter-spacing: 2px;
-  font-weight: 500;
-  font-size: 1.9em;
-  font-variant-caps: all-petite-caps;
+  font-variant-caps: normal;
+  color: #565556;
+  text-align: left;
+  margin: 5vh 1vw;
+}
+main#home > div#myteachers > ul {
+  display: none;
 }
 main#home > div > p.info {
   font-size: 1em;
-  font-family: Montesserat, sans-serif;
+  font-family: Montserrat, sans-serif;
 }
 main#home > div > div.text p {
   background-image: linear-gradient(168deg, white, #eeeeee 24%);
@@ -366,7 +379,7 @@ main#home > div > div.text > a > div {
   background-position: top;
   filter: hue-rotate(74deg);
   background-size: 149vw;
-  font-family: Montesserat, sans-serif;
+  font-family: Montserrat, sans-serif;
 }
 main#home > div > div.text > a > div#eatery {
   background-image: url(http://eatery.se/wp-content/themes/eatery.hubpage_tema_1.0.0/images/bkg01.jpg);
@@ -432,6 +445,7 @@ main#home > form#makenews > h2 {
   font-size: 1em;
   margin: 0;
   text-align: center;
+  font-family: Montserrat, sans-serif;
 }
 main#home > form#makenews > div.text {
   display: none;
@@ -440,7 +454,6 @@ main#home > form#makenews > div.text > textarea#content {
   width: 100%;
   height: 7vh;
   resize: none;
-  background: transparent;
   border: none;
   font-size: 1.3em;
   text-align: center;
@@ -505,7 +518,7 @@ main#home > a > div#faq > h2 {
   margin: 5vh 1vw;
 }
 main#home > a > div#admin {
-  background-image: radial-gradient(#00aa3c, red 163%);
+  background-image: radial-gradient(321px, red, white, red);
 }
 main#home > a > div#admin > p,
 main#home > a > div#admin > h2 {

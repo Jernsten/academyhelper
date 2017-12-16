@@ -22,8 +22,6 @@ $("document").ready(function () {
     $("#countdown").fadeToggle(3500, "swing", function() {
         $("#countdown").fadeToggle(3500, "swing");
     });
-
-//    $("main#home div.text").slideToggle();
 });
 
 
@@ -48,4 +46,9 @@ $('main#home > box > h2').click(function () {
     $(this).slideToggle();
     $(this).next().slideToggle();
     $(this).next().next().slideToggle();
+});
+
+$('main#home > div#myteachers > h2').click(function () {
+    $(this).slideToggle();
+    $(this).next().slideToggle();
 });
